@@ -1,6 +1,6 @@
-# Nome do projeto
+# Mãe Coruja 
 
-Escreva um ou dois parágrafo resumindo o objetivo do seu projeto.
+Mãe coruja é um projeto que visa proporcionar aos pais uma assistente virtual da vida familiar, que possibilite melhorar a qualidade de vida de uma família por meio da organização da rotina e entre outras funções auxiliadoras das tarefas inerentes à maternidade e paternidade.
 
 ## Alunos integrantes da equipe
 

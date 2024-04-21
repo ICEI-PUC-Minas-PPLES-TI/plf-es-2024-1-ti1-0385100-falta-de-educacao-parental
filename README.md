@@ -7,7 +7,7 @@ Mãe coruja é um projeto que visa proporcionar aos pais uma assistente virtual 
 * Luísa Oliveira Jardim 
 * Gabriela Alvarenga Cardoso
 * Leonardo de Souza Galvão
-* João Álavaro Rodrigues Araujo
+* João Álvaro Rodrigues Araujo
 
 ## Professores responsáveis
 

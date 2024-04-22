@@ -32,14 +32,19 @@ O projeto "Mãe Coruja" surge como resposta à necessidade de oferecer uma solu�
 
 ## Público-Alvo
 
-Descreva quem serão as pessoas que usarão a sua aplicação indicando os diferentes perfis. O objetivo aqui não é definir quem serão os clientes ou quais serão os papéis dos usuários na aplicação. A ideia é, dentro do possível, conhecer um pouco mais sobre o perfil dos usuários: conhecimentos prévios, relação com a tecnologia, relações hierárquicas, etc.
+O público-alvo abrange uma variedade de formatos de núcleos familiares, todos enfrentando dificuldades que podem ser solucionadas através da assistente virtual.
 
-Adicione informações sobre o público-alvo por meio de uma descrição textual, ou diagramas de personas, mapa de stakeholders, ou como o grupo achar mais conveniente.
+### Pais solteiros:
 
-**Links Úteis**:
+O público-alvo desse perfil, os pais solteiros, são líderes do lar, equilibrando responsabilidades financeiras e emocionais enquanto criam seus filhos sozinhos. Com um conhecimento básico de tecnologia, eles utilizam smartphones e computadores para diversas tarefas, como comunicação, entretenimento e trabalho remoto, buscando soluções práticas que simplifiquem suas vidas. Enfrentando desafios diários, que variam desde o gerenciamento das finanças até a organização das atividades escolares e extracurriculares dos filhos, valorizam ferramentas que ajudam na organização da rotina familiar e na gestão financeira, permitindo que foquem no bem-estar e no desenvolvimento físico, emocional e educacional das crianças. Colaborativos em suas relações com outras figuras de apoio, como familiares próximos, amigos e serviços sociais, estão abertos a aprender e adotar novas tecnologias que facilitem suas jornadas como pais solteiros, buscando sempre proporcionar um ambiente seguro e acolhedor para seus filhos crescerem e se desenvolverem.
 
-- [Público-alvo: o que é, tipos, como definir seu público e exemplos](https://klickpages.com.br/blog/publico-alvo-o-que-e/)
-- [Qual a diferença entre público-alvo e persona?](https://rockcontent.com/blog/diferenca-publico-alvo-e-persona/)
+### Pais casados:
+
+O público-alvo desse perfil, os pais casados, representam uma unidade familiar onde as responsabilidades são compartilhadas entre o casal. Com um amplo espectro de conhecimento em tecnologia, eles utilizam smartphones, tablets, computadores e dispositivos inteligentes em suas rotinas diárias, seja para trabalho, comunicação ou entretenimento. Dentro da dinâmica familiar, as responsabilidades podem ser distribuídas de diferentes maneiras, seja de forma equitativa entre os membros do casal ou seguindo uma abordagem mais tradicional, onde as divisões são baseadas em habilidades individuais e preferências, independentemente do gênero. Procuram por soluções que facilitem a coordenação entre os membros da família, como aplicativos de agenda compartilhada e gerenciamento de tarefas. Seus objetivos ao usar uma aplicação podem incluir otimizar o tempo em família, fortalecer os laços emocionais e garantir o bem-estar de todos os membros da família, enquanto mantêm uma vida equilibrada entre trabalho, lazer e obrigações familiares.
+
+### Pais jovens:
+
+O público-alvo desse perfil, os pais jovens, estão frequentemente no início de suas carreiras e experienciando uma fase de aprendizado tanto na vida profissional quanto na pessoal. Eles geralmente possuem um bom conhecimento em tecnologia, pois cresceram em uma era digital e estão familiarizados com smartphones, redes sociais e aplicativos. No entanto, podem não ter muita experiência em organização familiar. Dentro da hierarquia familiar, eles podem adotar uma abordagem mais igualitária na divisão de responsabilidades, compartilhando tarefas domésticas e cuidados com os filhos de forma mais equitativa. Procuram por soluções que os ajudem a equilibrar suas vidas pessoais e profissionais, como aplicativos de planejamento familiar e  gestão do tempo. Seus objetivos ao usar uma aplicação podem incluir encontrar maneiras eficientes de conciliar suas responsabilidades parentais com suas ambições profissionais, enquanto também desfrutam de tempo de qualidade com suas famílias.
 
 ## Personas
 
@@ -125,8 +130,7 @@ Os requisitos de um projeto são classificados em dois grupos:
 ![Projeto Mãe Coruja - Login e Cadastro](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0385100-falta-de-educacao-parental/assets/160603188/85fd8f76-a4d9-463b-84a4-6bc6d584782d)
 
 ### Tela de cadastro do usuário
-![Projeto Mãe Coruja - Cadastro](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0385100-falta-de-educacao-parental/assets/160603188/62a28ba9-93b8-4a91-b2eb-bd6cd4254525)
-
+![Projeto Mãe Coruja - Cadastro](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0385100-falta-de-educacao-parental/assets/160603188/1bf901ee-1922-4ee9-b3ae-770eed71b631)
 
 ### Tela do calendário
 ![Projeto Mãe Coruja - Calendário](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0385100-falta-de-educacao-parental/assets/160603188/9e3db29a-b8f3-46f8-b14f-bd6c988f29d8)

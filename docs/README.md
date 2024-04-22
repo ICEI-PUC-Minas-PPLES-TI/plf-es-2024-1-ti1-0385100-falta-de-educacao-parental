@@ -163,6 +163,7 @@ Detalhes sobre a organização do grupo e as ferramentas utilizadas:
 - Retrospectivas regulares: No final de cada sprint, a gente se reúne para conversar sobre o que deu certo, o que poderia ter sido melhor e o que podemos fazer para melhorar no próximo ciclo. É uma forma de aprender com o que aconteceu e sempre buscar melhorias no nosso jeito de trabalhar.
 
 ### Design Thinking
-(assets/files/processo-dt.pdf)
+[PPLES-M - G7 - Falta de educação parental.pdf](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0385100-falta-de-educacao-parental/files/15068047/PPLES-M.-.G7.-.Falta.de.educacao.parental.pdf)
+
 
 ## Referências Bibliográficas

@@ -44,12 +44,15 @@ Adicione informações sobre o público-alvo por meio de uma descrição textual
 ## Personas
 
 **Carla Santos**
+
 Carla, uma advogada de 45 anos, é uma mãe divorciada dedicada a sua filha de 7 anos. Ela busca economizar para realizar uma viagem especial com a criança após o divórcio. Sua personalidade é caracterizada por um senso de humor cativante, determinação e leve ansiedade. Carla sonha em ser uma super mãe, participando ativamente na vida escolar da filha e mantendo uma comunicação pacífica com o pai dela. Utilizando principalmente seu celular e uma agenda para organização, Carla valoriza ferramentas e serviços que ofereçam facilidade de uso, comunicação eficaz e empatia. Ganhar mais tempo livre para desfrutar momentos de qualidade com a filha é uma prioridade, assim como receber apoio do outro progenitor. Para Carla, é essencial que qualquer serviço reconheça e valorize suas contribuições como mãe e profissional.
 
 **Maria Lúcia Silva**
+
 Maria, uma psicopedagoga de 39 anos, é uma mulher comunicativa, extrovertida, um pouco ansiosa e acolhedora. Ela utiliza bastante o celular para organizar seu dia a dia, utilizando a agenda digital para anotar seus lembretes diários, e ocasionalmente faz uso do computador para momentos de lazer. Como mãe casada de duas filhas de 13 anos, Maria vê no aplicativo a oportunidade de obter orientações, recursos e suporte que a ajudem a alcançar seus sonhos em relação à criação e ao desenvolvimento de suas filhas. Ela busca uma ferramenta que a capacite como mãe e a guie no caminho para realizar seus maiores desejos para suas filhas, como formá-las e incentivá-las a serem amigas entre si e dela. O maior sonho de Maria é ver suas filhas crescerem felizes e saudáveis, alcançando seus objetivos pessoais e profissionais, proporcionando-lhes uma infância e adolescência repletas de amor.
 
 **Geraldo Carvalho**
+
 Geraldo Carvalho, um professor de geografia de 43 anos, é um entusiasta da tecnologia, utilizando seu notebook e celular regularmente, além de explorar diversos aplicativos para lazer, trabalho e rotina. Como um introvertido talentoso e pesquisador de novas tecnologias, Geraldo vê no aplicativo uma oportunidade de facilitar a criação de sua filha, oferecendo suporte para questões femininas e fornecendo informações relevantes. Seu desejo é garantir o sucesso de sua filha na vida, proporcionando-lhe as melhores oportunidades e sendo reconhecido em seu trabalho. Para ele, o aplicativo pode fornecer apoio emocional, sistemas de recomendação de creches e escolas, reuniões de psicólogos e grupos de apoio, além de recursos de organização, como guias parentais e calendários para gerenciamento da rotina.
 
 
@@ -129,7 +132,7 @@ Wireframes são protótipos das telas da aplicação usados em design de interfa
 - [MarvelApp](https://marvelapp.com/developers/documentation/tutorials/)
 
 ## Gestão de Projetos
-# Metodologia 
+### Metodologia 
 
 Detalhes sobre a organização do grupo e as ferramentas utilizadas:
 
@@ -138,12 +141,12 @@ Detalhes sobre a organização do grupo e as ferramentas utilizadas:
 - Documentação do projeto: [Plataforma Google Docs](https://docs.google.com/document/d/1NPU9xNTcjpph8o1CN8hk6eSL-wEQMjB9jrtsFUs50Xc/edit?usp=sharing)
 - Ferramenta de comunicação: [Platafroma Discord](https://discord.gg/Xz4PNdfZ)
 
-# Gestão do Projeto feita no Trello
+### Gestão do Projeto feita no Trello
 
 ![gestão de projeto trello](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0385100-falta-de-educacao-parental/assets/160603188/6ff17356-bd57-4c51-b5f4-3e954eca84c7)
 [Link de acesso](https://trello.com/b/YNXApmpn/projeto-mae-coruja)
 
-# Divisão de papéis e tarefas:
+### Divisão de papéis e tarefas:
 
 - Apresentação: Gabriela Alvarenga e Luísa Jardim
 - Documentação: Gabriela Alvarenga e Leonardo Galvão
@@ -151,7 +154,7 @@ Detalhes sobre a organização do grupo e as ferramentas utilizadas:
 - User Flow: Leonardo Galvão
 - Slide: João Álvaro
 
-# Scrum 
+### Scrum 
 
 - Planejamento em sprints:  Começamos cada ciclo com uma reunião de planejamento, onde definimos metas e prioridades. Isso nos ajudou a manter o foco nas entregas mais importantes e alocar recursos de forma eficaz.
 
@@ -159,4 +162,7 @@ Detalhes sobre a organização do grupo e as ferramentas utilizadas:
 
 - Retrospectivas regulares: No final de cada sprint, a gente se reúne para conversar sobre o que deu certo, o que poderia ter sido melhor e o que podemos fazer para melhorar no próximo ciclo. É uma forma de aprender com o que aconteceu e sempre buscar melhorias no nosso jeito de trabalhar.
 
-# Referências Bibliográficas
+### Design Thinking
+(assets/files/processo-dt.pdf)
+
+## Referências Bibliográficas

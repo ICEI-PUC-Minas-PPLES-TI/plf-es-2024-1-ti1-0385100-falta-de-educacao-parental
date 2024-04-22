@@ -127,22 +127,24 @@ Fluxo de usuário (User Flow) é uma técnica que permite ao desenvolvedor mapea
 ## Wireframes
 
 ### Tela de login e cadastro
-![Projeto Mãe Coruja - Login e Cadastro](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0385100-falta-de-educacao-parental/assets/160603188/8396e475-a51e-404a-8a12-4230ac060628)
+![Projeto Mãe Coruja - Login e Cadastro](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0385100-falta-de-educacao-parental/assets/160603188/85fd8f76-a4d9-463b-84a4-6bc6d584782d)
 
 ## Tela do calendário
-![Projeto Mãe Coruja - Calendário](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0385100-falta-de-educacao-parental/assets/160603188/b0ce5e35-0eaa-4aea-a4a1-cf7620b93ac1)
+![Projeto Mãe Coruja - Calendário](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0385100-falta-de-educacao-parental/assets/160603188/9e3db29a-b8f3-46f8-b14f-bd6c988f29d8)
 
 ## Tela da criação de lembretes e notificações
-![Projeto Mãe Coruja - Lembretes e Notificações](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0385100-falta-de-educacao-parental/assets/160603188/ed2aebb3-bdf3-4291-955d-bbc2aa09fe83)
+![Projeto Mãe Coruja - Lembretes e Notificações](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0385100-falta-de-educacao-parental/assets/160603188/4e6c67a0-3314-4a46-b09e-a418ac8b6c70)
+
 
 ## Tela do fórum da comunidade e artigos
-![Projeto Mãe Coruja - Fórum e Artigos](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0385100-falta-de-educacao-parental/assets/160603188/b7c84799-955b-4a2d-84e8-3681460efa74)
+![Projeto Mãe Coruja - Fórum e Artigos](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0385100-falta-de-educacao-parental/assets/160603188/23258a38-5413-4e31-89d0-48dd161cbbe7)
+
 
 ## Tela de comentários no fórum
-![Projeto Mãe Coruja - Comentários no fórum](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0385100-falta-de-educacao-parental/assets/160603188/22b023ff-f95a-4835-825b-0c9f1925a7e5)
+![Projeto Mãe Coruja - Comentários no fórum](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0385100-falta-de-educacao-parental/assets/160603188/1c7287e9-e64a-4ed4-8d80-e6209e3acc2d)
 
 ## Tela do mural de lembretes
-![Projeto Mãe Coruja - Mural](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0385100-falta-de-educacao-parental/assets/160603188/3466b219-18f7-4f1f-bbf6-c214c0e583bd)
+![Projeto Mãe Coruja - Mural](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0385100-falta-de-educacao-parental/assets/160603188/2103aa4e-9a5c-4e13-8c94-e8a6d52afee6)
 
 
 ## Gestão de Projetos

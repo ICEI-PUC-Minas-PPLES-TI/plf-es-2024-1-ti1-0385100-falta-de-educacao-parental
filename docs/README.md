@@ -115,37 +115,37 @@ Os requisitos de um projeto são classificados em dois grupos:
 
 
 ## User Flow
+![User flow](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0385100-falta-de-educacao-parental/assets/160603188/08be68bc-e43a-4d97-a74c-4f263533dc7f)
+[User flow](https://miro.com/app/board/uXjVKQqxHpc=/)
 
-Fluxo de usuário (User Flow) é uma técnica que permite ao desenvolvedor mapear todo fluxo de telas do site ou app. Essa técnica funciona para alinhar os caminhos e as possíveis ações que o usuário pode fazer junto com os membros de sua equipe.
-
-**Links Úteis**:
-
-- [User Flow: O Quê É e Como Fazer?](https://medium.com/7bits/fluxo-de-usu%C3%A1rio-user-flow-o-que-%C3%A9-como-fazer-79d965872534)
-- [User Flow vs Site Maps](http://designr.com.br/sitemap-e-user-flow-quais-as-diferencas-e-quando-usar-cada-um/)
-- [Top 25 User Flow Tools &amp; Templates for Smooth](https://www.mockplus.com/blog/post/user-flow-tools)
 
 ## Wireframes
 
-### Tela de login e cadastro
+### Tela de login do usuário e cadastro da família
 ![Projeto Mãe Coruja - Login e Cadastro](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0385100-falta-de-educacao-parental/assets/160603188/85fd8f76-a4d9-463b-84a4-6bc6d584782d)
 
-## Tela do calendário
+### Tela de cadastro do usuário
+![Projeto Mãe Coruja - Cadastro](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0385100-falta-de-educacao-parental/assets/160603188/62a28ba9-93b8-4a91-b2eb-bd6cd4254525)
+
+
+### Tela do calendário
 ![Projeto Mãe Coruja - Calendário](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0385100-falta-de-educacao-parental/assets/160603188/9e3db29a-b8f3-46f8-b14f-bd6c988f29d8)
 
-## Tela da criação de lembretes e notificações
+### Tela da criação de lembretes e notificações
 ![Projeto Mãe Coruja - Lembretes e Notificações](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0385100-falta-de-educacao-parental/assets/160603188/4e6c67a0-3314-4a46-b09e-a418ac8b6c70)
 
 
-## Tela do fórum da comunidade e artigos
+### Tela do fórum da comunidade e artigos
 ![Projeto Mãe Coruja - Fórum e Artigos](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0385100-falta-de-educacao-parental/assets/160603188/23258a38-5413-4e31-89d0-48dd161cbbe7)
 
 
-## Tela de comentários no fórum
+### Tela de comentários no fórum
 ![Projeto Mãe Coruja - Comentários no fórum](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0385100-falta-de-educacao-parental/assets/160603188/1c7287e9-e64a-4ed4-8d80-e6209e3acc2d)
 
-## Tela do mural de lembretes
-![Projeto Mãe Coruja - Mural](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0385100-falta-de-educacao-parental/assets/160603188/2103aa4e-9a5c-4e13-8c94-e8a6d52afee6)
+### Tela do mural de lembretes
+![Projeto Mãe Coruja - Mural](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0385100-falta-de-educacao-parental/assets/160603188/3ee36e1b-8daf-471b-8223-cbe7323ea9cb)
 
+[Wireframes](https://miro.com/app/board/uXjVKSqLeXA=/)
 
 ## Gestão de Projetos
 

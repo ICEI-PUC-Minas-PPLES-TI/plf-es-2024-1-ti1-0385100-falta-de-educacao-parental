@@ -96,9 +96,7 @@ Os requisitos de um projeto são classificados em dois grupos:
 
 - RF-008: O usuário pode curtir e comentar nos posts do fórum (Prioridade: BAIXA);
 
-- RF-009: O usuário filtra os posts por tipo (Prioridade BAIXA);
-
-- RF-010: O usuário pode realizar posts na comunidade (Prioridade BAIXA);
+- RF-009: O usuário pode realizar posts na comunidade (Prioridade BAIXA);
 
 **Requisitos Não Funcionais (RNF):**
 

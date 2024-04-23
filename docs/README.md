@@ -166,6 +166,7 @@ Detalhes sobre a organização do grupo e as ferramentas utilizadas:
 - Projeção inicial das telas: [Plataforma Miro](https://miro.com/welcomeonboard/MEdjYzBKSXNPTUhZMGM3YmlYbVdiaUxWZ21ISHliVTRiY1hrTXF2blRyY1lCaHpzT3BEYlY0R0hWUk1lVGRJcnwzNDU4NzY0NTg0OTg4MjU0MzczfDI=?share_link_id=258597073821)
 - Protótipo Interativo: [Plataforma Figma](https://www.figma.com/file/9tDZII9i3dado8InGG95xH/Untitled?type=design&node-id=0%3A1&mode=design&t=93oKWODUhyYyPjn1-1)
 - Projeção User Flow: [Plataforma Miro](https://miro.com/app/board/uXjVKQqxHpc=/)
+- Apresentação do projeto: [Plataforma Canva](https://www.canva.com/design/DAGB1A1lUos/NYPMHqZQtvfH5ZoAiIkeQg/view?utm_content=DAGB1A1lUos&utm_campaign=designshare&utm_medium=link&utm_source=editor)
 
 ### Gestão do Projeto feita no Trello
 
@@ -193,3 +194,12 @@ Detalhes sobre a organização do grupo e as ferramentas utilizadas:
 
 
 ## Referências Bibliográficas
+- https://youtu.be/mKwL4NSgt80?si=LyGgEEKV2ZI6Wn8Y
+- https://www.mockplus.com/blog/post/user-flow-tools
+- https://mundodeparentalidade.com/
+- https://youtu.be/7hZMGSamsYA?si=krlVS4XHq3FTq62K
+- https://www.folhape.com.br/colunistas/tecnologia-e-games/o-scrum-e-o-github-projects-para-gerenciamento-de-projetos/41913/
+- https://www.arvore.com.br/blog/educacao-parental#:~:text=Em%20linhas%20gerais%2C%20a%20Educa%C3%A7%C3%A3o,adequadas%20na%20cria%C3%A7%C3%A3o%20dos%20filhos.
+
+
+

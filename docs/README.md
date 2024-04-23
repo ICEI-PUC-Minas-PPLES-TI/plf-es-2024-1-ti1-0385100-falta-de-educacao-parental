@@ -1,4 +1,4 @@
-# Documentação do Projeto (TIDocs)
+![image](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0385100-falta-de-educacao-parental/assets/160603188/09fa7cf5-a8df-42d9-a546-1bb5f4456561)# Documentação do Projeto (TIDocs)
 
 Esta pasta armazena a documentação do projeto para a disciplina de **Trabalho Interdisciplinar 1** dos cursos de Tecnologia da Informação da **[PUC Minas](https://pucminas.br)**. Essa documentação é estruturada na forma de um site que fica disponível por meio do GitHub Pages e pode ser incluído, também, no site da solução hospedada. Um [exemplo publicado do TIDocs](https://webtech-puc-minas.github.io/ti1-template/) está disponível por meio do repositório do **[WebTech PUC Minas](https://github.com/webtech-pucminas)**.
 
@@ -161,6 +161,9 @@ Detalhes sobre a organização do grupo e as ferramentas utilizadas:
 - Repositório de código: [Plataforma GitHub](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0385100-falta-de-educacao-parental/tree/master)
 - Documentação do projeto: [Plataforma Google Docs](https://docs.google.com/document/d/1NPU9xNTcjpph8o1CN8hk6eSL-wEQMjB9jrtsFUs50Xc/edit?usp=sharing)
 - Ferramenta de comunicação: [Platafroma Discord](https://discord.gg/Xz4PNdfZ)
+- Projeção inicial das telas: [Plataforma Miro](https://miro.com/welcomeonboard/MEdjYzBKSXNPTUhZMGM3YmlYbVdiaUxWZ21ISHliVTRiY1hrTXF2blRyY1lCaHpzT3BEYlY0R0hWUk1lVGRJcnwzNDU4NzY0NTg0OTg4MjU0MzczfDI=?share_link_id=258597073821)
+- Protótipo Interativo: [Plataforma Figma](https://www.figma.com/file/9tDZII9i3dado8InGG95xH/Untitled?type=design&node-id=0%3A1&mode=design&t=93oKWODUhyYyPjn1-1)
+- Projeção User Flow: [Plataforma Miro](https://miro.com/app/board/uXjVKQqxHpc=/)
 
 ### Gestão do Projeto feita no Trello
 
@@ -173,7 +176,7 @@ Detalhes sobre a organização do grupo e as ferramentas utilizadas:
 - Documentação: Gabriela Alvarenga e Leonardo Galvão
 - Wireframe: Luísa Jardim e João Álvaro
 - User Flow: Leonardo Galvão
-- Slide: João Álvaro
+- Slide: Gabriela Alvarenga e Luísa Jardim
 
 ### Scrum 
 

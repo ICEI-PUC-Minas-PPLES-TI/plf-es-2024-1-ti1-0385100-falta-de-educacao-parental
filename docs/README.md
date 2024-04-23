@@ -1,4 +1,4 @@
-![image](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0385100-falta-de-educacao-parental/assets/160603188/09fa7cf5-a8df-42d9-a546-1bb5f4456561)# Documentação do Projeto (TIDocs)
+# Documentação do Projeto (TIDocs)
 
 Esta pasta armazena a documentação do projeto para a disciplina de **Trabalho Interdisciplinar 1** dos cursos de Tecnologia da Informação da **[PUC Minas](https://pucminas.br)**. Essa documentação é estruturada na forma de um site que fica disponível por meio do GitHub Pages e pode ser incluído, também, no site da solução hospedada. Um [exemplo publicado do TIDocs](https://webtech-puc-minas.github.io/ti1-template/) está disponível por meio do repositório do **[WebTech PUC Minas](https://github.com/webtech-pucminas)**.
 
@@ -150,6 +150,10 @@ Os requisitos de um projeto são classificados em dois grupos:
 ![Projeto Mãe Coruja - Mural](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0385100-falta-de-educacao-parental/assets/160603188/3ee36e1b-8daf-471b-8223-cbe7323ea9cb)
 
 [Wireframes](https://miro.com/app/board/uXjVKSqLeXA=/)
+
+## Protótipo Interativo
+![image](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti1-0385100-falta-de-educacao-parental/assets/160603188/09fa7cf5-a8df-42d9-a546-1bb5f4456561)
+[Protótipo](https://www.figma.com/file/9tDZII9i3dado8InGG95xH/Untitled?type=design&node-id=0%3A1&mode=design&t=93oKWODUhyYyPjn1-1)
 
 ## Gestão de Projetos
 

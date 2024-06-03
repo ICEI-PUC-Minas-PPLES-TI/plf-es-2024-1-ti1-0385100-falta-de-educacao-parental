@@ -23,10 +23,11 @@ function renderCalendar() {
 
   for (let i = 1; i <= lastDayOfMonth.getDate(); i++) {
     let dayClass = 'calendar-day';
+    const dateStr = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${i}`;
     if (currentDate.getFullYear() === today.getFullYear() && currentDate.getMonth() === today.getMonth() && i === today.getDate()) {
       dayClass += ' today';
     }
-    if (registeredDays.includes(i)) {
+    if (registeredDays.includes(dateStr)) {
       dayClass += ' registered-day';
     }
     daysHTML += `<div class="${dayClass}">${i}</div>`;
@@ -59,11 +60,12 @@ function closePopup() {
 }
 
 function confirmRegistration() {
-  const day = new Date(document.getElementById('day').value).getDate() + 1;
+  const date = new Date(document.getElementById('day').value);
+  const dateStr = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()+1}`;
 
   let registeredDays = JSON.parse(localStorage.getItem('registeredDays')) || [];
 
-  registeredDays.push(day);
+  registeredDays.push(dateStr);
 
   localStorage.setItem('registeredDays', JSON.stringify(registeredDays));
 
@@ -102,8 +104,8 @@ function removeUser(id) {
   saveToLocalStorage();
 
   let registeredDays = JSON.parse(localStorage.getItem('registeredDays')) || [];
-  const day = new Date(userToRemove.date).getDate() + 1;
-  const indexToRemove = registeredDays.indexOf(day);
+  const dateStr = `${new Date(userToRemove.date).getFullYear()}-${new Date(userToRemove.date).getMonth() + 1}-${new Date(userToRemove.date).getDate()+1}`;
+  const indexToRemove = registeredDays.indexOf(dateStr);
   
   if (indexToRemove !== -1) {
     registeredDays.splice(indexToRemove, 1);
@@ -122,8 +124,7 @@ function displayUserData() {
     const userItem = document.createElement('li');
     
     const userDate = new Date(user.date);
-    const adjustedDate = new Date(userDate.getTime() + (24 * 60 * 60 * 1000));
-    const formattedDate = adjustedDate.toLocaleDateString('pt-BR');
+    const formattedDate = userDate.toLocaleDateString('pt-BR');
 
     userItem.textContent = `${user.name}, Data: ${formattedDate}`;
     

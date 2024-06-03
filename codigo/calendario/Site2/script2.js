@@ -17,7 +17,6 @@ nextButton.addEventListener('click', () => {
 
 renderCalendar();
 
-
 const popup = document.getElementById('popup');
 const registerButton = document.getElementById('btnlembrete');
 
@@ -30,35 +29,16 @@ function closePopup() {
 }
 
 function confirmRegistration() {
-  const day = new Date(document.getElementById('day').value).getDate();
+  const date = new Date(document.getElementById('day').value);
+  const dateStr = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 
- 
   let registeredDays = JSON.parse(localStorage.getItem('registeredDays')) || [];
 
-  
-  registeredDays.push(day);
+  registeredDays.push(dateStr);
 
-  
   localStorage.setItem('registeredDays', JSON.stringify(registeredDays));
 
-  
-  const dayElements = document.querySelectorAll('.calendar-day');
-  dayElements.forEach((element, index) => {
-      if (index === day) {
-          
-          element.classList.add('registered-day');
-      }
-  });
+  renderCalendar();
 
-  
   closePopup();
 }
-
-var calendario = 
-  [
-      {
-          "usersId": [1,2,3],
-      }
-  ];
-
-

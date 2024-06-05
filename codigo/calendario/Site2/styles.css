@@ -83,6 +83,7 @@ grid-template-columns: repeat(7, 1fr);
 }
 
 .days {
+ 
 display: grid;
 grid-template-columns: repeat(7, 1fr);
 }
@@ -165,7 +166,7 @@ cursor: pointer;
 
 #userList{
 position: relative;
-margin: 30px;
+margin: 30px 0px 0px 0px;
 padding: 30px;
 display: flex;
 flex-direction: column;

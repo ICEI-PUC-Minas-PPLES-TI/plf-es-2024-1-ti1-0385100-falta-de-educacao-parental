@@ -1,10 +1,24 @@
+// Seletores
 const monthYearDisplay = document.getElementById('monthYear');
 const daysDisplay = document.getElementById('days');
 const prevButton = document.getElementById('prev');
 const nextButton = document.getElementById('next');
+const popup = document.getElementById('popup');
+const registerButton = document.getElementById('btnlembrete');
+const userList = document.getElementById('userList');
 
+// Data Atual
 let currentDate = new Date();
 
+// Estrutura de Dados: Lista de Usuários
+// Tipo: Array de Objetos
+// Cada objeto representa um usuário com as seguintes propriedades:
+// - id: Número inteiro único para cada usuário
+// - name: String que representa o nome do usuário
+// - date: Objeto Date que representa a data associada ao usuário
+let userData = JSON.parse(localStorage.getItem('users')) || [];
+
+// Função para renderizar o calendário
 function renderCalendar() {
   const today = new Date();
   const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
@@ -15,6 +29,9 @@ function renderCalendar() {
 
   let daysHTML = '';
 
+  // Estrutura de Dados: Dias Registrados
+  // Tipo: Array de Strings
+  // Cada string representa uma data no formato "YYYY-M-D"
   const registeredDays = JSON.parse(localStorage.getItem('registeredDays')) || [];
 
   for (let i = 0; i < firstDayOfWeek; i++) {
@@ -36,54 +53,17 @@ function renderCalendar() {
   daysDisplay.innerHTML = daysHTML;
 }
 
-renderCalendar();
-
-const popup = document.getElementById('popup');
-const registerButton = document.getElementById('btnlembrete');
-
-registerButton.addEventListener('click', () => {
-  popup.style.display = 'block';
-});
-prevButton.addEventListener('click', () => {
-  currentDate.setMonth(currentDate.getMonth() - 1);
-  renderCalendar();
-});
-
-nextButton.addEventListener('click', () => {
-  currentDate.setMonth(currentDate.getMonth() + 1);
-  renderCalendar();
-});
-
-
-function closePopup() {
-  popup.style.display = 'none';
-}
-
-function confirmRegistration() {
-  const date = new Date(document.getElementById('day').value);
-  const dateStr = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()+1}`;
-
-  let registeredDays = JSON.parse(localStorage.getItem('registeredDays')) || [];
-
-  registeredDays.push(dateStr);
-
-  localStorage.setItem('registeredDays', JSON.stringify(registeredDays));
-
-  renderCalendar();
-
-  closePopup();
-}
-
-let userData = JSON.parse(localStorage.getItem('users')) || [];
-
+// Função para salvar os usuários no LocalStorage
 function saveToLocalStorage() {
   localStorage.setItem('users', JSON.stringify(userData));
 }
 
+// Função para gerar um ID único para cada usuário
 function generateId() {
   return userData.length === 0 ? 1 : Math.max(...userData.map(user => user.id)) + 1;
 }
 
+// Função para adicionar um usuário
 function addUser(name, date) {
   const id = generateId();
   userData.push({ id, name, date: new Date(date) });
@@ -91,20 +71,18 @@ function addUser(name, date) {
   displayUserData();
 }
 
+// Função para remover um usuário
 function removeUser(id) {
   const userToRemove = userData.find(user => user.id === id);
-  
   if (!userToRemove) {
     console.error('User not found');
     return;
   }
-
   userData = userData.filter(user => user.id !== id);
-  
   saveToLocalStorage();
 
   let registeredDays = JSON.parse(localStorage.getItem('registeredDays')) || [];
-  const dateStr = `${new Date(userToRemove.date).getFullYear()}-${new Date(userToRemove.date).getMonth() + 1}-${new Date(userToRemove.date).getDate()+1}`;
+  const dateStr = `${new Date(userToRemove.date).getFullYear()}-${new Date(userToRemove.date).getMonth() + 1}-${new Date(userToRemove.date).getDate() + 1}`;
   const indexToRemove = registeredDays.indexOf(dateStr);
   
   if (indexToRemove !== -1) {
@@ -116,16 +94,13 @@ function removeUser(id) {
   displayUserData();
 }
 
+// Função para exibir os dados dos usuários
 function displayUserData() {
-  const userList = document.getElementById('userList');
   userList.innerHTML = '';
-
   userData.forEach(user => {
     const userItem = document.createElement('li');
-    
     const userDate = new Date(user.date);
     const formattedDate = userDate.toLocaleDateString('pt-BR');
-
     userItem.textContent = `${user.name}, Data: ${formattedDate}`;
     
     const deleteButton = document.createElement('button');
@@ -139,6 +114,7 @@ function displayUserData() {
   });
 }
 
+// Função para lidar com a adição de um usuário a partir de um formulário
 function handleAddUser(event) {
   event.preventDefault();
   const name = document.getElementById('dayName').value;
@@ -153,24 +129,54 @@ function handleAddUser(event) {
   }
 }
 
+// Função para abrir o popup
 function openPopup() {
-  document.getElementById('popup').style.display = 'block';
+  popup.style.display = 'block';
 }
 
+// Função para fechar o popup
 function closePopup() {
-  document.getElementById('popup').style.display = 'none';
+  popup.style.display = 'none';
 }
 
+// Função para confirmar o registro de uma data
+function confirmRegistration() {
+  const date = new Date(document.getElementById('day').value);
+  const dateStr = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()+1}`;
+
+  let registeredDays = JSON.parse(localStorage.getItem('registeredDays')) || [];
+  registeredDays.push(dateStr);
+  localStorage.setItem('registeredDays', JSON.stringify(registeredDays));
+  renderCalendar();
+  closePopup();
+}
+
+// Função para limpar os dias registrados
+function clearRegisteredDays() {
+  localStorage.removeItem('registeredDays');
+  renderCalendar();
+}
+
+// Função para voltar para a página anterior
 function goBack() {
   window.history.back();
 }
 
+// Event Listeners
+registerButton.addEventListener('click', openPopup);
+prevButton.addEventListener('click', () => {
+  currentDate.setMonth(currentDate.getMonth() - 1);
+  renderCalendar();
+});
+nextButton.addEventListener('click', () => {
+  currentDate.setMonth(currentDate.getMonth() + 1);
+  renderCalendar();
+});
+
+// Inicialização
 window.onload = function() {
   userData = JSON.parse(localStorage.getItem('users')) || [];
   displayUserData();
 }
 
-function clearRegisteredDays() {
-  localStorage.removeItem('registeredDays');
-  renderCalendar();
-}
+renderCalendar();

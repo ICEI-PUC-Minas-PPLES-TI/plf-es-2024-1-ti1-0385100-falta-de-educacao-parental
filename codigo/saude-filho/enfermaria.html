@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script
+            src="https://kit.fontawesome.com/2a55b76bbc.js"
+            crossorigin="anonymous"
+        ></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+        <title>Educação Parental</title>
+        <link rel="stylesheet" href="enfermaria.css" />
+    </head>
+
+    <body onload="init()">
+        <header>
+            <img src="logo.png" class="logo" alt="Logo" />
+            <h1>mãe coruja</h1>
+        </header>
+
+        <main>
+            <!-- Calculadora -->
+            <section id="tools">
+                <div id="calculadora">
+                    <div class="calculadora-form">
+                        <h2>Calculadora de crescimento</h2>
+                        <div class="input-group">
+                            <label for="idade-atual"
+                                >Idade Atual (meses):</label
+                            >
+                            <input
+                                type="number"
+                                id="idade-atual"
+                                name="idade-atual"
+                                placeholder="Insira a idade em meses"
+                            />
+                        </div>
+                        <div class="input-group">
+                            <label for="altura-atual">Altura Atual (cm):</label>
+                            <input
+                                type="number"
+                                id="altura-atual"
+                                name="altura-atual"
+                                placeholder="Insira a altura em cm"
+                            />
+                        </div>
+                        <button onclick="calcularCrescimento()">
+                            Calcular
+                        </button>
+                        <div id="altura-resultado" class="resultado"></div>
+                    </div>
+                </div>
+                <!-- Informações do pediatra -->
+                <section id="info-pediatra">
+                    <h2>Informações do Pediatra</h2>
+                    <div class="info-form">
+                        <div class="input-group">
+                            <label for="nome-pediatra">Nome:</label>
+                            <input
+                                type="text"
+                                id="nome-pediatra"
+                                name="nome-pediatra"
+                                placeholder="Insira o nome do pediatra"
+                            />
+                        </div>
+                        <div class="input-group">
+                            <label for="num-pediatra">Telefone:</label>
+                            <input
+                                type="tel"
+                                id="num-pediatra"
+                                name="num-pediatra"
+                                placeholder="Insira o telefone do pediatra"
+                            />
+                        </div>
+                        <div class="input-group">
+                            <label for="hospital-pediatra">Hospital:</label>
+                            <input
+                                type="text"
+                                id="hospital-pediatra"
+                                name="hospital-pediatra"
+                                placeholder="Insira o hospital do pediatra"
+                            />
+                        </div>
+                        <div class="input-group">
+                            <label for="endereco-pediatra">Endereço:</label>
+                            <input
+                                type="text"
+                                id="endereco-pediatra"
+                                name="endereco-pediatra"
+                                placeholder="Insira o endereço do pediatra"
+                            />
+                        </div>
+                        <button id="save-pediatra" onclick="savePediatraInfo()">
+                            Salvar Informações
+                        </button>
+                        <p id="status-message"></p>
+                    </div>
+                </section>
+
+                <!-- Anotações sobre consultas -->
+                <section id="notas-medicas">
+                    <h2>Anotações das Consultas</h2>
+                    <form id="notas-form" onsubmit="addInfoDasConsultas(event)">
+                        <label for="notas-datas">Data:</label>
+                        <input
+                            type="date"
+                            id="notas-datas"
+                            name="notas-datas"
+                            required
+                        />
+                        <label for="notas-conteudo">Anotações:</label>
+                        <textarea
+                            id="notas-conteudo"
+                            name="notas-conteudo"
+                            required
+                        ></textarea>
+                        <button type="submit">Salvar Informações</button>
+                        <p id="mensagemconsulta"></p>
+                    </form>
+                    <div id="notas-historico">
+                        <h3>Histórico de Anotações</h3>
+                        <ul id="notas-lista">
+                        </ul>
+                    </div>
+                    <p id="status-message"></p>
+                </section>
+            </section>
+        </main>
+
+        <footer>
+            <ul class="footerIcons">
+                <li>
+                    <a href="#"><i class="fa-solid fa-user-group"></i></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa-solid fa-calendar-days"></i></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa-solid fa-globe"></i></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa-solid fa-file-lines"></i></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa-solid fa-gear"></i></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa-solid fa-user"></i></a>
+                </li>
+            </ul>
+        </footer>
+
+        
+        <script>
+            function init() {
+                loadPediatraInfo(); 
+                loadNotas(); 
+                loadConsultas(); 
+                document.getElementById("save-pediatra").addEventListener("click", savePediatraInfoAPI);
+            }
+
+           
+            function savePediatraInfo() {
+                const nomePediatra = document
+                    .getElementById("nome-pediatra")
+                    .value.trim();
+                const telefonePediatra = document
+                    .getElementById("num-pediatra")
+                    .value.trim();
+                const hospitalPediatra = document
+                    .getElementById("hospital-pediatra")
+                    .value.trim();
+                const enderecoPediatra = document
+                    .getElementById("endereco-pediatra")
+                    .value.trim();
+
+                if (
+                    !nomePediatra ||
+                    !telefonePediatra ||
+                    !hospitalPediatra ||
+                    !enderecoPediatra
+                ) {
+                    mostrarMensagem(
+                        "status-message",
+                        "Por favor, preencha todos os campos corretamente.",
+                        "red",
+                    );
+                    return;
+                }
+
+                const pediatraInfo = {
+                    nome: nomePediatra,
+                    telefone: telefonePediatra,
+                    hospital: hospitalPediatra,
+                    endereco: enderecoPediatra,
+                };
+
+                
+                savePediatraInfoAPI(pediatraInfo);
+                mostrarMensagem(
+                    "status-message",
+                    "Informações do pediatra salvas com sucesso!",
+                    "green",
+                );
+            }
+
+            // Função para carregar as informações do pediatra do localStorage
+            function loadPediatraInfo() {
+                const pediatraInfo = localStorage.getItem("pediatraInfo");
+                if (pediatraInfo) {
+                    const info = JSON.parse(pediatraInfo);
+                    document.getElementById("nome-pediatra").value = info.nome;
+                    document.getElementById("num-pediatra").value =
+                        info.telefone;
+                    document.getElementById("hospital-pediatra").value =
+                        info.hospital;
+                    document.getElementById("endereco-pediatra").value =
+                        info.endereco;
+                }
+            }
+
+            // Função para calcular e exibir o crescimento previsto
+            function calcularCrescimento() {
+                const idadeAtual = document.getElementById("idade-atual").value;
+                const alturaAtual =
+                    document.getElementById("altura-atual").value;
+
+                if (idadeAtual && alturaAtual) {
+                    const crescimentoPrevisto =
+                        parseFloat(alturaAtual) +
+                        (18 - parseFloat(idadeAtual) / 12) * 5;
+                    mostrarMensagem(
+                        "altura-resultado",
+                        `Altura Prevista: ${crescimentoPrevisto.toFixed(2)} cm`,
+                        "black",
+                    );
+                } else {
+                    mostrarMensagem(
+                        "altura-resultado",
+                        "Por favor, insira todos os dados.",
+                        "red",
+                    );
+                }
+            }
+
+            // Função genérica para exibir mensagens
+            function mostrarMensagem(elementId, message, color) {
+                const element = document.getElementById(elementId);
+                element.innerText = message;
+                element.style.color = color;
+                setTimeout(() => {
+                    element.innerText = "";
+                }, 5000);
+            }
+
+            let notaIdCounter = 1;
+
+            function addInfoDasConsultas(event) {
+                event.preventDefault();
+                const data = document.getElementById("notas-datas").value;
+                const conteudo = document.getElementById("notas-conteudo").value;
+
+                if (data && conteudo) {
+                    const listaNotas = document.getElementById("notas-lista");
+                    const notaItem = document.createElement("li");
+                    const notaId = notaIdCounter++; 
+                    notaItem.dataset.id = notaId; 
+                    notaItem.innerHTML = `${data}: ${conteudo} <button class="editar" onclick="editarNota(this)">Editar</button> <button class="apagar" onclick="apagarNota(this)">Apagar</button>`;
+                    listaNotas.appendChild(notaItem);
+                    document.getElementById("notas-form").reset();
+                    saveConsultasInfoAPI({
+                        id: notaId, 
+                        data: data,
+                        conteudo: conteudo
+                    });
+                } else {
+                    mostrarMensagem(
+                        "mensagemconsulta",
+                        "Por favor, preencha todos os campos corretamente.",
+                        "red",
+                    );
+                }
+            }
+
+
+            // Função para editar uma nota
+            function editarNota(button) {
+                const listItem = button.parentNode;
+                const nota = listItem.textContent.trim().split('Editar')[0]; 
+                const [data, conteudo] = nota.split(':'); 
+                document.getElementById('notas-datas').value = data.trim(); 
+                document.getElementById('notas-conteudo').value = conteudo.trim();
+                listItem.remove(); 
+            }
+
+            function apagarNota(button) {
+                const listItem = button.parentNode;
+                const notaId = listItem.dataset.id; 
+                listItem.remove(); 
+                deleteConsultasInfo(notaId, refreshNotas); 
+
+            }
+
+        
+            function refreshNotas() {
+             loadNotas(); 
+            }
+
+
+            window.onload = init;
+        </script>
+        <script src="app.js"></script>
+    </body>
+</html>

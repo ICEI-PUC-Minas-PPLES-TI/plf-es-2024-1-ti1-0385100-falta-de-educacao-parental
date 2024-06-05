@@ -1,0 +1,366 @@
+* {
+	margin: 0;
+	font-family: 'League Spartan', sans-serif;
+}
+
+
+header {
+	padding: 1.5em;
+	display: flex;
+	align-items: center;
+	gap: 2em;
+	background-image: linear-gradient(to bottom, #800080, #4b0082);
+	border-radius: 0px 0px 30px 30px;
+	margin-bottom: 2em;
+	color: white;
+}
+
+body {
+		font-family: 'Inter', sans-serif;
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+}
+
+main {
+		padding: 2em;
+}
+
+section {
+		margin-bottom: 2em;
+}
+
+label, button {
+		display: block;
+		margin-top: 0.5em;
+		margin-bottom: 15px;
+}
+
+input[type="numero"], input[type="date"], input[type="text"], input[type="tel"], textarea {
+		width: 100%;
+		padding: 0.5em;
+		margin-top: 0.2em;
+}
+
+
+textarea {
+		height: 100px;
+}
+
+footer {
+		background-color: #4b0082;
+		color: white;
+		text-align: center;
+		padding: 1em;
+		position: relative;
+		width: 100%;
+		bottom: 0;
+}
+
+
+#notas-lista li, #vacina-lista li {
+		background-color: #f9f9f9;
+		border: 1px solid #ddd;
+		margin-bottom: 0.5em;
+		padding: 0.5em;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+		main {
+				padding: 1em;
+		}
+
+		header {
+				height: 150px;
+		}
+
+		.header-curve {
+				width: 100px;
+				height: 100px;
+				bottom: -50px;
+				left: calc(50% - 50px);
+		}
+
+		.header-face {
+				width: 60px;
+				height: 60px;
+		}
+}
+
+.calculadora-form {
+		background-color: #f0e6fa;
+		padding: 20px;
+		border-radius: 8px;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+		margin-bottom: 20px;
+}
+
+.input-group {
+		margin-bottom: 20px;
+}
+
+.input-group label {
+		display: block;
+		margin-bottom: 15px;
+		color: #4b0082; 
+}
+
+.input-group input {
+		width: calc(100% - 10px);
+		padding: 10px;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+}
+
+#calculadora button {
+		background-color: #4b0082;
+		color: white;
+		border: none;
+		padding: 10px 20px;
+		border-radius: 5px;
+		cursor: pointer;
+		margin-bottom: 15px;
+}
+
+#calculadora button:hover {
+		background-color: #6a0dad;
+}
+
+#calculadora h2 {
+		color: #4b0082;
+		margin-bottom: 20px;
+}
+
+#notas-medicas h2 {
+		color: #4b0082;
+		margin-bottom: 20px;
+}
+
+#notas-medicas {
+		background-color: #f0e6fa;
+		padding: 20px;
+		border-radius: 8px;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#notas-form {
+		margin-bottom: 20px;
+}
+
+#notas-form label {
+		display: block;
+		margin-bottom: 15px;
+		color: #4b0082;
+}
+
+#notas-form input[type="date"],
+#notas-form textarea {
+		width: calc(100% - 10px);
+		padding: 10px;
+		margin-bottom: 10px;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+}
+
+#notas-form button {
+		background-color: #4b0082;
+		color: white;
+		border: none;
+		padding: 10px 20px;
+		border-radius: 5px;
+		cursor: pointer;
+		margin-bottom: 15px;
+}
+
+#notas-form button:hover {
+		background-color: #6a0dad;
+}
+
+#notas-historico {
+		background-color: #e6ccff;
+		padding: 10px;
+		border-radius: 8px;
+}
+
+#notas-historico h3 {
+		color: #4b0082;
+		margin-bottom: 10px;
+}
+
+#notas-lista {
+		list-style-type: none;
+		padding: 0;
+}
+
+#notas-lista li {
+		background-color: #d9b3ff;
+		border: 1px solid #b386ff;
+		margin-bottom: 15px;
+		padding: 10px;
+		border-radius: 5px;
+}
+
+#info-pediatra {
+		background-color: #f0e6fa;
+		padding: 20px;
+		border-radius: 8px;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#info-pediatra h2 {
+		color: #4b0082;
+		margin-bottom: 20px;
+}
+
+.info-form {
+		margin-bottom: 20px;
+}
+
+.input-group label {
+		display: block;
+		margin-bottom: 15px;
+		color: #4b0082;
+}
+
+.input-group input {
+		width: calc(100% - 10px);
+		padding: 10px;
+		margin-bottom: 10px;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+}
+
+.info-form button {
+		background-color: #4b0082;
+		color: white;
+		border: none;
+		padding: 10px 20px;
+		border-radius: 5px;
+		cursor: pointer;
+		margin-bottom: 15px;
+}
+
+.info-form button:hover {
+		background-color: #6a0dad;
+}
+
+/* Estilo para a seção de vacinas */
+#controle-vacina {
+		background-color: #f0e6fa;
+		padding: 20px;
+		border-radius: 8px;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#controle-vacina h2 {
+		color: #4b0082;
+		margin-bottom: 20px;
+}
+
+#vacina-form {
+		margin-bottom: 20px;
+}
+
+#vacina-form label {
+		display: block;
+		margin-bottom: 15px;
+		color: #4b0082;
+}
+
+#vacina-form input[type="text"],
+#vacina-form input[type="date"],
+#vacina-form textarea {
+		width: calc(100% - 10px);
+		padding: 10px;
+		margin-bottom: 10px;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+}
+
+#vacina-form button {
+		background-color: #4b0082;
+		color: white;
+		border: none;
+		padding: 10px 20px;
+		border-radius: 5px;
+		cursor: pointer;
+		margin-bottom: 15px;
+}
+
+#vacina-form button:hover {
+		background-color: #6a0dad;
+}
+
+/* Estilo para o contêiner do histórico de vacinas */
+#vacina-historico {
+		background-color: #e6ccff;
+		padding: 10px;
+		border-radius: 8px;
+}
+
+#vacina-historico h3 {
+		color: #5d0082;
+		margin-bottom: 10px;
+}
+
+/* Estilo para a lista de vacinas */
+#vacina-lista {
+		list-style-type: none; 
+		padding: 0;
+}
+
+/* Estilo para cada item da lista de vacinas */
+#vacina-lista li {
+		background-color: #d9b3ff;
+		border: 1px solid #b386ff;
+		margin-bottom: 15px;
+		padding: 10px;
+		border-radius: 5px;
+}
+
+
+
+footer {
+		background: #6a0dad ;
+		padding: 1.5em;
+	}
+
+	.footerIcons {
+		list-style-type: none;
+		display: flex;
+		gap: 2rem;
+		justify-content: space-around;
+	}
+
+	a {
+		text-decoration: none;
+		color: black;
+	}
+
+	.footerIcons li {
+		font-size: 1.5rem;
+	}
+
+	.fa-solid {
+	 color:white;
+	}
+
+/* Estilizando os botões de editar e apagar */
+.editar, .apagar {
+	background-color: #4b0082;
+	color: white;
+	border: none;
+	padding: 0.5em 1em;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-left: 0.5em;
+	transition: background-color 0.3s ease;
+	display: inline-block;
+}
+
+.editar:hover, .apagar:hover {
+	background-color: #6a0dad;
+}
+
+

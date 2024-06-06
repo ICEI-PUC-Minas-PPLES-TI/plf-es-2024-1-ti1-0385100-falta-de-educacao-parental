@@ -11,11 +11,6 @@ const userList = document.getElementById('userList');
 let currentDate = new Date();
 
 // Estrutura de Dados: Lista de Usuários
-// Tipo: Array de Objetos
-// Cada objeto representa um usuário com as seguintes propriedades:
-// - id: Número inteiro único para cada usuário
-// - name: String que representa o nome do usuário
-// - date: Objeto Date que representa a data associada ao usuário
 let userData = JSON.parse(localStorage.getItem('users')) || [];
 
 // Função para renderizar o calendário
@@ -29,9 +24,6 @@ function renderCalendar() {
 
   let daysHTML = '';
 
-  // Estrutura de Dados: Dias Registrados
-  // Tipo: Array de Strings
-  // Cada string representa uma data no formato "YYYY-M-D"
   const registeredDays = JSON.parse(localStorage.getItem('registeredDays')) || [];
 
   for (let i = 0; i < firstDayOfWeek; i++) {
@@ -49,7 +41,7 @@ function renderCalendar() {
     }
     daysHTML += `<div class="${dayClass}">${i}</div>`;
   }
-  
+
   daysDisplay.innerHTML = daysHTML;
 }
 
@@ -66,7 +58,7 @@ function generateId() {
 // Função para adicionar um usuário
 function addUser(name, date) {
   const id = generateId();
-  userData.push({ id, name, date: new Date(date) });
+  userData.push({ id, name, date: new Date(date), impor: 0 });
   saveToLocalStorage();
   displayUserData();
 }
@@ -84,7 +76,7 @@ function removeUser(id) {
   let registeredDays = JSON.parse(localStorage.getItem('registeredDays')) || [];
   const dateStr = `${new Date(userToRemove.date).getFullYear()}-${new Date(userToRemove.date).getMonth() + 1}-${new Date(userToRemove.date).getDate() + 1}`;
   const indexToRemove = registeredDays.indexOf(dateStr);
-  
+
   if (indexToRemove !== -1) {
     registeredDays.splice(indexToRemove, 1);
     localStorage.setItem('registeredDays', JSON.stringify(registeredDays));
@@ -92,6 +84,16 @@ function removeUser(id) {
   }
 
   displayUserData();
+}
+
+// Função para alternar a importância de um usuário
+function toggleImportant(id) {
+  const user = userData.find(user => user.id === id);
+  if (user) {
+    user.impor = user.impor === 0 ? 1 : 0;
+    saveToLocalStorage();
+    displayUserData();
+  }
 }
 
 // Função para exibir os dados dos usuários
@@ -102,14 +104,21 @@ function displayUserData() {
     const userDate = new Date(user.date);
     const formattedDate = userDate.toLocaleDateString('pt-BR');
     userItem.textContent = `${user.name}, Data: ${formattedDate}`;
-    
+
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Delete';
     deleteButton.addEventListener('click', () => {
       removeUser(user.id);
     });
 
+    const importantButton = document.createElement('button');
+    importantButton.textContent = user.impor === 1 ? 'Não Importante' : 'Importante';
+    importantButton.addEventListener('click', () => {
+      toggleImportant(user.id);
+    });
+
     userItem.appendChild(deleteButton);
+    userItem.appendChild(importantButton);
     userList.appendChild(userItem);
   });
 }
@@ -122,7 +131,7 @@ function handleAddUser(event) {
 
   if (name && date) {
     addUser(name, date);
-    confirmRegistration(); 
+    confirmRegistration();
     document.getElementById('dayName').value = '';
     document.getElementById('day').value = '';
     closePopup();
@@ -142,7 +151,7 @@ function closePopup() {
 // Função para confirmar o registro de uma data
 function confirmRegistration() {
   const date = new Date(document.getElementById('day').value);
-  const dateStr = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()+1}`;
+  const dateStr = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate() + 1}`;
 
   let registeredDays = JSON.parse(localStorage.getItem('registeredDays')) || [];
   registeredDays.push(dateStr);
@@ -174,9 +183,9 @@ nextButton.addEventListener('click', () => {
 });
 
 // Inicialização
-window.onload = function() {
+window.onload = function () {
   userData = JSON.parse(localStorage.getItem('users')) || [];
   displayUserData();
-}
+};
 
 renderCalendar();

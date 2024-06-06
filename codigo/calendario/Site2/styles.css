@@ -166,7 +166,7 @@ cursor: pointer;
 
 #userList{
 position: relative;
-margin: 30px 0px 0px 0px;
+margin: 0px 10px 0px 10px;
 padding: 30px;
 display: flex;
 flex-direction: column;
@@ -178,7 +178,7 @@ display: flex;
 justify-content: space-between;
 }
 #userList button{
-margin: 0px 0px 10px 0px;
+margin: 0px 0px 10px 5px;
 background-color: blueviolet;
 border: none;
 color: #ffffff;
@@ -360,7 +360,7 @@ height: 30px;
 
 #userList{
  position: relative;
- margin: 30px;
+ margin: 0px 10px 200px 10px;
  padding: 30px;
 display: flex;
 flex-direction: column;
@@ -372,7 +372,7 @@ border: 2px solid blueviolet;
  justify-content: space-between;
 }
 #userList button{
-margin: 0px 0px 10px 0px;
+margin: 0px 0px 10px 10px;
 background-color: blueviolet;
 border: none;
 color: #ffffff;
@@ -382,6 +382,7 @@ padding: 7px;
   background-color: rgba(83, 85, 83, 0.338); /* Change color as needed */
   color:blueviolet; /* Text color */
 }
+
 
 
 

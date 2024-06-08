@@ -55,15 +55,17 @@ function generateId() {
   return userData.length === 0 ? 1 : Math.max(...userData.map(user => user.id)) + 1;
 }
 
-// Função para adicionar um usuário
+// Função para adicionar uma data
 function addUser(name, date) {
   const id = generateId();
   userData.push({ id, name, date: new Date(date), impor: 0 });
+  //teste, a data está sendo salva corretamente
+  console.log(date + "5");
   saveToLocalStorage();
   displayUserData();
 }
 
-// Função para remover um usuário
+// Função para remover uma data
 function removeUser(id) {
   const userToRemove = userData.find(user => user.id === id);
   if (!userToRemove) {
@@ -74,7 +76,7 @@ function removeUser(id) {
   saveToLocalStorage();
 
   let registeredDays = JSON.parse(localStorage.getItem('registeredDays')) || [];
-  const dateStr = `${new Date(userToRemove.date).getFullYear()}-${new Date(userToRemove.date).getMonth() + 1}-${new Date(userToRemove.date).getDate()}`;
+  const dateStr = `${new Date(userToRemove.date).getFullYear()}-${new Date(userToRemove.date).getMonth() + 1}-${new Date(userToRemove.date).getDate()+1}`;
   const indexToRemove = registeredDays.indexOf(dateStr);
 
   if (indexToRemove !== -1) {
@@ -98,36 +100,57 @@ function toggleImportant(id) {
 
 // Função para exibir os dados dos usuários
 function displayUserData() {
-  userList.innerHTML = '';
+  userList.innerHTML = ''; // Limpa a lista existente
+
   userData.forEach(user => {
-    const userItem = document.createElement('li');
+    // Converte a data do usuário para um objeto Date
     const userDate = new Date(user.date);
+    
+    // Verifica se a conversão foi bem-sucedida
+    if (isNaN(userDate.getTime())) {
+      console.error("Data inválida para o usuário:", user.name);
+      return; // Se a data não for válida, continua para o próximo usuário
+    }
+
+    // Adiciona 1 dia à data
+    userDate.setDate(userDate.getDate() + 1);
+
+    // Formata a data para exibição
     const formattedDate = userDate.toLocaleDateString('pt-BR');
+
+    // Cria um elemento <li> para exibir o nome e a data do usuário
+    const userItem = document.createElement('li');
     userItem.textContent = `${user.name}, Data: ${formattedDate}`;
 
+    // Cria e configura o botão de exclusão
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Delete';
     deleteButton.addEventListener('click', () => {
-      removeUser(user.id);
+      removeUser(user.id); // Adiciona evento de clique para remover o usuário
     });
 
+    // Cria e configura o botão de importância
     const importantButton = document.createElement('button');
     importantButton.textContent = user.impor === 1 ? 'Não Importante' : 'Importante';
     importantButton.addEventListener('click', () => {
-      toggleImportant(user.id);
+      toggleImportant(user.id); // Adiciona evento de clique para alternar a importância
     });
 
+    // Adiciona os botões ao item e o item à lista
     userItem.appendChild(deleteButton);
     userItem.appendChild(importantButton);
     userList.appendChild(userItem);
   });
 }
 
+
 // Função para lidar com a adição de um usuário a partir de um formulário
 function handleAddUser(event) {
   event.preventDefault();
   const name = document.getElementById('dayName').value;
   const date = document.getElementById('day').value;
+  //teste, a data está sendo salva corretamente
+  console.log(date);
 
   if (name && date) {
     addUser(name, date);
@@ -151,7 +174,9 @@ function closePopup() {
 // Função para confirmar o registro de uma data
 function confirmRegistration() {
   const date = new Date(document.getElementById('day').value);
-  const dateStr = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+  // teste de data, aqui parecce ser o problema
+  console.log(date + "2");
+  const dateStr = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()+1}`;
 
   let registeredDays = JSON.parse(localStorage.getItem('registeredDays')) || [];
   registeredDays.push(dateStr);

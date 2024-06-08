@@ -74,7 +74,7 @@ function removeUser(id) {
   saveToLocalStorage();
 
   let registeredDays = JSON.parse(localStorage.getItem('registeredDays')) || [];
-  const dateStr = `${new Date(userToRemove.date).getFullYear()}-${new Date(userToRemove.date).getMonth() + 1}-${new Date(userToRemove.date).getDate() + 1}`;
+  const dateStr = `${new Date(userToRemove.date).getFullYear()}-${new Date(userToRemove.date).getMonth() + 1}-${new Date(userToRemove.date).getDate()}`;
   const indexToRemove = registeredDays.indexOf(dateStr);
 
   if (indexToRemove !== -1) {
@@ -151,7 +151,7 @@ function closePopup() {
 // Função para confirmar o registro de uma data
 function confirmRegistration() {
   const date = new Date(document.getElementById('day').value);
-  const dateStr = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate() + 1}`;
+  const dateStr = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 
   let registeredDays = JSON.parse(localStorage.getItem('registeredDays')) || [];
   registeredDays.push(dateStr);

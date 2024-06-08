@@ -11,7 +11,7 @@ const userList = document.getElementById('userList');
 let currentDate = new Date();
 
 // Estrutura de Dados: Lista de Usuários
-let userData = JSON.parse(localStorage.getItem('users')) || [];
+let userData = JSON.parse(localStorage.getItem('days')) || [];
 
 // Função para renderizar o calendário
 function renderCalendar() {
@@ -47,7 +47,7 @@ function renderCalendar() {
 
 // Função para salvar os usuários no LocalStorage
 function saveToLocalStorage() {
-  localStorage.setItem('users', JSON.stringify(userData));
+  localStorage.setItem('days', JSON.stringify(userData));
 }
 
 // Função para gerar um ID único para cada usuário
@@ -209,7 +209,7 @@ nextButton.addEventListener('click', () => {
 
 // Inicialização
 window.onload = function () {
-  userData = JSON.parse(localStorage.getItem('users')) || [];
+  userData = JSON.parse(localStorage.getItem('days')) || [];
   displayUserData();
 };
 

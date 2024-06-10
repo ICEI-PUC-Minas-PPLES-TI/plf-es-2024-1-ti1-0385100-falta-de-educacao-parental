@@ -184,6 +184,11 @@ border: none;
 color: #ffffff;
 padding: 7px;
 }
+
+.important-day{
+  background-color: rgb(255, 157, 157);
+  color: #000;
+}
 .registered-day {
  background-color: rgba(83, 85, 83, 0.338); /* Change color as needed */
  color:blueviolet; /* Text color */
@@ -377,6 +382,10 @@ background-color: blueviolet;
 border: none;
 color: #ffffff;
 padding: 7px;
+}
+.important-day{
+  background-color: rgb(255, 157, 157);
+  color: #000;
 }
 .registered-day {
   background-color: rgba(83, 85, 83, 0.338); /* Change color as needed */

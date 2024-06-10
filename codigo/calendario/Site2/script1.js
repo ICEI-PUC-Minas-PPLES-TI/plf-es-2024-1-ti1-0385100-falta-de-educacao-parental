@@ -33,17 +33,35 @@ function renderCalendar() {
   for (let i = 1; i <= lastDayOfMonth.getDate(); i++) {
     let dayClass = 'calendar-day';
     const dateStr = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${i}`;
+
+    // Verifica se o dia é importante e marca-o
+    const user = userData.find(user => {
+      const userDate = new Date(user.date);
+      return userDate.getFullYear() === currentDate.getFullYear() && 
+             userDate.getMonth() === currentDate.getMonth() &&
+             userDate.getDate() === i &&
+             user.impor === 1; // Verifica se o dia é importante
+    });
+
+    if (user) {
+      dayClass += ' important-day';
+    }
+
     if (currentDate.getFullYear() === today.getFullYear() && currentDate.getMonth() === today.getMonth() && i === today.getDate()) {
       dayClass += ' today';
     }
+
     if (registeredDays.includes(dateStr)) {
       dayClass += ' registered-day';
     }
+
     daysHTML += `<div class="${dayClass}">${i}</div>`;
   }
 
   daysDisplay.innerHTML = daysHTML;
 }
+
+
 
 // Função para salvar os usuários no LocalStorage
 function saveToLocalStorage() {
@@ -95,6 +113,7 @@ function toggleImportant(id) {
     user.impor = user.impor === 0 ? 1 : 0;
     saveToLocalStorage();
     displayUserData();
+    renderCalendar(); // Re-renderiza o calendário após alternar a importância
   }
 }
 
@@ -174,9 +193,7 @@ function closePopup() {
 // Função para confirmar o registro de uma data
 function confirmRegistration() {
   const date = new Date(document.getElementById('day').value);
-  // teste de data, aqui parecce ser o problema
-  console.log(date + "2");
-  const dateStr = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()+1}`;
+  const dateStr = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate() + 1}`;
 
   let registeredDays = JSON.parse(localStorage.getItem('registeredDays')) || [];
   registeredDays.push(dateStr);

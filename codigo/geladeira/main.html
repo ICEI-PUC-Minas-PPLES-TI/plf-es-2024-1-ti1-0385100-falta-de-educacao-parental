@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mãe Coruja</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/90c319b99b.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <!--início da seção header-->
+  <header>
+    <img src="/imgs/logo.png" class="logo" alt="Logo Mãe Coruja">
+    <h1>mãe coruja</h1>
+  </header>
+
+  <main>
+    <h1> Geladeira</h1>
+    <div class="container">
+      <h2>Adicionar Lembrete</h2>
+      <form id="lembreteForm">
+        <textarea id="lembreteText" placeholder="Escreva seu lembrete aqui..."></textarea>
+        <button type="submit">Adicionar</button>
+      </form>
+      <p class="instruction-text">Arraste e solte os lembretes para reorganizá-los.</p>
+      <label for="filtroLembretes">Filtrar lembretes por:</label>
+      <select id="filtroLembretes">
+        <option value="todos">Todos</option>
+        <option value="curtidos">Curtidos</option>
+        <option value="nao-curtidos">Não Curtidos</option>
+      </select>
+      <div id="lembretesContainer"></div>
+    </div>
+  </main>
+  
+  <!--início da seção footer-->
+  <footer>
+    <ul class="footerIcons">
+      <li><a href=""><i class="fa-solid fa-user-group"></i></a></li>
+      <li><a href=""><i class="fa-solid fa-calendar-days"></i></a></li>
+      <li><a href=""><i class="fa-solid fa-globe"></i></a></li>
+      <li><a href=""><i class="fa-solid fa-file-lines"></i></a></li>
+      <li><a href=""><i class="fa-solid fa-gear"></i></a></li>
+      <li><a href=""><i class="fa-solid fa-user"></i></a></li>
+    </ul>
+  </footer>
+
+  <script src="scripts.js"></script>
+  <script src="app.js'></script>
+</body>
+</html>

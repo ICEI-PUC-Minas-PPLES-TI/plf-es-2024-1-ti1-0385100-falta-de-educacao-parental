@@ -1,0 +1,197 @@
+:root {
+    --purplemain: #500C86;
+    --purple2: #9C30A5;
+    --darkred: #D13A68;
+    --lightred: #FF004D;
+    --darkgreen: #28A5A5;
+    --lightgreen: #06A878;
+    --darkyellow: #C6773D;
+    --lightyellow: #73e0fb;
+    --darkpink: #8D5D68;
+    --lightpink: #D13A68;
+    --darkblue: #4C7CF6;
+    --lightblue: #28A5A5;
+    --likedColor: #eca9f2; /* Cor de fundo quando curtido */
+  }
+  
+  
+  * {
+    margin: 0;
+    font-family: 'League Spartan', sans-serif;
+  }
+  
+  
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  
+  header {
+    padding: 1.5em;
+    display: flex;
+    align-items: center;
+    gap: 2em;
+    background-image: linear-gradient(to bottom, var(--purplemain), var(--purple2));
+    border-radius: 0px 0px 30px 30px;
+    margin-bottom: 2em;
+  }
+  
+  
+  main {
+    flex: 1;
+    h1 {
+      text-align: center; /* Isso centraliza o texto dentro do elemento */
+      margin: 0 auto; /* Isso centraliza o elemento h1 dentro de seu contêiner pai */
+  }
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2em;
+    text-align: center;
+  }
+  
+  
+  form {
+    margin-bottom: 2em;
+  }
+  
+  
+  textarea {
+    width: 85%;
+    height: 80px;
+    padding: 1em;
+    margin-bottom: 1em;
+    border: 2px solid var(--purplemain);
+    border-radius: 10px;
+  }
+  
+  
+  button {
+    background-color: var(--purplemain);
+    color: white;
+    border: none;
+    padding: 0.5em 2em;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  
+  #lembretesContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+  }
+  
+  
+  .lembrete {
+    position: relative;
+    background-color: var(--lightyellow);
+    border-radius: 10px;
+    padding: 2em;
+    width: 200px;
+    height: 200px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
+    transition: background-color 0.3s ease; /* Suave transição de cor */
+  }
+  
+  
+  .lembrete-content {
+    height: calc(100% - 40px); /* Ajuste para deixar espaço para os ícones */
+    overflow-y: auto;
+    font-size:xx-large;
+  }
+  
+  
+  /* Estilo para os ícones de edição, curtida e remoção */
+  .edit-icon,
+  .like-icon,
+  .delete-icon {
+    position: absolute;
+    bottom: 15px;
+    cursor: pointer;
+  }
+  
+  
+  .edit-icon {
+    right: 70px;
+    color: var(--darkblue);
+  }
+  
+  
+  .like-icon {
+    right: 50px;
+    color: var(--darkgreen);
+  }
+  
+  
+  .delete-icon {
+    right: 30px;
+    color: var(--darkred);
+  }
+  
+  
+  footer {
+    background: var(--purplemain);
+    padding: 1.5em;
+  }
+  
+  
+  .footerIcons {
+    list-style-type: none;
+    display: flex;
+    gap: 2rem;
+    justify-content: space-around;
+  }
+  
+  
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  
+  
+  .footerIcons li {
+    font-size: 1.5rem;
+  }
+  
+  
+  .fa-solid, .fa-regular {
+    color: white;
+  }
+  /* Adicione isto ao seu CSS existente */
+  .lembrete.dragging {
+    opacity: 0.5;
+  }
+  .instruction-text {
+    font-size: 1rem;
+    color: var(--purplemain);
+    margin-bottom: 1em;
+  }
+  
+  
+  .lembrete {
+    position: relative;
+    background-color: var(--lightyellow);
+    border-radius: 10px;
+    padding: 2em;
+    width: 200px;
+    height: 200px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
+    transition: background-color 0.3s ease;
+    cursor: move; /* Adiciona cursor de movimentação */
+  }
+  
+  
+  .drag-icon {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    cursor: move;
+  }
+  
+  
+  

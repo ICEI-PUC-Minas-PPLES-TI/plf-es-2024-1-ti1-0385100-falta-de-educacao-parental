@@ -192,6 +192,17 @@
     left: 10px;
     cursor: move;
   }
-  
+  .reply-icon {
+    right: 10px;
+    color: var(--darkblue);
+}
+
+.response-content {
+    background-color: var(--lightyellow);
+    border-radius: 5px;
+    padding: 0.5em;
+    margin-top: 0.5em;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
   
   

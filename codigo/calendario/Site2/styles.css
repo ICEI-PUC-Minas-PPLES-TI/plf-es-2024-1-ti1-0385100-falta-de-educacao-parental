@@ -186,7 +186,7 @@ padding: 7px;
 }
 
 .important-day{
-  background-color: rgb(255, 157, 157);
+  background-color: rgb(255, 157, 157)!important;
   color: #000;
 }
 .registered-day {
@@ -384,7 +384,7 @@ color: #ffffff;
 padding: 7px;
 }
 .important-day{
-  background-color: rgb(255, 157, 157);
+  background-color: rgb(255, 157, 157)!important;
   color: #000;
 }
 .registered-day {

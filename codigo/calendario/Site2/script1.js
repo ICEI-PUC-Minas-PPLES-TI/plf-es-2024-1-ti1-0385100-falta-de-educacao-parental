@@ -39,7 +39,7 @@ function renderCalendar() {
       const userDate = new Date(user.date);
       return userDate.getFullYear() === currentDate.getFullYear() && 
              userDate.getMonth() === currentDate.getMonth() &&
-             userDate.getDate() === i &&
+             userDate.getDate()+1 === i &&
              user.impor === 1; // Verifica se o dia é importante
     });
 

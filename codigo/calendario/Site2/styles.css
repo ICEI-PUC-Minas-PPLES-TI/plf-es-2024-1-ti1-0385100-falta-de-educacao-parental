@@ -391,7 +391,22 @@ padding: 7px;
   background-color: rgba(83, 85, 83, 0.338); /* Change color as needed */
   color:blueviolet; /* Text color */
 }
-
+.aviso{
+  display: none;
+  margin: 10px;
+  padding: 10px;
+  color: #000;
+  border : 1px solid red;
+}
+.aviso p{
+  color: red;
+}
+.aviso i{
+  color: red;
+  font-size: xx-large;
+  margin: 0px;
+  padding: 0px;
+}
 
 
 

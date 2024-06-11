@@ -34,13 +34,12 @@ function renderCalendar() {
     let dayClass = 'calendar-day';
     const dateStr = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${i}`;
 
-    // Verifica se o dia é importante e marca-o
     const user = userData.find(user => {
       const userDate = new Date(user.date);
       return userDate.getFullYear() === currentDate.getFullYear() && 
              userDate.getMonth() === currentDate.getMonth() &&
              userDate.getDate()+1 === i &&
-             user.impor === 1; // Verifica se o dia é importante
+             user.impor === 1; 
     });
 
     if (user) {
@@ -59,6 +58,7 @@ function renderCalendar() {
   }
 
   daysDisplay.innerHTML = daysHTML;
+  checkImportantDateTomorrow(); // Verifique se há uma data importante amanhã
 }
 
 
@@ -106,7 +106,7 @@ function removeUser(id) {
   displayUserData();
 }
 
-// Função para alternar a importância de um usuário
+// Função para alternar a importância de uma data
 function toggleImportant(id) {
   const user = userData.find(user => user.id === id);
   if (user) {
@@ -231,3 +231,30 @@ window.onload = function () {
 };
 
 renderCalendar();
+
+function checkImportantDateTomorrow() {
+  const today = new Date();
+  const tomorrow = new Date(today);
+  tomorrow.setDate(today.getDate() );
+
+  const importantDateExists = userData.some(user => {
+    const userDate = new Date(user.date);
+    return user.impor === 1 && 
+           userDate.getFullYear() === tomorrow.getFullYear() &&
+           userDate.getMonth() === tomorrow.getMonth() &&
+           userDate.getDate() === tomorrow.getDate();
+  });
+
+  const avisoElement = document.querySelector('.aviso');
+  if (importantDateExists) {
+    avisoElement.style.display = 'flex'; // Mostra o aviso
+  } else {
+    avisoElement.style.display = 'none'; // Esconde o aviso
+  }
+}
+
+window.onload = function () {
+  userData = JSON.parse(localStorage.getItem('days')) || [];
+  displayUserData();
+  renderCalendar(); // Certifique-se de que o calendário é renderizado na inicialização
+};

@@ -361,7 +361,7 @@ function addVacinaCard(vacinaInfo) {
         li.setAttribute('data-id', vacinaInfo.id);
         li.innerHTML = `
             <div class="card-content">
-                <h3>${new Date(vacinaInfo.data).toLocaleDateString()}</h3>
+                <p><strong>Data:</strong> ${vacinaInfo.data}</p>
                 <p><strong>Nome:</strong> ${vacinaInfo.nome}</p>
                 <p><strong>Local de Aplicação:</strong> ${vacinaInfo.local}</p>
                 <p><strong>Próxima Dose:</strong> ${vacinaInfo.proximaDose}</p>

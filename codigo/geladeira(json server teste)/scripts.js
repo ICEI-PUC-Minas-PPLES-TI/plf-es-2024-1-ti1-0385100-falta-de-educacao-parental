@@ -144,11 +144,20 @@ function curtirLembrete(lembrete, likeIcon) {
   })
   .then(response => response.json())
   .then(data => {
-    likeIcon.className = data.curtido ? 'fa-solid fa-thumbs-up like-icon' : 'fa-regular fa-thumbs-up like-icon';
+    // Atualiza a classe do ícone
+    likeIcon.classList.toggle('fa-solid', data.curtido);
+    likeIcon.classList.toggle('fa-regular', !data.curtido);
+    // Atualiza o status de curtida no objeto lembrete
+    lembrete.curtido = data.curtido;
+    // Atualiza a cor de fundo do lembrete
     const lembreteElement = document.getElementById(`lembrete-${lembrete.id}`);
-    lembreteElement.style.backgroundColor = data.curtido ? 'var(--likedColor)' : 'inherit';
+    lembreteElement.style.backgroundColor = data.curtido ? 'var(--likedColor)' : 'initial';
+  })
+  .catch(error => {
+    console.error('Erro ao curtir lembrete:', error);
   });
 }
+
 
 function removerLembrete(lembrete) {
   const confirmacao = confirm("Tem certeza que deseja remover este lembrete?");

@@ -6,12 +6,12 @@
   --darkgreen: #28A5A5;
   --lightgreen: #06A878;
   --darkyellow: #C6773D;
-  --lightyellow: #73e0fb;
+  --lightyellow: #609cc4;
   --darkpink: #8D5D68;
   --lightpink: #D13A68;
   --darkblue: #4C7CF6;
   --lightblue: #28A5A5;
-  --likedColor: #ef44ff; /* Cor de fundo quando curtido */
+  --likedColor: #ddb1fd; /* Cor de fundo quando curtido */
 }
 
 /* Adicione o código fornecido abaixo do CSS existente */

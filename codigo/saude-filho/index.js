@@ -24,13 +24,9 @@ function mostrarMensagem(elementId, message, color) {
 
 // URL da API JSONServer - Substitua pela URL correta da sua API
 const apiUrl = 'https://d3bc0c71-a21a-467c-b5cc-9c4323769087-00-u725a4dkcvpy.worf.replit.dev/pediatra';
-const apiUrlConsultas = 'https://d3bc0c71-a21a-467c-b5cc-9c4323769087-00-u725a4dkcvpy.worf.replit.dev/consultas';
-const apiUrlVacinas = 'https://d3bc0c71-a21a-467c-b5cc-9c4323769087-00-u725a4dkcvpy.worf.replit.dev/vacinas';
 
 document.addEventListener("DOMContentLoaded", function () {
     loadPediatraCards();
-    loadConsultas();
-    loadVacinas();
 });
 
 function savePediatraInfo() {
@@ -53,6 +49,15 @@ function savePediatraInfo() {
 
     // Salva as informações na API
     savePediatraInfoAPI(pediatraInfo);
+}
+
+function mostrarMensagem(elementId, message, color) {
+    const element = document.getElementById(elementId);
+    element.innerText = message;
+    element.style.color = color;
+    setTimeout(() => {
+        element.innerText = "";
+    }, 5000);
 }
 
 function savePediatraInfoAPI(pediatraInfo) {
@@ -111,6 +116,11 @@ function loadPediatraCards() {
         });
 }
 
+const apiUrlConsultas = 'https://d3bc0c71-a21a-467c-b5cc-9c4323769087-00-u725a4dkcvpy.worf.replit.dev/consultas';
+document.addEventListener("DOMContentLoaded", function () {
+    loadConsultas();
+});
+
 function addInfoDasConsultas(event) {
     event.preventDefault();
 
@@ -129,6 +139,15 @@ function addInfoDasConsultas(event) {
 
     saveConsultaInfoAPI(consultaInfo);
     event.target.reset();
+}
+
+function mostrarMensagem(elementId, message, color) {
+    const element = document.getElementById(elementId);
+    element.innerText = message;
+    element.style.color = color;
+    setTimeout(() => {
+        element.innerText = "";
+    }, 5000);
 }
 
 function saveConsultaInfoAPI(consultaInfo) {
@@ -231,15 +250,20 @@ function updateConsulta(event, id) {
         })
         .then(data => {
             mostrarMensagem("mensagemconsulta", "Informações da consulta atualizadas com sucesso na API!", "green");
-            const li = document.querySelector(`li[data-id="${id}"]`);
-            li.querySelector('h3').textContent = new Date(data.data).toLocaleDateString();
-            li.querySelector('p').textContent = data.conteudo;
-            toggleEditForm(id);
+            updateConsultaCard(data);
         })
         .catch(error => {
             console.error('Erro ao atualizar informações da consulta via API JSONServer:', error);
             mostrarMensagem("mensagemconsulta", "Erro ao atualizar informações da consulta na API", "red");
         });
+}
+
+function updateConsultaCard(consultaInfo) {
+    const consultaCard = document.querySelector(`li.card[data-id="${consultaInfo.id}"]`);
+    consultaCard.querySelector('h3').innerText = new Date(consultaInfo.data).toLocaleDateString();
+    consultaCard.querySelector('p').innerText = consultaInfo.conteudo;
+    consultaCard.querySelector('input[name="data"]').value = new Date(consultaInfo.data).toISOString().substring(0, 10);
+    consultaCard.querySelector('textarea[name="conteudo"]').value = consultaInfo.conteudo;
 }
 
 function deleteConsulta(id) {
@@ -251,36 +275,58 @@ function deleteConsulta(id) {
     })
         .then(response => {
             if (!response.ok) {
-                throw new Error('Erro ao deletar informações da consulta');
+                throw new Error('Erro ao deletar a consulta');
             }
-            mostrarMensagem("mensagemconsulta", "Informações da consulta deletadas com sucesso na API!", "green");
-            const li = document.querySelector(`li[data-id="${id}"]`);
-            li.remove();
+            return response.json();
+        })
+        .then(() => {
+            mostrarMensagem("mensagemconsulta", "Consulta deletada com sucesso na API!", "green");
+            const consultaCard = document.querySelector(`li.card[data-id="${id}"]`);
+            consultaCard.remove();
         })
         .catch(error => {
-            console.error('Erro ao deletar informações da consulta via API JSONServer:', error);
-            mostrarMensagem("mensagemconsulta", "Erro ao deletar informações da consulta na API", "red");
+            console.error('Erro ao deletar a consulta via API JSONServer:', error);
+            mostrarMensagem("mensagemconsulta", "Erro ao deletar a consulta na API", "red");
         });
 }
 
-function adicionarVacina(event) {
+const apiUrlVacinas = 'https://d3bc0c71-a21a-467c-b5cc-9c4323769087-00-u725a4dkcvpy.worf.replit.dev/vacinas';
+
+document.addEventListener("DOMContentLoaded", function () {
+    loadVacinas();
+});
+
+function addInfoDasVacinas(event) {
     event.preventDefault();
 
-    const nomeVacina = document.getElementById('vacina-nome').value.trim();
-    const dataVacina = document.getElementById('vacina-data').value;
+    const dataVacina = document.getElementById('vacinas-datas').value;
+    const proximaDose = document.getElementById('proxima-dose').value;
+    const nomeVacina = document.getElementById('nome-vacina').value.trim();
+    const localAplicacao = document.getElementById('local-aplicacao').value.trim();
 
-    if (!nomeVacina || !dataVacina) {
-        mostrarMensagem("mensagemvacina", "Por favor, preencha todos os campos corretamente.", "red");
+    if (!dataVacina || !nomeVacina || !localAplicacao) {
+        mostrarMensagem("mensagemvacina", "Por favor, preencha todos os campos obrigatórios.", "red");
         return;
     }
 
     const vacinaInfo = {
-        nome: nomeVacina,
         data: dataVacina,
+        proximaDose: proximaDose,
+        nome: nomeVacina,
+        local: localAplicacao,
     };
 
     saveVacinaInfoAPI(vacinaInfo);
     event.target.reset();
+}
+
+function mostrarMensagem(elementId, message, color) {
+    const element = document.getElementById(elementId);
+    element.innerText = message;
+    element.style.color = color;
+    setTimeout(() => {
+        element.innerText = "";
+    }, 5000);
 }
 
 function saveVacinaInfoAPI(vacinaInfo) {
@@ -302,32 +348,45 @@ function saveVacinaInfoAPI(vacinaInfo) {
             addVacinaCard(data);
         })
         .catch(error => {
-            console.error('Erro ao salvar informações da vacina via API JSONServer:', error);
+            console.error('Erro ao salvar informações da vacina via API:', error);
             mostrarMensagem("mensagemvacina", "Erro ao salvar informações da vacina na API", "red");
         });
 }
 
 function addVacinaCard(vacinaInfo) {
-    const vacinaLista = document.getElementById('vacinas-lista');
-    const li = document.createElement('li');
-    li.className = 'card';
-    li.setAttribute('data-id', vacinaInfo.id);
-    li.innerHTML = `
-        <div class="card-content">
-            <h3>${vacinaInfo.nome}</h3>
-            <p>${new Date(vacinaInfo.data).toLocaleDateString()}</p>
-            <button onclick="toggleEditForm(${vacinaInfo.id})" style="background-color: #4b0082; color: white; border: none; padding: 0.5em 1em; border-radius: 5px; cursor: pointer;">Editar</button>
-            <form id="form-${vacinaInfo.id}" onsubmit="updateVacina(event, ${vacinaInfo.id})" style="display: none;">
-                <input type="text" name="nome" value="${vacinaInfo.nome}">
-                <input type="date" name="data" value="${new Date(vacinaInfo.data).toISOString().substring(0, 10)}">
-                <button type="submit">Salvar</button>
-            </form>
-            <button onclick="deleteVacina(${vacinaInfo.id})"style="background-color: #4b0082; color: white; border: none; padding: 0.5em 1em; border-radius: 5px; cursor: pointer;">Deletar</button>
-        </div>
-    `;
-    vacinaLista.appendChild(li);
+    const vacinaLista = document.getElementById('vacina-lista');
+    if (vacinaLista) {
+        const li = document.createElement('li');
+        li.className = 'card';
+        li.setAttribute('data-id', vacinaInfo.id);
+        li.innerHTML = `
+            <div class="card-content">
+                <h3>${new Date(vacinaInfo.data).toLocaleDateString()}</h3>
+                <p><strong>Nome:</strong> ${vacinaInfo.nome}</p>
+                <p><strong>Local de Aplicação:</strong> ${vacinaInfo.local}</p>
+                <p><strong>Próxima Dose:</strong> ${vacinaInfo.proximaDose}</p>
+                <button onclick="toggleEditForm(${vacinaInfo.id})">Editar</button>
+                <form id="form-${vacinaInfo.id}" onsubmit="updateVacina(event, ${vacinaInfo.id})" style="display: none;">
+                    <input type="date" name="data" value="${new Date(vacinaInfo.data).toISOString().substring(0, 10)}" required>
+                    <input type="date" name="proxima-dose" value="${vacinaInfo.proximaDose}">
+                    <input type="text" name="nome-vacina" value="${vacinaInfo.nome}">
+                    <input type="text" name="local-aplicacao" value="${vacinaInfo.local}">
+                    <button type="submit">Salvar</button>
+                </form>
+                <button onclick="deleteVacina(${vacinaInfo.id})">Deletar</button>
+            </div>
+        `;
+        vacinaLista.appendChild(li);
+    } else {
+        console.error('Elemento vacina-lista não encontrado.');
+    }
 }
 
+
+function toggleEditForm(id) {
+    const editForm = document.getElementById(`form-${id}`);
+    editForm.style.display = editForm.style.display === 'none' ? 'block' : 'none';
+}
 
 function loadVacinas() {
     fetch(apiUrlVacinas)
@@ -343,7 +402,7 @@ function loadVacinas() {
             });
         })
         .catch(error => {
-            console.error('Erro ao carregar as informações das vacinas via API JSONServer:', error);
+            console.error('Erro ao carregar as informações das vacinas via API:', error);
             mostrarMensagem("mensagemvacina", "Erro ao carregar as informações das vacinas", "red");
         });
 }
@@ -351,17 +410,21 @@ function loadVacinas() {
 function updateVacina(event, id) {
     event.preventDefault();
 
-    const nomeVacina = event.target.nome.value.trim();
     const dataVacina = event.target.data.value;
+    const proximaDose = event.target['proxima-dose'].value;
+    const nomeVacina = event.target['nome-vacina'].value.trim();
+    const localAplicacao = event.target['local-aplicacao'].value.trim();
 
-    if (!nomeVacina || !dataVacina) {
-        mostrarMensagem("mensagemvacina", "Por favor, preencha todos os campos corretamente.", "red");
+    if (!dataVacina || !nomeVacina || !localAplicacao) {
+        mostrarMensagem("mensagemvacina", "Por favor, preencha todos os campos obrigatórios.", "red");
         return;
     }
 
     const vacinaInfo = {
-        nome: nomeVacina,
         data: dataVacina,
+        proximaDose: proximaDose,
+        nome: nomeVacina,
+        local: localAplicacao,
     };
 
     fetch(`${apiUrlVacinas}/${id}`, {
@@ -379,16 +442,26 @@ function updateVacina(event, id) {
         })
         .then(data => {
             mostrarMensagem("mensagemvacina", "Informações da vacina atualizadas com sucesso na API!", "green");
-            const li = document.querySelector(`li[data-id="${id}"]`);
-            li.querySelector('h3').textContent = data.nome;
-            li.querySelector('p').textContent = new Date(data.data).toLocaleDateString();
-            toggleEditForm(id);
+            updateVacinaCard(data);
         })
         .catch(error => {
-            console.error('Erro ao atualizar informações da vacina via API JSONServer:', error);
+            console.error('Erro ao atualizar informações da vacina via API:', error);
             mostrarMensagem("mensagemvacina", "Erro ao atualizar informações da vacina na API", "red");
         });
 }
+
+function updateVacinaCard(vacinaInfo) {
+    const vacinaCard = document.querySelector(`li.card[data-id="${vacinaInfo.id}"]`);
+    vacinaCard.querySelector('h3').innerText = new Date(vacinaInfo.data).toLocaleDateString();
+    vacinaCard.querySelector('strong').innerText = vacinaInfo.nome;
+    vacinaCard.querySelectorAll('p')[1].innerText = `Local de Aplicação: ${vacinaInfo.local}`;
+    vacinaCard.querySelectorAll('p')[2].innerText = `Próxima Dose: ${vacinaInfo.proximaDose}`;
+    vacinaCard.querySelector('input[name="data"]').value = new Date(vacinaInfo.data).toISOString().substring(0, 10);
+    vacinaCard.querySelector('input[name="proxima-dose"]').value = vacinaInfo.proximaDose;
+    vacinaCard.querySelector('input[name="nome-vacina"]').value = vacinaInfo.nome;
+    vacinaCard.querySelector('input[name="local-aplicacao"]').value = vacinaInfo.local;
+}
+
 
 function deleteVacina(id) {
     fetch(`${apiUrlVacinas}/${id}`, {
@@ -399,14 +472,17 @@ function deleteVacina(id) {
     })
         .then(response => {
             if (!response.ok) {
-                throw new Error('Erro ao deletar informações da vacina');
+                throw new Error('Erro ao deletar a vacina');
             }
-            mostrarMensagem("mensagemvacina", "Informações da vacina deletadas com sucesso na API!", "green");
-            const li = document.querySelector(`li[data-id="${id}"]`);
-            li.remove();
+            return response.json();
+        })
+        .then(() => {
+            mostrarMensagem("mensagemvacina", "Vacina deletada com sucesso na API!", "green");
+            const vacinaCard = document.querySelector(`li.card[data-id="${id}"]`);
+            vacinaCard.remove();
         })
         .catch(error => {
-            console.error('Erro ao deletar informações da vacina via API JSONServer:', error);
-            mostrarMensagem("mensagemvacina", "Erro ao deletar informações da vacina na API", "red");
-        });
+            console.error('Erro ao deletar a vacina via API:', error);
+            mostrarMensagem("mensagemvacina", "Erro ao deletar a vacina na API", "red");
+        });
 }

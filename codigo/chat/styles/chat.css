@@ -1,0 +1,285 @@
+/*cores usadas*/
+:root {
+  --purplemain: #500C86;
+  --purple2: #9C30A5;
+  --darkred: #D13A68;
+  --lightred: #FF004D;
+  --darkgreen: #28A5A5;
+  --lightgreen: #06A878;
+  --darkyellow: #C6773D;
+  --lightyellow: #D4A500;
+  --darkpink: #8D5D68;
+  --lightpink: #D13A68;
+  --darkblue: #4C7CF6;
+  --lightblue: #28A5A5;
+}
+
+/*geral*/
+* {
+  margin: 0;
+  font-family: 'League Spartan', sans-serif;
+}
+
+/*formatação do header*/
+header {
+  width: 100%;
+  color: white;
+  padding: 1.5em;
+  display: flex;
+  align-items: center;
+  gap: 2em;
+  background-image: linear-gradient(to bottom , var(--purplemain), var(--purple2));
+  border-radius: 0px 0px 30px 30px;
+  margin-bottom: 2em;
+}
+
+/*formatação do main*/
+ul {
+  padding: 0;  
+}
+
+#msg {
+  display: flex;
+  justify-content: center;
+  margin: 2rem;
+}
+
+.error {
+  color: var(--darkred);
+}
+
+
+.success {
+  color: var(--lightgreen);
+}
+
+
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 3em;
+}
+
+.TituloPag {
+  font-size: 1.75em;
+  display: flex;
+  justify-content: center;
+}
+
+.TituloPag > ul {
+  display: flex;
+  list-style-type: none;
+  gap: 1rem;
+  padding: 0;
+}
+
+.iconAldeia {
+  color: var(--purple2) !important;
+}
+
+.subtitulo {
+  color: grey;
+}
+
+.subtituloPag {
+  font-size: 1.25em;
+  margin-top: 20%;
+}
+
+.commName {
+  color: black;
+}
+
+.subtituloPag > ul {
+  display: flex;
+  list-style-type: none;
+  gap: 0.5rem;
+}
+
+/*formatação das mensagens de chat*/
+
+.chats {
+  margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.containerChat {
+  display: grid;
+  width: 70%;
+  grid-template-columns: 5% 85% 10%;
+  padding: 2vh;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+}
+
+.chat {
+  display: flex;
+  gap: 1rem;
+  margin: 1em;
+}
+
+.divFoto {
+  grid-column-start: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.profilePic {
+  width: 25px;
+  border: 1px solid var(--purple2);
+  border-radius: 100px;
+}
+
+.divConteudo {
+  grid-column-start: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-left: 1rem;
+}
+
+.userName {
+  color: var(--purple2);
+}
+
+.divConteudo ul {
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.btnLike {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+.iconLike {
+  color: lightgrey;
+  margin: 0;
+}
+
+.divExcluir {
+  grid-column-start: 3;
+  display: flex;
+  align-items: flex-start;
+  justify-self: flex-end;
+}
+
+.selectDel {
+  display: flex;
+  gap: 1rem;
+}
+
+.btnDelete {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.iconDelete {
+  color: var(--lightred);
+  font-size: 14px;
+}
+
+.inputDel {
+  border: 1px solid lightgrey;
+}
+
+/*formatação das opções do chat*/
+.containerChatOptions {
+  margin-top: 5%;
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.containerChatOptions ul {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--purplemain);
+}
+
+.btnChat {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.iconChat {
+  color: grey !important;
+  font-size: 18px;
+}
+
+.enterMsg {
+  padding: 10px;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+}
+
+.btnVoltar {
+  padding: 10px;
+  color: white;
+  background-color: var(--purplemain);
+  border: none;
+  border-radius: 5px;
+}
+
+/*formatação do footer*/
+footer {
+  width: 100%;
+  background: var(--purplemain);
+  padding: 1.5em;
+}
+
+.footerIcons {
+  list-style-type: none;
+  display: flex;
+  gap: 2rem;
+  justify-content: space-around;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.footerIcons li {
+  font-size: 1.5rem;
+}
+
+.iconsFooter {
+  color: white;
+}
+
+/*responsividade com media query*/
+@media (max-width: 600px) {
+  .subtituloPag, .containerChat {
+    margin-bottom: 2em;
+  }
+
+  .subtituloPag > ul {
+    text-align: center;
+    flex-direction: column;
+  }
+
+  footer {
+    justify-self: end;
+  }
+
+
+}

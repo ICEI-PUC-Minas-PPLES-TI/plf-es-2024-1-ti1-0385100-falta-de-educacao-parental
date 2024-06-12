@@ -1,0 +1,145 @@
+/*cores usadas*/
+:root {
+  --purplemain: #500C86;
+  --purple2: #9C30A5;
+  --darkred: #D13A68;
+  --lightred: #FF004D;
+  --darkgreen: #28A5A5;
+  --lightgreen: #06A878;
+  --darkyellow: #C6773D;
+  --lightyellow: #D4A500;
+  --darkpink: #8D5D68;
+  --lightpink: #D13A68;
+  --darkblue: #4C7CF6;
+  --lightblue: #28A5A5;
+}
+
+/*geral*/
+* {
+  margin: 0;
+  font-family: 'League Spartan', sans-serif;
+}
+
+
+/*PÁGINA DE COMUNIDADES*/
+
+/*formatação do header*/
+header {
+  width: 100%;
+  padding: 1.5em;
+  display: flex;
+  align-items: center;
+  gap: 2em;
+  background-image: linear-gradient(to bottom , var(--purplemain), var(--purple2));
+  border-radius: 0px 0px 30px 30px;
+  margin-bottom: 2em;
+}
+
+/*formatação do main*/
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  margin: 3em;
+}
+
+h1 {
+  color: white;
+}
+
+h2 {
+  color: grey;
+}
+
+.commContainer {
+  margin: 2em;
+  height: 200px;
+  display: grid;
+  grid-template-columns: 30% 70%;
+  border: 1px solid lightgrey;
+  border-radius: 10px;
+}
+
+.commCapas {
+  grid-column-start: 1;
+  border-radius: 10px;
+}
+
+.commInfo {
+  grid-column-start: 2;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  gap: 1em;
+}
+
+.capas {
+  background-image: linear-gradient(to bottom , var(--purplemain), var(--purple2));
+}
+
+#capa1 {
+  background-image: linear-gradient(to bottom , var(--darkred), var(--lightred)) !important;
+}
+
+#capa2 {
+  background-image: linear-gradient(to bottom , var(--darkgreen), var(--lightgreen)) !important;
+}
+
+#capa3 {
+  background-image: linear-gradient(to bottom , var(--darkyellow), var(--lightyellow)) !important;
+}
+
+#capa4 {
+  background-image: linear-gradient(to bottom , var(--darkpink), var(--lightpink)) !important;
+}
+
+#capa5 {
+  background-image: linear-gradient(to bottom , var(--darkblue), var(--lightblue)) !important;
+}
+
+/*formatação do footer*/
+footer {
+  width: 100%;
+  background: var(--purplemain);
+  padding: 1.5em;
+}
+
+.footerIcons {
+  list-style-type: none;
+  display: flex;
+  gap: 2rem;
+  justify-content: space-around;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.footerIcons li {
+  font-size: 1.5rem;
+}
+
+.fa-solid {
+  color: white;
+}
+
+/*responsividade com media query*/
+@media (max-width: 600px) {
+  .commContainer {
+    grid-template-columns: 100%;
+    grid-template-rows: 50% 50%;
+  }
+
+  .commCapas {
+    grid-column-start: 1;
+    grid-row-start: 1;
+  }
+
+  .commInfo {
+    grid-column-start: 1;
+    grid-row-start: 2;
+  }
+
+}
+

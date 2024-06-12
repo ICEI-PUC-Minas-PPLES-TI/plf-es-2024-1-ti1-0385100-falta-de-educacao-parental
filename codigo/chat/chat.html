@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Comunidades</title>
+  <link href="styles/chat.css" rel="stylesheet" type="text/css" />
+  <!--importação da fonte principal-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+  <!--início da seção header-->
+  <header>
+    <img src="imgs/logo.png" class="logo">
+    <h1>mãe coruja</h1>
+  </header>
+  <!--início da seção main-->
+  <main>
+    <section class="legendas">
+      <div class="TituloPag">
+        <ul>
+          <li><i class="fa-solid fa-globe iconAldeia"></i></li>
+          <li>
+            <p class="subtitulo">Aldeia</p>
+          </li>
+        </ul>
+      </div>
+
+      <div class="subtituloPag">
+        <ul>
+          <li>Comunidade</li>
+          <li class="commName">
+            <p>Nome da Comunidade</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!--container do chat-->
+    <section class="chats">
+      <!--chat será inserido pelo javascript-->
+    </section>
+
+    <!--opções do chat-->
+    <section class="containerChatOptions">
+      <ul>
+        <li><input type="text" placeholder="Envie uma mensagem" class="enterMsg" /></li>
+        <button class="btnChat"><i class="fa-solid fa-paper-plane iconChat"></i></button>
+      </ul>
+      <a href="index.html">
+        <button class="btnVoltar">
+          Voltar
+        </button>
+      </a>
+
+    </section>
+  </main>
+  <!--mensagem da API-->
+  <div id="msg">
+
+  </div>
+
+  <!--início da seção footer-->
+  <footer>
+    <ul class="footerIcons">
+      <li><a href=""><i class="iconsFooter fa-solid fa-user-group"></i></a></li>
+      <li><a href=""><i class="iconsFooter fa-solid fa-calendar-days"></i></a></li>
+      <li><a href=""><i class="iconsFooter fa-solid fa-globe"></i></a></li>
+      <li><a href=""><i class="iconsFooter fa-solid fa-file-lines"></i></a></li>
+      <li><a href=""><i class="iconsFooter fa-solid fa-gear"></i></a></li>
+      <li><a href=""><i class="iconsFooter fa-solid fa-user"></i></a></li>
+    </ul>
+  </footer>
+  <!--font awesome-->
+  <script src="https://kit.fontawesome.com/2a55b76bbc.js" crossorigin="anonymous"></script>
+  <!--script da API-->
+  <script src="scripts/app.js"></script>
+  <!--script do chat-->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      init();
+    });
+    
+    function exibeMsg() {
+      var root = document.documentElement;
+      var lightred = getComputedStyle(root).getPropertyValue('--lightred').trim();
+
+      function loadChat() {
+        let tela = document.querySelector('body');
+        let comunidadeTitle = document.querySelector('.commName');
+        let display = document.querySelector('.chats');
+        let strMsg = '';
+        
+        btnLike = document.querySelector('.btnLike');
+        let click = false;
+  
+        let params = new URLSearchParams(location.search);
+        id = params.get('id');
+  
+        comunidades = objetos.comunidades;
+        comunidade = comunidades.find(function (elem) {
+          return elem.id == id;
+        });
+  
+        if (comunidade) {
+          comunidadeTitle.innerHTML = `<p>${comunidade.titulo}</p>`;
+          comunidadeTitle.style.color = comunidade.cor;
+  
+          mensagens = objetos.mensagens;
+          usuarios = objetos.usuarios;
+          for (let i = 0; i < mensagens.length; i++) {
+            let structure = mensagens[i];
+            strMsg +=
+              `<div class="containerChat" data-msg-id="${structure.id}">
+                <div class="divFoto">
+                  <img src="${usuarios[structure.usuarioId - 1].fotoperfil}" class="profilePic"/>
+                </div>
+                <div class="divConteudo">
+                  <p class="userName">${usuarios[structure.usuarioId - 1].nome}</p>
+                  <p class="conteudoMsg">${structure.conteudo} </p>
+                  <ul>
+                    <li><button class="btnLike" data-index=${i}><i class="fa-solid fa-heart iconLike"></button></i></li>
+                    <li><p class="numLike">${structure.likes}</p></li>
+                  </ul>
+               </div>
+               <div class="divExcluir">
+                <div class="selectDel">
+                  <button class="btnDelete">
+                    <i class="iconDelete fa-solid fa-trash-can"></i>
+                  </button>
+                </div>
+               </div>
+              </div>
+              </div>`;
+          }
+          if(mensagens.length === 0) {
+            display.innerHTML = "<p class='subtitulo'>Ainda não há mensagens.</p>";
+          } else {
+            display.innerHTML = strMsg;
+          }
+          
+          let btnsLike = document.querySelectorAll('.btnLike');
+          btnsLike.forEach(btn => {
+            btn.addEventListener('click', function () {
+              let index = this.getAttribute('data-index');
+              darLike(index);
+            });
+          });
+
+          let btnsDelete = document.querySelectorAll('.btnDelete');
+          btnsDelete.forEach(button => {
+            button.addEventListener('click', function() {
+              const msgId = this.closest('.containerChat').getAttribute('data-msg-id');
+              deleteClick(msgId);
+            });
+          });
+        } else {
+          tela.innerHTML = "<h3>404</h3><p>Comunidade não encontrada</p>"
+        }
+  
+        function darLike(index) {
+          let structure = objetos.mensagens[index];
+          let btnLike = document.querySelectorAll('.btnLike')[index];
+          let likeIcon = document.querySelectorAll('.iconLike')[index];
+          let likestxt = document.querySelectorAll('.numLike')[index];
+  
+          if (likeIcon.style.color === "lightgrey") {
+            structure.likes = 1;
+            likeIcon.style.color = lightred;
+          } else {
+            structure.likes = 0;
+            likeIcon.style.color = "lightgrey";
+          }
+          likestxt.innerHTML = `${structure.likes}`;
+        };
+      };
+      carregaDadosJSONServer(loadChat)
+    }
+
+    function deleteClick(msgId) {
+      deleteChat(msgId, exibeMsg);
+    }
+    
+    function init() {
+      var btnSend = document.querySelector('.btnChat');
+      if (btnSend) {
+        btnSend.addEventListener('click', function () {
+          console.log('Botão clicado');
+          var txtMsg = document.querySelector('.enterMsg').value;
+
+          if (txtMsg.trim() === "") {
+            alert("Não deixe a mensagem em branco.");
+            return;
+          }
+          
+          /* let usuarios = objetos.usuarios; */
+          let novochat = {
+            id: mensagens.length + 1,
+            usuarioId: usuarios[1].usuarioId,
+            tituloMsg: "Lorem Ipsum",
+            conteudo: txtMsg,
+            likes: 0,
+            usuarioMencionadoId: usuarios[2].usuarioId,
+            imgSrc: ""
+          };
+
+          createChat(novochat, exibeMsg);
+          document.querySelector('.enterMsg').value = "";
+        });
+        
+      } else {
+        console.error('Botão de envio não encontrado');
+      }
+      exibeMsg();
+    }
+    
+  </script>
+</body>
+
+</html>

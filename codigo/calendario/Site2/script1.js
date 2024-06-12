@@ -258,3 +258,76 @@ window.onload = function () {
   displayUserData();
   renderCalendar(); // Certifique-se de que o calendário é renderizado na inicialização
 };
+
+
+
+
+
+
+
+
+
+ // Função para carregar os afazeres do Local Storage
+ function carregarAfazeres() {
+  var recados = localStorage.getItem("recados");
+  if (recados) {
+    return JSON.parse(recados);
+  }
+  return [];
+}
+
+// Função para salvar os afazeres no Local Storage
+function salvarAfazeres(recados) {
+  localStorage.setItem("recados", JSON.stringify(recados));
+}
+
+// Adiciona os afazeres carregados ao DOM
+function exibirAfazeres() {
+  var recadosList = document.getElementById("recadoslist");
+  recadosList.innerHTML = ""; // Limpa a lista antes de adicionar os itens
+  var recados = carregarAfazeres();
+  recados.forEach(function (recado) {
+    var listItem = document.createElement("li");
+    listItem.textContent = recado.texto;
+
+    var deleteButton = document.createElement("button");
+    deleteButton.textContent = "Deletar";
+    deleteButton.onclick = function () {
+      deletarAfazere(recado.id);
+    };
+
+    listItem.appendChild(deleteButton);
+    recadosList.appendChild(listItem);
+  });
+}
+
+// Função para adicionar um novo afazere
+document.getElementById("recadosbtn").addEventListener("click", function () {
+  var inputText = document.getElementById("inputrecados").value.trim();
+
+  if (inputText !== "") {
+    var recados = carregarAfazeres();
+    var novoAfazere = {
+      id: Date.now(), // Gera um id único baseado no timestamp
+      texto: inputText
+    };
+    recados.push(novoAfazere);
+
+    salvarAfazeres(recados);
+    exibirAfazeres(); // Atualiza a exibição dos afazeres
+    document.getElementById("inputrecados").value = ""; // Limpa o campo de entrada
+  }
+});
+
+// Função para deletar um afazere
+function deletarAfazere(id) {
+  var recados = carregarAfazeres();
+  recados = recados.filter(function (recado) {
+    return recado.id !== id;
+  });
+  salvarAfazeres(recados);
+  exibirAfazeres(); // Atualiza a exibição dos afazeres
+}
+
+// Carrega os afazeres quando o documento for carregado
+document.addEventListener("DOMContentLoaded", exibirAfazeres);

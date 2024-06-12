@@ -186,3 +186,7 @@ a {
   left: 10px;
   cursor: move;
 }
+.icone-lembrete {
+  display: inline-block;
+  margin-right: 10px; /* Espaçamento entre os ícones */
+}

@@ -31,26 +31,31 @@ function criarLembrete(lembrete) {
 
   // Criando um elemento para mostrar o texto do lembrete
   const lembreteTextElement = document.createElement('p');
-  lembreteTextElement.classList.add('lembrete-text'); // Adicione uma classe para estilização, se necessário
-  lembreteTextElement.textContent = lembrete.text; // Adicionando o texto do lembrete ao elemento
+  lembreteTextElement.classList.add('lembrete-text');
+  lembreteTextElement.textContent = lembrete.text;
 
-  const editIcon = criarIcone('fa-solid fa-pen edit-icon', function() {
+  // Criando ícones de ação
+  const editIcon = criarIcone('fa-solid fa-pen icone-lembrete', function() {
     editarLembrete(lembrete);
   });
-
-  const likeIcon = criarIcone(lembrete.curtido ? 'fa-solid fa-thumbs-up like-icon' : 'fa-regular fa-thumbs-up like-icon', function() {
+  const likeIcon = criarIcone(lembrete.curtido ? 'fa-solid fa-thumbs-up icone-lembrete' : 'fa-regular fa-thumbs-up icone-lembrete', function() {
     curtirLembrete(lembrete, likeIcon);
   });
-
-  const deleteIcon = criarIcone('fa-solid fa-trash delete-icon', function() {
+  const deleteIcon = criarIcone('fa-solid fa-trash icone-lembrete', function() {
     removerLembrete(lembrete);
   });
 
-  // Adicionando o texto do lembrete ao elemento do lembrete
+  // Criando ícone de comentário
+  const commentIcon = criarIcone('fa-solid fa-comment icone-lembrete', function() {
+    adicionarComentario(lembrete);
+  });
+
+  // Adicionando elementos ao lembrete
   lembreteElement.appendChild(lembreteTextElement);
   lembreteElement.appendChild(editIcon);
   lembreteElement.appendChild(likeIcon);
   lembreteElement.appendChild(deleteIcon);
+  lembreteElement.appendChild(commentIcon);
 
   // Expande a altura do card conforme necessário para exibir todo o texto
   lembreteElement.style.height = "auto";
@@ -60,6 +65,23 @@ function criarLembrete(lembrete) {
   // Altera a cor de fundo do card ao ser curtido
   if (lembrete.curtido) {
     lembreteElement.style.backgroundColor = 'var(--likedColor)';
+  }
+}
+
+function adicionarComentario(lembrete) {
+  const comentario = prompt("Adicione um comentário:");
+  if (comentario !== null) {
+    // Armazenar o comentário no objeto lembrete
+    lembrete.comentario = comentario;
+
+    // Criar um elemento HTML para exibir o comentário
+    const comentarioElement = document.createElement('p');
+    comentarioElement.classList.add('comentario-text');
+    comentarioElement.textContent = `Comentário: ${comentario}`;
+
+    // Adicionar o elemento do comentário ao lembrete
+    const lembreteElement = document.getElementById(`lembrete-${lembrete.id}`);
+    lembreteElement.appendChild(comentarioElement);
   }
 }
 

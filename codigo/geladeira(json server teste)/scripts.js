@@ -19,12 +19,13 @@ document.getElementById('lembreteForm').addEventListener('submit', function(e) {
   .then(response => response.json())
   .then(data => {
     lembretesCache.push(data);
-    criarLembrete(data);
+    manipularLembrete(data);
     document.getElementById('lembreteForm').reset();
   });
 });
 
-function criarLembrete(lembrete) {
+// Função para manipular e criar lembretes
+function manipularLembrete(lembrete) {
   const lembreteElement = document.createElement('div');
   lembreteElement.classList.add('lembrete');
   lembreteElement.id = `lembrete-${lembrete.id}`;
@@ -44,8 +45,6 @@ function criarLembrete(lembrete) {
   const deleteIcon = criarIcone('fa-solid fa-trash icone-lembrete', function() {
     removerLembrete(lembrete);
   });
-
-  // Criando ícone de comentário
   const commentIcon = criarIcone('fa-solid fa-comment icone-lembrete', function() {
     adicionarComentario(lembrete);
   });
@@ -68,23 +67,7 @@ function criarLembrete(lembrete) {
   }
 }
 
-function adicionarComentario(lembrete) {
-  const comentario = prompt("Adicione um comentário:");
-  if (comentario !== null) {
-    // Armazenar o comentário no objeto lembrete
-    lembrete.comentario = comentario;
-
-    // Criar um elemento HTML para exibir o comentário
-    const comentarioElement = document.createElement('p');
-    comentarioElement.classList.add('comentario-text');
-    comentarioElement.textContent = `Comentário: ${comentario}`;
-
-    // Adicionar o elemento do comentário ao lembrete
-    const lembreteElement = document.getElementById(`lembrete-${lembrete.id}`);
-    lembreteElement.appendChild(comentarioElement);
-  }
-}
-
+// Função para criar um ícone
 function criarIcone(className, clickHandler) {
   const icon = document.createElement('i');
   icon.className = className;
@@ -102,17 +85,17 @@ function filtrarLembretes() {
   // Filtrar e exibir lembretes
   if (filtro === 'todos') {
     lembretesCache.forEach(lembrete => {
-      criarLembrete(lembrete);
+      manipularLembrete(lembrete);
     });
   } else if (filtro === 'curtidos') {
     const lembretesCurtidos = lembretesCache.filter(lembrete => lembrete.curtido);
     lembretesCurtidos.forEach(lembrete => {
-      criarLembrete(lembrete);
+      manipularLembrete(lembrete);
     });
   } else if (filtro === 'nao-curtidos') {
     const lembretesNaoCurtidos = lembretesCache.filter(lembrete => !lembrete.curtido);
     lembretesNaoCurtidos.forEach(lembrete => {
-      criarLembrete(lembrete);
+      manipularLembrete(lembrete);
     });
   }
 }
@@ -124,6 +107,7 @@ window.addEventListener('load', function() {
   .then(lembretes => {
     lembretesCache = lembretes; // Armazenar lembretes no cache
     filtrarLembretes(); // Exibir lembretes filtrados
+    carregarComentarios(); // Carregar comentários
   });
 });
 
@@ -179,14 +163,60 @@ function removerLembrete(lembrete) {
   }
 }
 
-// Obter todos os lembretes do servidor quando a página carrega
-window.addEventListener('load', function() {
+// Função para adicionar comentário a um lembrete
+function adicionarComentario(lembrete) {
+  const comentario = prompt("Adicione um comentário:");
+  if (comentario !== null) {
+    // Armazenar o comentário no objeto lembrete
+    lembrete.comentario = comentario;
+
+    // Enviar os dados atualizados para o servidor
+    fetch(`${SERVER_URL}/lembretes/${lembrete.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ comentario: comentario }),
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Atualizar a exibição do comentário no lembrete na página
+      const lembreteElement = document.getElementById(`lembrete-${lembrete.id}`);
+      const comentarioElement = document.createElement('p');
+      comentarioElement.classList.add('comentario-text');
+      comentarioElement.textContent = `Comentário: ${data.comentario}`;
+      lembreteElement.appendChild(comentarioElement);
+    })
+    .catch(error => {
+      console.error('Erro ao adicionar comentário:', error);
+    });
+  }
+}
+
+// Função para carregar os comentários do servidor e atualizar a interface do usuário
+function carregarComentarios() {
   fetch(`${SERVER_URL}/lembretes`)
-  .then(response => response.json())
-  .then(lembretes => {
-    lembretesCache = lembretes; // Armazenar lembretes no cache
-    filtroLembretes.value = 'todos'; // Selecionar filtro 'todos' por padrão
-    filtrarLembretes(); // Exibir lembretes filtrados
-  });
+    .then(response => response.json())
+    .then(lembretes => {
+      lembretes.forEach(lembrete => {
+        const lembreteElement = document.getElementById(`lembrete-${lembrete.id}`);
+        if (lembreteElement) {
+          if (lembrete.comentario) {
+            const comentarioElement = document.createElement('p');
+            comentarioElement.classList.add('comentario-text');
+            comentarioElement.textContent = `Comentário: ${lembrete.comentario}`;
+            lembreteElement.appendChild(comentarioElement);
+          }
+        }
+      });
+    })
+    .catch(error => {
+      console.error('Erro ao carregar comentários:', error);
+    });
+}
+
+// Chamar a função para carregar os comentários no momento apropriado
+window.addEventListener('load', function() {
+  carregarComentarios();
 });
 

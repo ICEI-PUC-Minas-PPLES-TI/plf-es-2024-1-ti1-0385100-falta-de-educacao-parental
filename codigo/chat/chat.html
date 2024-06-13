@@ -48,16 +48,22 @@
 
     <!--opções do chat-->
     <section class="containerChatOptions">
-      <ul>
-        <li><input type="text" placeholder="Envie uma mensagem" class="enterMsg" /></li>
-        <button class="btnChat"><i class="fa-solid fa-paper-plane iconChat"></i></button>
-      </ul>
-      <a href="index.html">
-        <button class="btnVoltar">
-          Voltar
-        </button>
-      </a>
-
+      <div class="chatOptions">
+        <ul>
+          <li><input type="text" placeholder="Envie uma mensagem" class="enterMsg" /></li>
+          <button class="btnChat"><i class="fa-solid fa-paper-plane iconChat"></i></button>
+        </ul>
+        <a href="index.html">
+          <button class="btnVoltar">
+            Voltar
+          </button>
+        </a>
+      </div>
+      <form class="divUpload">
+        <p class="lblImg">Escolher imagem: </p>
+        <input type="file" class="inputImg" accept="image/*" required>
+        <button type="submit" class="btnUpload">Upload</button>
+      </form>
     </section>
   </main>
   <!--mensagem da API-->

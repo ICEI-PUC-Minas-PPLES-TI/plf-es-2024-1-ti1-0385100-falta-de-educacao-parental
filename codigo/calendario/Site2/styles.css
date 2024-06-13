@@ -186,12 +186,12 @@ padding: 7px;
 }
 
 .important-day{
-  background-color: rgb(255, 157, 157)!important;
-  color: #000;
+  background-color: rgba(255, 0, 0, 0.747)!important;
+  color: #ffffff !important;
 }
 .registered-day {
- background-color: rgba(83, 85, 83, 0.338); /* Change color as needed */
- color:blueviolet; /* Text color */
+  background-color: rgba(195, 110, 252, 0.705); /* Change color as needed */
+  color:blueviolet; /* Text color */
 }
 
 .recados{

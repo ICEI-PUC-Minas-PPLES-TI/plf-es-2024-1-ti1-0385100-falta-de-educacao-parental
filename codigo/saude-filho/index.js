@@ -353,6 +353,7 @@ function saveVacinaInfoAPI(vacinaInfo) {
         });
 }
 
+// Função para adicionar um card de vacina na lista
 function addVacinaCard(vacinaInfo) {
     const vacinaLista = document.getElementById('vacina-lista');
     if (vacinaLista) {
@@ -365,14 +366,6 @@ function addVacinaCard(vacinaInfo) {
                 <p><strong>Nome:</strong> ${vacinaInfo.nome}</p>
                 <p><strong>Local de Aplicação:</strong> ${vacinaInfo.local}</p>
                 <p><strong>Próxima Dose:</strong> ${vacinaInfo.proximaDose}</p>
-                <button onclick="toggleEditForm(${vacinaInfo.id})">Editar</button>
-                <form id="form-${vacinaInfo.id}" onsubmit="updateVacina(event, ${vacinaInfo.id})" style="display: none;">
-                    <input type="date" name="data" value="${new Date(vacinaInfo.data).toISOString().substring(0, 10)}" required>
-                    <input type="date" name="proxima-dose" value="${vacinaInfo.proximaDose}">
-                    <input type="text" name="nome-vacina" value="${vacinaInfo.nome}">
-                    <input type="text" name="local-aplicacao" value="${vacinaInfo.local}">
-                    <button type="submit">Salvar</button>
-                </form>
                 <button onclick="deleteVacina(${vacinaInfo.id})">Deletar</button>
             </div>
         `;
@@ -382,12 +375,7 @@ function addVacinaCard(vacinaInfo) {
     }
 }
 
-
-function toggleEditForm(id) {
-    const editForm = document.getElementById(`form-${id}`);
-    editForm.style.display = editForm.style.display === 'none' ? 'block' : 'none';
-}
-
+// Função para carregar as vacinas da API e adicionar na lista
 function loadVacinas() {
     fetch(apiUrlVacinas)
         .then(response => {
@@ -407,62 +395,7 @@ function loadVacinas() {
         });
 }
 
-function updateVacina(event, id) {
-    event.preventDefault();
-
-    const dataVacina = event.target.data.value;
-    const proximaDose = event.target['proxima-dose'].value;
-    const nomeVacina = event.target['nome-vacina'].value.trim();
-    const localAplicacao = event.target['local-aplicacao'].value.trim();
-
-    if (!dataVacina || !nomeVacina || !localAplicacao) {
-        mostrarMensagem("mensagemvacina", "Por favor, preencha todos os campos obrigatórios.", "red");
-        return;
-    }
-
-    const vacinaInfo = {
-        data: dataVacina,
-        proximaDose: proximaDose,
-        nome: nomeVacina,
-        local: localAplicacao,
-    };
-
-    fetch(`${apiUrlVacinas}/${id}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(vacinaInfo),
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro ao atualizar informações da vacina');
-            }
-            return response.json();
-        })
-        .then(data => {
-            mostrarMensagem("mensagemvacina", "Informações da vacina atualizadas com sucesso na API!", "green");
-            updateVacinaCard(data);
-        })
-        .catch(error => {
-            console.error('Erro ao atualizar informações da vacina via API:', error);
-            mostrarMensagem("mensagemvacina", "Erro ao atualizar informações da vacina na API", "red");
-        });
-}
-
-function updateVacinaCard(vacinaInfo) {
-    const vacinaCard = document.querySelector(`li.card[data-id="${vacinaInfo.id}"]`);
-    vacinaCard.querySelector('h3').innerText = new Date(vacinaInfo.data).toLocaleDateString();
-    vacinaCard.querySelector('strong').innerText = vacinaInfo.nome;
-    vacinaCard.querySelectorAll('p')[1].innerText = `Local de Aplicação: ${vacinaInfo.local}`;
-    vacinaCard.querySelectorAll('p')[2].innerText = `Próxima Dose: ${vacinaInfo.proximaDose}`;
-    vacinaCard.querySelector('input[name="data"]').value = new Date(vacinaInfo.data).toISOString().substring(0, 10);
-    vacinaCard.querySelector('input[name="proxima-dose"]').value = vacinaInfo.proximaDose;
-    vacinaCard.querySelector('input[name="nome-vacina"]').value = vacinaInfo.nome;
-    vacinaCard.querySelector('input[name="local-aplicacao"]').value = vacinaInfo.local;
-}
-
-
+// Função para deletar uma vacina da API e da lista
 function deleteVacina(id) {
     fetch(`${apiUrlVacinas}/${id}`, {
         method: 'DELETE',
@@ -486,3 +419,8 @@ function deleteVacina(id) {
             mostrarMensagem("mensagemvacina", "Erro ao deletar a vacina na API", "red");
         });
 }
+
+// Evento disparado quando o DOM é carregado, para carregar as vacinas
+document.addEventListener("DOMContentLoaded", function () {
+    loadVacinas();
+});

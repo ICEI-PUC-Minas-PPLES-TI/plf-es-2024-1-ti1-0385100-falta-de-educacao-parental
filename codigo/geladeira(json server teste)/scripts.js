@@ -56,6 +56,14 @@ function manipularLembrete(lembrete) {
   lembreteElement.appendChild(deleteIcon);
   lembreteElement.appendChild(commentIcon);
 
+  // Adiciona o comentário se existir
+  if (lembrete.comentario) {
+    const comentarioElement = document.createElement('p');
+    comentarioElement.classList.add('comentario-text');
+    comentarioElement.textContent = `Comentário: ${lembrete.comentario}`;
+    lembreteElement.appendChild(comentarioElement);
+  }
+
   // Expande a altura do card conforme necessário para exibir todo o texto
   lembreteElement.style.height = "auto";
 
@@ -107,7 +115,6 @@ window.addEventListener('load', function() {
   .then(lembretes => {
     lembretesCache = lembretes; // Armazenar lembretes no cache
     filtrarLembretes(); // Exibir lembretes filtrados
-    carregarComentarios(); // Carregar comentários
   });
 });
 
@@ -158,7 +165,6 @@ function curtirLembrete(lembrete, likeIcon) {
   });
 }
 
-
 function removerLembrete(lembrete) {
   const confirmacao = confirm("Tem certeza que deseja remover este lembrete?");
   if (confirmacao) {
@@ -191,41 +197,16 @@ function adicionarComentario(lembrete) {
     .then(data => {
       // Atualizar a exibição do comentário no lembrete na página
       const lembreteElement = document.getElementById(`lembrete-${lembrete.id}`);
-      const comentarioElement = document.createElement('p');
-      comentarioElement.classList.add('comentario-text');
+      let comentarioElement = lembreteElement.querySelector('.comentario-text');
+      if (!comentarioElement) {
+        comentarioElement = document.createElement('p');
+        comentarioElement.classList.add('comentario-text');
+        lembreteElement.appendChild(comentarioElement);
+      }
       comentarioElement.textContent = `Comentário: ${data.comentario}`;
-      lembreteElement.appendChild(comentarioElement);
     })
     .catch(error => {
       console.error('Erro ao adicionar comentário:', error);
     });
   }
 }
-
-// Função para carregar os comentários do servidor e atualizar a interface do usuário
-function carregarComentarios() {
-  fetch(`${SERVER_URL}/lembretes`)
-    .then(response => response.json())
-    .then(lembretes => {
-      lembretes.forEach(lembrete => {
-        const lembreteElement = document.getElementById(`lembrete-${lembrete.id}`);
-        if (lembreteElement) {
-          if (lembrete.comentario) {
-            const comentarioElement = document.createElement('p');
-            comentarioElement.classList.add('comentario-text');
-            comentarioElement.textContent = `Comentário: ${lembrete.comentario}`;
-            lembreteElement.appendChild(comentarioElement);
-          }
-        }
-      });
-    })
-    .catch(error => {
-      console.error('Erro ao carregar comentários:', error);
-    });
-}
-
-// Chamar a função para carregar os comentários no momento apropriado
-window.addEventListener('load', function() {
-  carregarComentarios();
-});
-

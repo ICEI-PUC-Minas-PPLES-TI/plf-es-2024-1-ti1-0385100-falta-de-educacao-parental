@@ -214,6 +214,13 @@ main {
   color: var(--purplemain);
 }
 
+.mencao {
+  color: var(--purplemain);
+  background: #e294ff;
+  padding: 5px;
+  border-radius: 3px;
+}
+
 .btnChat {
   background: transparent;
   border: none;

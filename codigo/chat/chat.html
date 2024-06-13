@@ -79,7 +79,7 @@
   <!--font awesome-->
   <script src="https://kit.fontawesome.com/2a55b76bbc.js" crossorigin="anonymous"></script>
   <!--script da API-->
-  <script src="scripts/app.js"></script>
+  <script src="/scripts/app.js"></script>
   <!--script do chat-->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -113,8 +113,29 @@
   
           mensagens = objetos.mensagens;
           usuarios = objetos.usuarios;
+
+          function findUserById(userId) {
+            for (let i = 0; i < usuarios.length; i++) {
+              if (usuarios[i].usuarioId === userId) {
+                return usuarios[i];
+              }
+            }
+            return null;
+          }
+          
           for (let i = 0; i < mensagens.length; i++) {
             let structure = mensagens[i];
+            var conteudo = structure.conteudo;
+
+            if(structure.usuarioMencionadoId) {
+              let usuarioMencionado = findUserById(structure.usuarioMencionadoId);
+              console.log(usuarioMencionado);
+              if(usuarioMencionado) {
+                const nomeMencionado = `@${usuarioMencionado.nome}`;
+                console.log("Nome mencionado na mensagem: ", nomeMencionado);
+                conteudo = conteudo.replace(nomeMencionado, `<span class="mencao">${nomeMencionado}</span>`);
+              }
+            }
             strMsg +=
               `<div class="containerChat" data-msg-id="${structure.id}">
                 <div class="divFoto">
@@ -122,7 +143,7 @@
                 </div>
                 <div class="divConteudo">
                   <p class="userName">${usuarios[structure.usuarioId - 1].nome}</p>
-                  <p class="conteudoMsg">${structure.conteudo} </p>
+                  <p class="conteudoMsg">${conteudo} </p>
                   <ul>
                     <li><button class="btnLike" data-index=${i}><i class="fa-solid fa-heart iconLike"></button></i></li>
                     <li><p class="numLike">${structure.likes}</p></li>
@@ -185,17 +206,31 @@
     function deleteClick(msgId) {
       deleteChat(msgId, exibeMsg);
     }
-    
+
     function init() {
       var btnSend = document.querySelector('.btnChat');
       if (btnSend) {
         btnSend.addEventListener('click', function () {
           console.log('Botão clicado');
           var txtMsg = document.querySelector('.enterMsg').value;
+          var nomeMencionado = reconTermoMencionado(txtMsg);
+          console.log("nome do mencionado: ", nomeMencionado);
+          let mentionUserId = null;
 
           if (txtMsg.trim() === "") {
             alert("Não deixe a mensagem em branco.");
             return;
+          }
+
+          if(nomeMencionado) {
+            const usuarioMencionado = getUserByName(usuarios, nomeMencionado);
+            console.log("usuário mencionado: ", usuarioMencionado);
+            if(usuarioMencionado) {
+              mentionUserId = usuarioMencionado.usuarioId;
+              console.log("id do mencionado: ", mentionUserId);
+            }
+          } else {
+            console.log("menção nula.");
           }
           
           /* let usuarios = objetos.usuarios; */
@@ -205,10 +240,10 @@
             tituloMsg: "Lorem Ipsum",
             conteudo: txtMsg,
             likes: 0,
-            usuarioMencionadoId: usuarios[2].usuarioId,
+            usuarioMencionadoId: mentionUserId,
             imgSrc: ""
           };
-
+          console.log(novochat.usuarioMencionadoId);
           createChat(novochat, exibeMsg);
           document.querySelector('.enterMsg').value = "";
         });
@@ -218,6 +253,28 @@
       }
       exibeMsg();
     }
+
+    function reconTermoMencionado(conteudo) {
+      const padrao = /@(\w+)/;
+      const match = conteudo.match(padrao);
+      if(match) {
+        return match[1];
+      }
+      return null;
+    }
+
+    function getUserByName(usuarios, nome) {
+      for(i = 0; i < usuarios.length; i++) {
+        if(usuarios[i].nome === nome) {
+          console.log(usuarios[i]);
+          return usuarios[i];
+        }
+      }
+      return null;
+    }
+
+
+    
     
   </script>
 </body>

@@ -98,23 +98,64 @@ main {
   display: flex;
   flex-direction: column;
   margin: 1rem;
-  gap: 1em;
+  justify-content: space-between;
 }
 
-.capas {
-  background-image: linear-gradient(to bottom , var(--main), var(--secondary));
+.commText {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.commOptions {
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  list-style-type: none;
+}
+
+.btnsComIcons {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.commEntrar {
+  border: none;
+  padding: 5px;
+  border-radius: 3px;
+  color: white;
+}
+
+.commTags {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.tagComm {
+  padding: 5px;
+  border-radius: 3px;
+  background-color: var(--fadeyellow);
+  color: var(--darkyellow);
+}
+
+.infoIcon {
+  color: var(--darkyellow) !important;
 }
 
 #capa1 {
-  background-image: linear-gradient(to bottom , var(--darkred), var(--lightred)) !important;
+  background-image: linear-gradient(to bottom , var(--darkred), var(--lightred));
 }
 
 #capa2 {
-  background-image: linear-gradient(to bottom , var(--darkgreen), var(--lightgreen)) !important;
+  background-image: linear-gradient(to bottom , var(--darkgreen), var(--lightgreen));
 }
 
 #capa3 {
-  background-image: linear-gradient(to bottom , var(--darkyellow), var(--lightyellow)) !important;
+  background-image: linear-gradient(to bottom , var(--darkyellow), var(--lightyellow));
 }
 
 #capa4 {

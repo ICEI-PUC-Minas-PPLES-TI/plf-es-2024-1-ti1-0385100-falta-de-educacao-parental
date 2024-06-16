@@ -52,18 +52,39 @@
       for (let i = 0; i < comunidades.length; i++) {
         let structure = comunidades[i];
         strTexto +=
-          `<a href="chat.html?id=${structure.id}" class="contComm">
-            <div class="commContainer">
-            <div class="commCapas" id="capa${structure.id}">
+          `<div class="commContainer">
+              <div class="commCapas" id="capa${structure.id}">
     
-            </div>
-    
-            <div class="commInfo">
-              <h4 class="commTitles">${structure.titulo}</h4>
-              <p class="commText">${structure.descricao}</p>
-            </div>
-          </div>
-          </a>`;
+              </div>
+      
+              <div class="commInfo">
+                <div class="commText">
+                  <h4 class="commTitles">${structure.titulo}</h4>
+                  <p class="commSub">${structure.descricao}</p>
+                </div>
+                
+                <ul class="commOptions">
+                  <li>
+                    <a href="chat.html?id=${structure.id}" class="contComm">
+                      <div class="commEntrar btnsComIcons" style="background-color: var(--dark${structure.corApelido});">
+                        <div class="enter_icon">
+                          <i class="fa-solid fa-right-to-bracket"></i>
+                        </div>
+                        <p>Entrar na comunidade</p>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="commTags">
+                    <div class="tagComm btnsComIcons">
+                      <div class="info_icon">
+                        <i class="fa-solid fa-circle-info infoIcon"></i>
+                      </div>
+                      <p>Esta é uma comunidade padrão</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+          </div>`;
       }
       display.innerHTML = strTexto;
     }

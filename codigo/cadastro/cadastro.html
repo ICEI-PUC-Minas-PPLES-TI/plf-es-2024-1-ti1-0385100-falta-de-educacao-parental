@@ -21,28 +21,52 @@
             <form class="w-100" id="registerForm">
                 <h2 class="mb-4">Cadastrar-se no Mãe Coruja</h2>
                 <div class="mb-3">
-                    <input type="text" class="form-control" id="nome" placeholder="nome de usuário" required>
+                    <input type="text" class="form-control" id="nome" placeholder="Nome do usuário" required>
                 </div>
                 <div class="mb-3">
-                    <input type="text" class="form-control" id="login" placeholder="Nome de usuário" required>
+                    <input type="text" class="form-control" id="login" placeholder="User" required>
                 </div>
                 <div class="mb-3">
-                    <input type="email" class="form-control" id="email" placeholder="email" required>
+                    <input type="email" class="form-control" id="email" placeholder="Email" required>
                 </div>
                 <div class="mb-3">
-                    <input type="email" class="form-control" id="confirmar-email" placeholder="confirmar email"
+                    <input type="email" class="form-control" id="confirmar-email" placeholder="Confirmar email"
                         required>
                 </div>
                 <div class="mb-3">
-                    <input type="password" class="form-control" id="senha" placeholder="senha" required>
+                    <input type="password" class="form-control" id="senha" placeholder="Senha" required>
+                </div>
+                <div class="mb-3">
+                    <label for="papel" class="form-label">Meu papel na família:</label>
+                    <select class="form-select" id="papel" required>
+                        <option value="">Selecione...</option>
+                        <option value="Mãe">Mãe</option>
+                        <option value="Pai">Pai</option>
+                        <option value="Filho(a)">Filho(a)</option>
+                        <option value="Avô/Avó">Avô/Avó</option>
+                        <option value="Outro">Outro</option>
+                    </select>
                 </div>
                 <button type="submit" class="btn btn-primary w-100">Cadastrar-se</button>
             </form>
             <div class="text-center mt-3">
-                <p>Já tem uma conta? <a href="codigo\login\login.html">Entrar</a></p>
+                <p>Já tem uma conta? <a href='login.html'>Entrar</a></p>
             </div>
-            <!-- Elemento para exibir mensagens -->
-            <div id="message" class="mt-3 text-center"></div>
+        </div>
+    </div>
+
+    <!-- Modal de Erro -->
+    <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="errorModalLabel">Erro</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body" id="errorModalBody">
+                    <!-- Conteúdo da mensagem de erro será inserido aqui dinamicamente -->
+                </div>
+            </div>
         </div>
     </div>
 

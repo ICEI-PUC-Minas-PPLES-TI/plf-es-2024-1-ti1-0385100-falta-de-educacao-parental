@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>Comunidades</title>
-  <link href="/styles/style.css" rel="stylesheet" type="text/css" />
+  <link href="/styles/comchat.css" rel="stylesheet" type="text/css" />
   <!--importação da fonte principal-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,12 +30,11 @@
   <!--início da seção footer-->
   <footer>
     <ul class="footerIcons">
-      <li><a href=""><i class="fa-solid fa-user-group"></i></a></li>
+      <li><a href=""><i class="fa-solid fa-people-roof"></i></a></li>
       <li><a href=""><i class="fa-solid fa-calendar-days"></i></a></li>
-      <li><a href=""><i class="fa-solid fa-globe"></i></a></li>
-      <li><a href=""><i class="fa-solid fa-file-lines"></i></a></li>
-      <li><a href=""><i class="fa-solid fa-gear"></i></a></li>
-      <li><a href=""><i class="fa-solid fa-user"></i></a></li>
+      <li><a href=""><i class="fa-solid fa-note-sticky"></i></a></li>
+      <li><a href=""><i class="fa-solid fa-earth-americas"></i></a></li>
+      <li><a href=""><i class="fa-solid fa-heart-circle-plus"></i></a></li>
     </ul>
   </footer>
   <!--font awesome-->
@@ -57,16 +56,16 @@
     
               </div>
       
-              <div class="commInfo dFlex">
-                <div class="commText dFlex">
+              <div class="commInfo">
+                <div class="commText">
                   <h4 class="commTitles">${structure.titulo}</h4>
                   <p class="commSub">${structure.descricao}</p>
                 </div>
                 
-                <ul class="commOptions dFlex">
+                <ul class="commOptions">
                   <li>
                     <a href="chat.html?id=${structure.id}" class="contComm">
-                      <div class="commEntrar btnsComIcons dFlex" style="background-color: var(--dark${structure.corApelido});">
+                      <div class="commEntrar btnsComIcons" style="background-color: var(--dark${structure.corApelido});">
                         <div class="enter_icon">
                           <i class="fa-solid fa-right-to-bracket"></i>
                         </div>
@@ -74,8 +73,8 @@
                       </div>
                     </a>
                   </li>
-                  <li class="commTags dFlex">
-                    <div class="tagComm btnsComIcons dFlex">
+                  <li class="commTags">
+                    <div class="tagComm btnsComIcons">
                       <div class="info_icon">
                         <i class="fa-solid fa-circle-info infoIcon"></i>
                       </div>

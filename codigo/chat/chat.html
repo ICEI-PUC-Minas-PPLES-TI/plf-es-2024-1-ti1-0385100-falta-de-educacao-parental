@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>Comunidades</title>
-  <link href="styles/style.css" rel="stylesheet" type="text/css" />
+  <link href="styles/comchat.css" rel="stylesheet" type="text/css" />
   <!--importação da fonte principal-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -53,7 +53,7 @@
           <li><input type="text" placeholder="Envie uma mensagem" class="enterMsg" /></li>
           <button class="btnChat"><i class="fa-solid fa-paper-plane iconChat"></i></button>
         </ul>
-        <a href="index.html">
+        <a href="comunidades.html">
           <button class="btnVoltar">
             Voltar
           </button>
@@ -74,12 +74,11 @@
   <!--início da seção footer-->
   <footer>
     <ul class="chatUl footerIcons">
-      <li><a href=""><i class="iconsFooter fa-solid fa-user-group"></i></a></li>
-      <li><a href=""><i class="iconsFooter fa-solid fa-calendar-days"></i></a></li>
-      <li><a href=""><i class="iconsFooter fa-solid fa-globe"></i></a></li>
-      <li><a href=""><i class="iconsFooter fa-solid fa-file-lines"></i></a></li>
-      <li><a href=""><i class="iconsFooter fa-solid fa-gear"></i></a></li>
-      <li><a href=""><i class="iconsFooter fa-solid fa-user"></i></a></li>
+      <li><a href=""><i class="fa-solid fa-people-roof"></i></a></li>
+      <li><a href=""><i class="fa-solid fa-calendar-days"></i></a></li>
+      <li><a href=""><i class="fa-solid fa-note-sticky"></i></a></li>
+      <li><a href=""><i class="fa-solid fa-earth-americas"></i></a></li>
+      <li><a href=""><i class="fa-solid fa-heart-circle-plus"></i></a></li>
     </ul>
   </footer>
   <!--font awesome-->
@@ -96,6 +95,8 @@
       var root = document.documentElement;
       var lightred = getComputedStyle(root).getPropertyValue('--lightred').trim();
       var fadered = getComputedStyle(root).getPropertyValue('--fadered').trim();
+      var darkpink = getComputedStyle(root).getPropertyValue('--darkpink').trim();
+      var fadepink = getComputedStyle(root).getPropertyValue('--fadepink').trim();
 
       function loadChat() {
         let tela = document.querySelector('body');
@@ -152,11 +153,22 @@
                   <p class="userName">${usuarios[structure.usuarioId - 1].nome}</p>
                   <p class="conteudoMsg">${conteudo} </p>
                   <ul class="chatUl">
-                    <li><button class="btnLike" data-index=${i}><i class="fa-solid fa-heart iconLike"></button></i></li>
-                    <li><p class="numLike">${structure.likes}</p></li>
+                    <li class="reactLike">
+                      <button class="reactions btnLike" data-index=${i}>
+                        <i class="fa-solid fa-heart iconLike"></i>
+                      </button>
+                      <div><p class="numLike">${structure.likes}</p></div>
+                    </li>
+                    
+                    <li class="reactDislike">
+                      <button class="reactions btnDislike" data-index=${i}>
+                        <i class="fa-solid fa-heart-crack iconDislike"></i>
+                      </button>
+                      <div><p class="numDislike">${structure.dislikes}</p></div>
+                    </li>
                   </ul>
                </div>
-               <div class="divExcluir">
+               <div class="divExcluir" data-index=${i}>
                 <div class="selectDel">
                   <button class="btnDelete">
                     <i class="iconDelete fa-solid fa-trash-can"></i>
@@ -180,6 +192,14 @@
             });
           });
 
+          let btnsDislike = document.querySelectorAll('.btnDislike');
+          btnsDislike.forEach(btn => {
+            btn.addEventListener('click', function () {
+              let index = this.getAttribute('data-index');
+              darDislike(index);
+            });
+          });
+          
           let btnsDelete = document.querySelectorAll('.btnDelete');
           btnsDelete.forEach(button => {
             button.addEventListener('click', function() {
@@ -193,22 +213,69 @@
   
         function darLike(index) {
           let structure = objetos.mensagens[index];
+          
           let btnLike = document.querySelectorAll('.btnLike')[index];
           let likeIcon = document.querySelectorAll('.iconLike')[index];
           let likestxt = document.querySelectorAll('.numLike')[index];
+
+          let btnDislike = document.querySelectorAll('.btnDislike')[index];
+          let dislikeIcon = document.querySelectorAll('.iconDislike')[index];
+          let dislikestxt = document.querySelectorAll('.numDislike')[index];
+
+          let trash = document.querySelectorAll('.iconDelete')[index];
+          
           let container = document.querySelectorAll('.containerChat')[index];
   
           if (likeIcon.style.color === "lightgrey") {
             structure.likes = 1;
+            structure.dislikes = 0;
             likeIcon.style.color = lightred;
+            dislikeIcon.style.color = "lightgrey";
+            trash.style.color = lightred;
             container.style.border = `1px solid ${lightred}`;
             container.style.backgroundColor = fadered;
           } else {
             structure.likes = 0;
             likeIcon.style.color = "lightgrey";
+            trash.style.color = "lightgrey";
             container.style.border = `1px solid lightgrey`;
             container.style.backgroundColor = "white";
           }
+          likestxt.innerHTML = `${structure.likes}`;
+          dislikestxt.innerHTML = `${structure.dislikes}`;
+        };
+
+        function darDislike(index) {
+          let structure = objetos.mensagens[index];
+
+          let btnDislike = document.querySelectorAll('.btnDislike')[index];
+          let dislikeIcon = document.querySelectorAll('.iconDislike')[index];
+          let dislikestxt = document.querySelectorAll('.numDislike')[index];
+
+          let btnLike = document.querySelectorAll('.btnLike')[index];
+          let likeIcon = document.querySelectorAll('.iconLike')[index];
+          let likestxt = document.querySelectorAll('.numLike')[index];
+
+          let trash = document.querySelectorAll('.iconDelete')[index];
+
+          let container = document.querySelectorAll('.containerChat')[index];
+
+          if (dislikeIcon.style.color === "lightgrey") {
+            structure.likes = 0;
+            structure.dislikes = 1;
+            dislikeIcon.style.color = darkpink;
+            likeIcon.style.color = "lightgrey";
+            trash.style.color = darkpink;
+            container.style.border = `1px solid ${darkpink}`;
+            container.style.backgroundColor = fadepink;
+          } else {
+            structure.dislikes = 0;
+            dislikeIcon.style.color = "lightgrey";
+            trash.style.color = "lightgrey";
+            container.style.border = `1px solid lightgrey`;
+            container.style.backgroundColor = "white";
+          }
+          dislikestxt.innerHTML = `${structure.dislikes}`;
           likestxt.innerHTML = `${structure.likes}`;
         };
       };
@@ -251,6 +318,7 @@
             tituloMsg: "Lorem Ipsum",
             conteudo: txtMsg,
             likes: 0,
+            dislikes: 0,
             usuarioMencionadoId: mentionUserId,
             imgSrc: ""
           };

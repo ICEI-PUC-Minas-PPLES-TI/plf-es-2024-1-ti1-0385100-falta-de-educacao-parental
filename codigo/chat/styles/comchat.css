@@ -18,9 +18,9 @@
   --lightyellow: #D4A500;
   --fadeyellow: #fbefc6;
 
-  --darkpink: #8D5D68;
-  --lightpink: #D13A68;
-  --fadepink: #fdc9d9;
+  --darkpink: #533647;
+  --lightpink: #b54f85;
+  --fadepink: #c1aeb9;
 
   --darkblue: #4C7CF6;
   --lightblue: #28A5A5;
@@ -33,6 +33,10 @@
   font-family: 'League Spartan', sans-serif;
 }
 
+body {
+  width: 100%;
+}
+
 /*formatação do header*/
 header {
   width: 100%;
@@ -42,7 +46,6 @@ header {
   gap: 2em;
   background-image: linear-gradient(to bottom , var(--main), var(--secondary));
   border-radius: 0px 0px 30px 30px;
-  margin-bottom: 2em;
 }
 
 /*formatação de titulos*/
@@ -79,11 +82,6 @@ main {
   margin: 3em;
 }
 
-.dFlex {
-  display: flex;
-  gap: 1rem;
-}
-
 .commContainer {
   margin: 2em;
   height: 200px;
@@ -99,24 +97,29 @@ main {
 }
 
 .commInfo {
-  flex-direction: column;
   grid-column-start: 2;
-  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
   justify-content: space-between;
 }
 
 .commText {
+  display: flex;
   flex-direction: column;
+  gap: 1rem;
 }
 
 .commOptions {
   padding: 0;
   display: flex;
   flex-direction: row;
+  gap: 1rem;
   list-style-type: none;
 }
 
 .btnsComIcons {
+  display: flex;
   flex-direction: row;
   gap: 0.5rem;
   align-items: center;
@@ -132,6 +135,7 @@ main {
 .commTags {
   display: flex;
   flex-direction: row;
+  gap: 1rem;
 }
 
 .tagComm {
@@ -289,15 +293,30 @@ a {
   gap: 0.5rem;
 }
 
-.btnLike {
+.reactions {
   background: transparent;
   border: none;
   padding: 0;
   margin: 0;
 }
+
 .iconLike {
   color: lightgrey;
   margin: 0;
+}
+
+.iconDislike {
+  color: lightgrey;
+  margin: 0;
+}
+
+.divConteudo ul {
+  gap: 1rem;
+}
+
+.divConteudo ul > li {
+  display: flex;
+  gap: 0.5rem;
 }
 
 .divExcluir {
@@ -320,7 +339,7 @@ a {
 }
 
 .iconDelete {
-  color: var(--lightred);
+  color: lightgrey;
   font-size: 14px;
 }
 
@@ -396,9 +415,17 @@ a {
 @media (max-width: 600px) {
 
   /*elementos da pág. de comunidades*/
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+  
   .commContainer {
     grid-template-columns: 100%;
-    grid-template-rows: 50% 50%;
+    grid-template-rows: 30% 70%;
+    margin: 0;
   }
 
   .commCapas {
@@ -409,6 +436,15 @@ a {
   .commInfo {
     grid-column-start: 1;
     grid-row-start: 2;
+  }
+
+  .commOptions {
+    margin-top: 0.5rem;
+  }
+
+  .commOptions li {
+    width: 50%;
+    font-size: 12px;
   }
 
   /*elementos da pág. de chat*/

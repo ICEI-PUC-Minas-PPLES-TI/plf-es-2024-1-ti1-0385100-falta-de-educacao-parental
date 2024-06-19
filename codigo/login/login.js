@@ -1,130 +1,58 @@
-const LOGIN_URL = "login.html";
-const HOME_URL = "home.html";
-const apiUrl = 'https://jsonserver.rommelpuc.repl.co/usuarios';
+document.addEventListener('DOMContentLoaded', function () {
+    const LOGIN_URL = "login.html";
+    const apiUrl = 'https://d3bc0c71-a21a-467c-b5cc-9c4323769087-00-u725a4dkcvpy.worf.replit.dev/usuarios';
 
-var db_usuarios = {};
-var usuarioCorrente = {};
+    var db_usuarios = [];
 
-function generateUUID() {
-    var d = new Date().getTime();
-    var d2 = (performance && performance.now && (performance.now() * 1000)) || 0;
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-        var r = Math.random() * 16;
-        if (d > 0) {
-            r = (d + r) % 16 | 0;
-            d = Math.floor(d / 16);
+    // Função para inicializar a aplicação de login
+    function initLoginApp() {
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                db_usuarios = data;
+            })
+            .catch(error => {
+                console.error('Erro ao ler usuários via API JSONServer:', error);
+                displayMessage("Erro ao ler usuários");
+            });
+    };
+
+    // Função para validar o login
+    function loginUser(email, senha) {
+        // Recupera os dados do usuário do Local Storage
+        const usuarioSalvo = JSON.parse(localStorage.getItem('usuario'));
+    
+        if (usuarioSalvo && usuarioSalvo.email === email && usuarioSalvo.senha === senha) {
+            // Login bem-sucedido
+            displayMessage("Login realizado com sucesso!");
+    
+            // Redireciona para a página do calendário
+            window.location.href = 'codigo\calendario\index.html';
         } else {
-            r = (d2 + r) % 16 | 0;
-            d2 = Math.floor(d2 / 16);
-        }
-        return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
-    });
-}
-
-const dadosIniciais = {
-    usuarios: [
-        { "id": generateUUID(), "login": "admin", "senha": "123", "nome": "Administrador do Sistema", "email": "admin@abc.com" },
-        { "id": generateUUID(), "login": "user", "senha": "123", "nome": "Usuario Comum", "email": "user@abc.com" },
-    ]
-};
-
-function initLoginApp() {
-    let usuarioCorrenteJSON = sessionStorage.getItem('usuarioCorrente');
-    if (usuarioCorrenteJSON) {
-        usuarioCorrente = JSON.parse(usuarioCorrenteJSON);
-    }
-
-    fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-            db_usuarios = data;
-        })
-        .catch(error => {
-            console.error('Erro ao ler usuários via API JSONServer:', error);
-            displayMessage("Erro ao ler usuários");
-        });
-};
-
-function loginUser(login, senha) {
-    for (var i = 0; i < db_usuarios.length; i++) {
-        var usuario = db_usuarios[i];
-        if (login == usuario.login && senha == usuario.senha) {
-            // Verifica se o email está registrado no localStorage
-            var emailRegistrado = localStorage.getItem('emailRegistrado');
-            if (emailRegistrado && emailRegistrado === usuario.email) {
-                usuarioCorrente.id = usuario.id;
-                usuarioCorrente.login = usuario.login;
-                usuarioCorrente.email = usuario.email;
-                usuarioCorrente.nome = usuario.nome;
-                sessionStorage.setItem('usuarioCorrente', JSON.stringify(usuarioCorrente));
-                window.location = HOME_URL;
-                return true;
-            } else {
-                displayMessage("Email não registrado neste dispositivo.");
-                return false;
-            }
+            // Email ou senha incorretos
+            displayMessage("Email ou senha incorretos.", 'danger');
         }
     }
-    displayMessage("Usuário ou senha incorretos.");
-    return false;
-}
+    
 
-
-function logoutUser() {
-    usuarioCorrente = {};
-    sessionStorage.setItem('usuarioCorrente', JSON.stringify(usuarioCorrente));
-    window.location = LOGIN_URL;
-}
-
-function addUser(nome, login, senha, email) {
-    let newId = generateUUID();
-    let usuario = { "id": newId, "login": login, "senha": senha, "nome": nome, "email": email };
-    fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(usuario),
-    })
-    .then(response => response.json())
-    .then(data => {
-        db_usuarios.push(usuario);
-        displayMessage("Usuário inserido com sucesso");
-    })
-    .catch(error => {
-        console.error('Erro ao inserir usuário via API JSONServer:', error);
-        displayMessage("Erro ao inserir usuário");
-    });
-}
-
-function handleLogin(event) {
-    event.preventDefault();
-    const login = document.getElementById('login').value;
-    const senha = document.getElementById('senha').value;
-    if (loginUser(login, senha)) {
-        localStorage.setItem('emailRegistrado', usuarioCorrente.email);
-        displayMessage("Login realizado com sucesso!");
-    }
-}
-
-
-function handleRegister(event) {
-    event.preventDefault();
-    const nome = document.getElementById('nome').value;
-    const login = document.getElementById('login').value;
-    const senha = document.getElementById('senha').value;
-    const email = document.getElementById('email').value;
-
-    // Verificar se o login já existe
-    const usuarioExistente = db_usuarios.find(u => u.login === login);
-    if (usuarioExistente) {
-        displayMessage("Login já cadastrado. Por favor, escolha outro login.");
-        return;
+    // Função para lidar com o evento de login
+    function handleLogin(event) {
+        event.preventDefault();
+        const email = document.getElementById('email').value;
+        const senha = document.getElementById('senha').value;
+        if (loginUser(email, senha)) {
+            displayMessage("Login realizado com sucesso!");
+        }
     }
 
-    addUser(nome, login, senha, email);
-}
+    // Função para exibir mensagens na interface
+    function displayMessage(message) {
+        alert(message);
+    }
 
-function displayMessage(message) {
-    alert(message);
-}
+    // Adiciona um ouvinte de eventos para o formulário de login
+    document.getElementById('loginForm').addEventListener('submit', handleLogin);
+
+    // Inicializa a aplicação de login ao carregar o DOM
+    initLoginApp();
+});

@@ -61,8 +61,11 @@ function addUser(nome, login, senha, email, papel) {
         return response.json();
     })
     .then(data => {
+        // Armazena os dados do usuário no Local Storage
+        localStorage.setItem('usuario', JSON.stringify(usuario));
+
         displayMessage("Usuário cadastrado com sucesso");
-        window.location.href = 'login.html'; // Redireciona para a página de login após o cadastro
+        window.location.href = '../login/login.html'; // Redireciona para a página de login após o cadastro
     })
     .catch(error => {
         console.error('Erro ao cadastrar usuário via API JSONServer:', error);

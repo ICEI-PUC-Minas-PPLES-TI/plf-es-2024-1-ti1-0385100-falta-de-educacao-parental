@@ -15,7 +15,6 @@ body {
 }
 
 .container-fluid {
-    background-image: url('background-image.jpg'); 
     background-size: cover;
     background-position: center;
     height: 100vh;

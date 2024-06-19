@@ -1,63 +1,26 @@
 <<<<<<< HEAD
 cff-version: 1.0.1
 message: Please cite this software using these metadata.
-title: 
+title: Projeto Mãe Coruja 
 authors:
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names:
+  - family-names: Luísa 
+    given-names: Oliveira Jardim 
+  - family-names: Gabriela 
+    given-names: Alvarenga Cardoso
+  - family-names: João Álvaro 
+    given-names: Rodrigs de Araújo
+  - family-names: Leonardo 
+    given-names: de Souza Galvão 
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: 
-    given-names: 
+    family-names: Rommel 
+    given-names: Vieira Carneiro 
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: 
-    given-names: 
+    family-names: Simone 
+    given-names: Alves Nogueira 
 keywords:
-  - 
-  - 
-repository-code: 
-license: CC-BY-4.0
-version: 1.0.0
-date-released: 2022-07-14
-=======
-cff-version: 1.0.1
-message: Please cite this software using these metadata.
-title: 
-authors:
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names:
-  - name-suffix: Professor
-    affiliation: PUC Minas
-    family-names: 
-    given-names: 
-  - name-suffix: Professor
-    affiliation: PUC Minas
-    family-names: 
-    given-names: 
-keywords:
-  - 
-  - 
+  - educação parenteal, organização, pais, mães, filhos, assistente virtual, ferramenta de organização.
 repository-code: 
 license: CC-BY-4.0
 version: 1.0.0

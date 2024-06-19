@@ -1,0 +1,707 @@
+*{
+  margin: 0px;
+  padding: 0px;
+}
+:root {
+ --purplemain: #500C86;
+ --purple2: #9C30A5;
+ --darkred: #D13A68;
+ --lightred: #FF004D;
+ --darkgreen: #28A5A5;
+ --lightgreen: #06A878;
+ --darkyellow: #C6773D;
+ --lightyellow: #D4A500;
+ --darkpink: #8D5D68;
+ --lightpink: #D13A68;
+ --darkblue: #4C7CF6;
+ --lightblue: #28A5A5;
+}
+header h1{
+padding: 40px 0px 0px 0px;
+}
+header img{
+ position: relative;
+ bottom: 0;
+ padding: 0px;
+ margin: 0px;
+ width: 100px;
+}
+header {
+ color: white;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ background-image: linear-gradient(to bottom , var(--purplemain), var(--purple2));
+ border-radius: 0px 0px 30px 30px;
+ margin-bottom: 2em;
+}
+footer{
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
+ background-color: rgb(87, 0, 128);
+ padding: 20px;
+  }
+ footer ul{
+  margin: 5px 40px 5px 5px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  
+ }
+ 
+
+  footer li{
+   list-style: none;
+  }
+  li a i{
+   color: rgb(225, 196, 224);
+   font-size: 22px;
+  }
+
+  /*Calendário*/
+
+  .calendar {
+max-width: 300px;
+margin: 0 auto;
+}
+
+.header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 10px;
+}
+.header button{
+background-color: blueviolet;
+color: white;
+padding: 10px 20px;
+border: none;
+}
+
+.weekdays {
+display: grid;
+grid-template-columns: repeat(7, 1fr);
+}
+
+.days {
+ 
+display: grid;
+grid-template-columns: repeat(7, 1fr);
+}
+
+.days div {
+padding: 5px;
+text-align: center;
+border: 1px solid #ccc;
+}
+
+#btnlembrete{
+margin: 10px;
+display: flex;
+justify-content: center;
+
+}
+#btnlembrete button{
+background-color: blueviolet;
+color: white;
+padding: 10px;
+border: none;
+}
+
+/*Marcador do dia atual*/
+.today {
+margin: 3px;
+background-color:blueviolet; /* Yellow background */
+color: #ffffff; /* Text color */
+font-weight: bold; /* Bold text */
+border-radius: 300px;
+}
+/*pop up*/
+.popup {
+display: none;
+position: fixed;
+z-index: 1;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+overflow: auto;
+background-color: rgba(0, 0, 0, 0.4);
+}
+
+.popup-content {
+display: flex;
+flex-direction: column;
+background-color: #fefefe;
+margin: 20% auto;
+padding: 20px;
+border: 1px solid #888;
+width: 60%;
+}
+.popup-content button{
+background-color: blueviolet;
+color: white;
+margin: 10px 0px;
+padding: 10px;
+border: none;
+}
+.popup-content input{
+width: 70%;
+display: flex;
+height: 30px;
+}
+
+.close {
+display: flex;
+justify-content:right;
+font-size: 20px;
+font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+color: #000;
+text-decoration: none;
+cursor: pointer;
+}
+
+#userList{
+position: relative;
+margin: 0px 70px 0px 70px;
+padding: 30px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+border: 2px solid blueviolet;
+}
+#userList li{
+display: flex;
+justify-content: space-between;
+}
+#userList button{
+margin: 0px 0px 10px 5px;
+background-color: blueviolet;
+border: none;
+color: #ffffff;
+padding: 7px;
+}
+
+.important-day{
+  background-color: rgba(255, 0, 0, 0.747)!important;
+  color: #ffffff !important;
+}
+.registered-day {
+  background-color: rgba(195, 110, 252, 0.705); /* Change color as needed */
+  color:blueviolet; /* Text color */
+}
+
+.recados{
+  margin: 40px 70px 200px 70px;
+  padding: 10px;
+  color: #000;
+  border : 2px solid blueviolet;
+ }
+ .recados input{
+  margin: 0px 0px 20px 0px;
+  border: 2px solid blueviolet;
+ }
+  ::placeholder {
+    color: blueviolet;
+    opacity: 1; /* Firefox */
+  }
+  .recados button{
+    margin-left: 10px;
+    background-color: blueviolet;
+    color: #ffffff;
+    padding: 5px 10px;
+    border: none;
+  }
+
+  .aviso{
+    display: none;
+    margin: 10px 70px 10px 70px;
+    padding: 10px;
+    color: #000;
+    border : 1px solid red;
+  }
+  .aviso p{
+    padding: 10px;
+    color: red;
+  }
+  .aviso i{
+    color: red;
+    font-size: xx-large;
+    margin: 0px;
+    padding: 10px;
+  }
+
+
+
+
+@media screen and (max-width: 840px){
+  *{
+   margin: 0px;
+   padding: 0px;
+ }
+ :root {
+  --purplemain: #500C86;
+  --purple2: #9C30A5;
+  --darkred: #D13A68;
+  --lightred: #FF004D;
+  --darkgreen: #28A5A5;
+  --lightgreen: #06A878;
+  --darkyellow: #C6773D;
+  --lightyellow: #D4A500;
+  --darkpink: #8D5D68;
+  --lightpink: #D13A68;
+  --darkblue: #4C7CF6;
+  --lightblue: #28A5A5;
+ }
+ header h1{
+padding: 40px 0px 0px 0px;
+ }
+ header img{
+  position: relative;
+  bottom: 0;
+  padding: 0px;
+  margin: 0px;
+  width: 30%;
+ }
+ header {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: linear-gradient(to bottom , var(--purplemain), var(--purple2));
+  border-radius: 0px 0px 30px 30px;
+  margin-bottom: 2em;
+ }
+   footer{
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+   background-color: rgb(87, 0, 128);
+   padding: 20px;
+    }
+   footer ul{
+    margin: 5px 40px 5px 5px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    
+   }
+   footer li{
+    list-style: none;
+   }
+   li a i{
+    color: rgb(225, 196, 224);
+    font-size: 22px;
+   }
+
+   /*Calendário*/
+
+   .calendar {
+ max-width: 300px;
+ margin: 0 auto;
+}
+
+.header {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ margin-bottom: 10px;
+}
+.header button{
+ background-color: blueviolet;
+ color: white;
+ padding: 10px 20px;
+ border: none;
+}
+
+.weekdays {
+ display: grid;
+ grid-template-columns: repeat(7, 1fr);
+}
+
+.days {
+ display: grid;
+ grid-template-columns: repeat(7, 1fr);
+}
+
+.days div {
+ padding: 5px;
+ text-align: center;
+ border: 1px solid #ccc;
+}
+
+#btnlembrete{
+ margin: 10px;
+ display: flex;
+ justify-content: center;
+
+}
+#btnlembrete button{
+ background-color: blueviolet;
+ color: white;
+ padding: 10px;
+ border: none;
+}
+
+/*Marcador do dia atual*/
+.today {
+ margin: 3px;
+ background-color:blueviolet; /* Yellow background */
+ color: #ffffff; /* Text color */
+ font-weight: bold; /* Bold text */
+ border-radius: 300px;
+}
+/*pop up*/
+.popup {
+ display: none;
+ position: fixed;
+ z-index: 1;
+ left: 0;
+ top: 0;
+ width: 100%;
+ height: 100%;
+ overflow: auto;
+ background-color: rgba(0, 0, 0, 0.4);
+}
+
+.popup-content {
+ display: flex;
+ flex-direction: column;
+ background-color: #fefefe;
+ margin: 20% auto;
+ padding: 20px;
+ border: 1px solid #888;
+ width: 60%;
+}
+.popup-content button{
+ background-color: blueviolet;
+ color: white;
+ margin: 10px 0px;
+ padding: 10px;
+ border: none;
+}
+.popup-content input{
+width: 80%;
+height: 30px;
+}
+
+.close {
+ display: flex;
+ justify-content:right;
+ font-size: 20px;
+ font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+ color: #000;
+ text-decoration: none;
+ cursor: pointer;
+}
+
+#userList{
+ position: relative;
+ margin: 0px 20px 20px 20px;
+ padding: 30px;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ border: 2px solid blueviolet;
+}
+#userList li{
+ display: flex;
+ justify-content: space-around;
+}
+ #userList button{
+ padding: 5px;
+ display: block;
+ background-color: blueviolet;
+ border: none;
+ color: #ffffff;
+}
+.important-day{
+  background-color: rgba(255, 0, 0, 0.747)!important;
+  color: #ffffff !important;
+}
+.registered-day {
+  background-color: rgba(195, 110, 252, 0.705); /* Change color as needed */
+  color:blueviolet; /* Text color */
+}
+.aviso{
+  display: none;
+  margin: 20px;
+  padding: 10px;
+  color: #000;
+  border : 1px solid red;
+}
+.aviso p{
+  padding: 5px;
+  color: red;
+}
+.aviso i{
+  color: red;
+  font-size: xx-large;
+  margin: 0px;
+  padding: 5px;
+}
+.recados{
+  margin: 20px 20px 200px 20px;
+  padding: 10px;
+  color: #000;
+  border : 2px solid blueviolet;
+ }
+ .recados input{
+  margin: 0px 0px 20px 0px;
+  border: 2px solid blueviolet;
+ }
+  ::placeholder {
+    color: blueviolet;
+    opacity: 1; /* Firefox */
+  }
+  .recados button{
+    background-color: blueviolet;
+    color: #ffffff;
+    padding: 5px 10px;
+    border: none;
+  }
+}
+
+
+@media screen and (max-width: 300px){
+  *{
+   margin: 0px;
+   padding: 0px;
+ }
+ :root {
+  --purplemain: #500C86;
+  --purple2: #9C30A5;
+  --darkred: #D13A68;
+  --lightred: #FF004D;
+  --darkgreen: #28A5A5;
+  --lightgreen: #06A878;
+  --darkyellow: #C6773D;
+  --lightyellow: #D4A500;
+  --darkpink: #8D5D68;
+  --lightpink: #D13A68;
+  --darkblue: #4C7CF6;
+  --lightblue: #28A5A5;
+ }
+ header h1{
+padding: 40px 0px 0px 0px;
+ }
+ header img{
+  position: relative;
+  bottom: 0;
+  padding: 0px;
+  margin: 0px;
+  width: 30%;
+ }
+ header {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: linear-gradient(to bottom , var(--purplemain), var(--purple2));
+  border-radius: 0px 0px 30px 30px;
+  margin-bottom: 2em;
+ }
+   footer{
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+   background-color: rgb(87, 0, 128);
+   padding: 20px;
+    }
+   footer ul{
+    margin: 5px 40px 5px 5px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    
+   }
+   footer li{
+    list-style: none;
+   }
+   li a i{
+    color: rgb(225, 196, 224);
+    font-size: 22px;
+   }
+
+   /*Calendário*/
+
+   .calendar {
+ max-width: 300px;
+ margin: 0 auto;
+}
+
+.header {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ margin-bottom: 10px;
+}
+.header button{
+ background-color: blueviolet;
+ color: white;
+ padding: 10px 20px;
+ border: none;
+}
+
+.weekdays {
+ display: grid;
+ grid-template-columns: repeat(7, 1fr);
+}
+
+.days {
+ display: grid;
+ grid-template-columns: repeat(7, 1fr);
+}
+
+.days div {
+ padding: 5px;
+ text-align: center;
+ border: 1px solid #ccc;
+}
+
+#btnlembrete{
+ margin: 10px;
+ display: flex;
+ justify-content: center;
+
+}
+#btnlembrete button{
+ background-color: blueviolet;
+ color: white;
+ padding: 10px;
+ border: none;
+}
+
+/*Marcador do dia atual*/
+.today {
+ margin: 3px;
+ background-color:blueviolet; /* Yellow background */
+ color: #ffffff; /* Text color */
+ font-weight: bold; /* Bold text */
+ border-radius: 300px;
+}
+/*pop up*/
+.popup {
+ display: none;
+ position: fixed;
+ z-index: 1;
+ left: 0;
+ top: 0;
+ width: 100%;
+ height: 100%;
+ overflow: auto;
+ background-color: rgba(0, 0, 0, 0.4);
+}
+
+.popup-content {
+ display: flex;
+ flex-direction: column;
+ background-color: #fefefe;
+ margin: 20% auto;
+ padding: 20px;
+ border: 1px solid #888;
+ width: 60%;
+}
+.popup-content button{
+ background-color: blueviolet;
+ color: white;
+ margin: 10px 0px;
+ padding: 10px;
+ border: none;
+}
+.popup-content input{
+width: 80%;
+height: 30px;
+}
+
+.close {
+ display: flex;
+ justify-content:right;
+ font-size: 20px;
+ font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+ color: #000;
+ text-decoration: none;
+ cursor: pointer;
+}
+
+#userList{
+ position: relative;
+ margin: 0px 20px 20px 20px;
+ padding: 30px;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ border: 2px solid blueviolet;
+}
+#userList li{
+ display: flex;
+ flex-direction: column;
+ justify-content: space-around;
+}
+ #userList button{
+ padding: 5px;
+ margin: 2px 30px;
+ display: block;
+ background-color: blueviolet;
+ border: none;
+ color: #ffffff;
+}
+.important-day{
+  background-color: rgba(255, 0, 0, 0.747)!important;
+  color: #ffffff !important;
+}
+.registered-day {
+  background-color: rgba(195, 110, 252, 0.705); /* Change color as needed */
+  color:blueviolet; /* Text color */
+}
+.aviso{
+  display: none;
+  margin: 20px;
+  padding: 10px;
+  color: #000;
+  border : 1px solid red;
+}
+.aviso p{
+  padding: 5px;
+  color: red;
+}
+.aviso i{
+  color: red;
+  font-size: xx-large;
+  margin: 0px;
+  padding: 5px;
+}
+.recados{
+  margin: 20px 20px 200px 20px;
+  padding: 10px;
+  color: #000;
+  border : 2px solid blueviolet;
+ }
+ .recados input{
+  margin: 0px 0px 20px 0px;
+  border: 2px solid blueviolet;
+ }
+  ::placeholder {
+    color: blueviolet;
+    opacity: 1; /* Firefox */
+  }
+  .recados button{
+    background-color: blueviolet;
+    color: #ffffff;
+    padding: 5px 10px;
+    border: none;
+  }
+}

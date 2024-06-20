@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
             displayMessage("Login realizado com sucesso!");
     
             // Redireciona para a página do calendário
-            window.location.href = 'codigo\calendario\index.html';
+            window.location.href = 'http://127.0.0.1:5501/codigo/calendario/public/index.html';
         } else {
             // Email ou senha incorretos
             displayMessage("Email ou senha incorretos.", 'danger');

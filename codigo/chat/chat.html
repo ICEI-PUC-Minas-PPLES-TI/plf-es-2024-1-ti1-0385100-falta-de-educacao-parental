@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Comunidades</title>
+  <link href="styles/comchat.css" rel="stylesheet" type="text/css" />
+  <!--importação da fonte principal-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+  <!--início da seção header-->
+  <header>
+    <img src="imgs/logo.png" class="logo">
+    <h1>mãe coruja</h1>
+  </header>
+  <!--início da seção main-->
+  <main class="chatMain">
+    <section class="legendas">
+      <div class="TituloPag">
+        <ul class="chatUl">
+          <li><i class="fa-solid fa-globe iconAldeia"></i></li>
+          <li>
+            <p class="subtitulo">Aldeia</p>
+          </li>
+        </ul>
+      </div>
+
+      <div class="subtituloPag">
+        <ul class="chatUl">
+          <li>Comunidade</li>
+          <li class="commName">
+            <p>Nome da Comunidade</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!--container do chat-->
+    <section class="chats">
+      <!--chat será inserido pelo javascript-->
+    </section>
+
+    <!--opções do chat-->
+    <section class="containerChatOptions">
+      <div class="chatOptions">
+        <ul class="chatUl">
+          <li><input type="text" placeholder="Envie uma mensagem" class="enterMsg" /></li>
+          <button class="btnChat"><i class="fa-solid fa-paper-plane iconChat"></i></button>
+        </ul>
+        <a href="comunidades.html">
+          <button class="btnVoltar">
+            Voltar
+          </button>
+        </a>
+      </div>
+      <form class="divUpload">
+        <p class="lblImg">Escolher imagem: </p>
+        <input type="file" class="inputImg" accept="image/*" required>
+        <button type="submit" class="btnUpload">Upload</button>
+      </form>
+    </section>
+  </main>
+  <!--mensagem da API-->
+  <div id="msg">
+
+  </div>
+
+  <!--início da seção footer-->
+  <footer>
+    <ul class="chatUl footerIcons">
+      <li><a href=""><i class="fa-solid fa-people-roof"></i></a></li>
+      <li><a href=""><i class="fa-solid fa-calendar-days"></i></a></li>
+      <li><a href=""><i class="fa-solid fa-note-sticky"></i></a></li>
+      <li><a href=""><i class="fa-solid fa-earth-americas"></i></a></li>
+      <li><a href=""><i class="fa-solid fa-heart-circle-plus"></i></a></li>
+    </ul>
+  </footer>
+  <!--font awesome-->
+  <script src="https://kit.fontawesome.com/2a55b76bbc.js" crossorigin="anonymous"></script>
+  <!--script da API-->
+  <script src="/scripts/app.js"></script>
+  <!--script do chat-->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      init();
+    });
+    
+    function exibeMsg() {
+      var root = document.documentElement;
+      var lightred = getComputedStyle(root).getPropertyValue('--lightred').trim();
+      var fadered = getComputedStyle(root).getPropertyValue('--fadered').trim();
+      var darkpink = getComputedStyle(root).getPropertyValue('--darkpink').trim();
+      var fadepink = getComputedStyle(root).getPropertyValue('--fadepink').trim();
+
+      function loadChat() {
+        let tela = document.querySelector('body');
+        let comunidadeTitle = document.querySelector('.commName');
+        let display = document.querySelector('.chats');
+        let strMsg = '';
+        
+        btnLike = document.querySelector('.btnLike');
+        let click = false;
+  
+        let params = new URLSearchParams(location.search);
+        id = params.get('id');
+  
+        comunidades = objetos.comunidades;
+        comunidade = comunidades.find(function (elem) {
+          return elem.id == id;
+        });
+  
+        if (comunidade) {
+          comunidadeTitle.innerHTML = `<p>${comunidade.titulo}</p>`;
+          comunidadeTitle.style.color = comunidade.cor;
+  
+          mensagens = objetos.mensagens;
+          usuarios = objetos.usuarios;
+
+          function findUserById(userId) {
+            for (let i = 0; i < usuarios.length; i++) {
+              if (usuarios[i].usuarioId === userId) {
+                return usuarios[i];
+              }
+            }
+            return null;
+          }
+          
+          for (let i = 0; i < mensagens.length; i++) {
+            let structure = mensagens[i];
+            var conteudo = structure.conteudo;
+
+            if(structure.usuarioMencionadoId) {
+              let usuarioMencionado = findUserById(structure.usuarioMencionadoId);
+              console.log(usuarioMencionado);
+              if(usuarioMencionado) {
+                const nomeMencionado = `@${usuarioMencionado.nome}`;
+                console.log("Nome mencionado na mensagem: ", nomeMencionado);
+                conteudo = conteudo.replace(nomeMencionado, `<span class="mencao">${nomeMencionado}</span>`);
+              }
+            }
+            strMsg +=
+              `<div class="containerChat" data-index=${i} data-msg-id="${structure.id}">
+                <div class="divFoto">
+                  <img src="${usuarios[structure.usuarioId - 1].fotoperfil}" class="profilePic"/>
+                </div>
+                <div class="divConteudo">
+                  <p class="userName">${usuarios[structure.usuarioId - 1].nome}</p>
+                  <p class="conteudoMsg">${conteudo} </p>
+                  <ul class="chatUl">
+                    <li class="reactLike">
+                      <button class="reactions btnLike" data-index=${i}>
+                        <i class="fa-solid fa-heart iconLike"></i>
+                      </button>
+                      <div><p class="numLike">${structure.likes}</p></div>
+                    </li>
+                    
+                    <li class="reactDislike">
+                      <button class="reactions btnDislike" data-index=${i}>
+                        <i class="fa-solid fa-heart-crack iconDislike"></i>
+                      </button>
+                      <div><p class="numDislike">${structure.dislikes}</p></div>
+                    </li>
+                  </ul>
+               </div>
+               <div class="divExcluir" data-index=${i}>
+                <div class="selectDel">
+                  <button class="btnDelete">
+                    <i class="iconDelete fa-solid fa-trash-can"></i>
+                  </button>
+                </div>
+               </div>
+              </div>
+              </div>`;
+          }
+          if(mensagens.length === 0) {
+            display.innerHTML = "<p class='subtitulo'>Ainda não há mensagens.</p>";
+          } else {
+            display.innerHTML = strMsg;
+          }
+          
+          let btnsLike = document.querySelectorAll('.btnLike');
+          btnsLike.forEach(btn => {
+            btn.addEventListener('click', function () {
+              let index = this.getAttribute('data-index');
+              darLike(index);
+            });
+          });
+
+          let btnsDislike = document.querySelectorAll('.btnDislike');
+          btnsDislike.forEach(btn => {
+            btn.addEventListener('click', function () {
+              let index = this.getAttribute('data-index');
+              darDislike(index);
+            });
+          });
+          
+          let btnsDelete = document.querySelectorAll('.btnDelete');
+          btnsDelete.forEach(button => {
+            button.addEventListener('click', function() {
+              const msgId = this.closest('.containerChat').getAttribute('data-msg-id');
+              deleteClick(msgId);
+            });
+          });
+        } else {
+          tela.innerHTML = "<h3>404</h3><p>Comunidade não encontrada</p>"
+        }
+  
+        function darLike(index) {
+          let structure = objetos.mensagens[index];
+          
+          let btnLike = document.querySelectorAll('.btnLike')[index];
+          let likeIcon = document.querySelectorAll('.iconLike')[index];
+          let likestxt = document.querySelectorAll('.numLike')[index];
+
+          let btnDislike = document.querySelectorAll('.btnDislike')[index];
+          let dislikeIcon = document.querySelectorAll('.iconDislike')[index];
+          let dislikestxt = document.querySelectorAll('.numDislike')[index];
+
+          let trash = document.querySelectorAll('.iconDelete')[index];
+          
+          let container = document.querySelectorAll('.containerChat')[index];
+  
+          if (likeIcon.style.color === "lightgrey") {
+            structure.likes = 1;
+            structure.dislikes = 0;
+            likeIcon.style.color = lightred;
+            dislikeIcon.style.color = "lightgrey";
+            trash.style.color = lightred;
+            container.style.border = `1px solid ${lightred}`;
+            container.style.backgroundColor = fadered;
+          } else {
+            structure.likes = 0;
+            likeIcon.style.color = "lightgrey";
+            trash.style.color = "lightgrey";
+            container.style.border = `1px solid lightgrey`;
+            container.style.backgroundColor = "white";
+          }
+          likestxt.innerHTML = `${structure.likes}`;
+          dislikestxt.innerHTML = `${structure.dislikes}`;
+        };
+
+        function darDislike(index) {
+          let structure = objetos.mensagens[index];
+
+          let btnDislike = document.querySelectorAll('.btnDislike')[index];
+          let dislikeIcon = document.querySelectorAll('.iconDislike')[index];
+          let dislikestxt = document.querySelectorAll('.numDislike')[index];
+
+          let btnLike = document.querySelectorAll('.btnLike')[index];
+          let likeIcon = document.querySelectorAll('.iconLike')[index];
+          let likestxt = document.querySelectorAll('.numLike')[index];
+
+          let trash = document.querySelectorAll('.iconDelete')[index];
+
+          let container = document.querySelectorAll('.containerChat')[index];
+
+          if (dislikeIcon.style.color === "lightgrey") {
+            structure.likes = 0;
+            structure.dislikes = 1;
+            dislikeIcon.style.color = darkpink;
+            likeIcon.style.color = "lightgrey";
+            trash.style.color = darkpink;
+            container.style.border = `1px solid ${darkpink}`;
+            container.style.backgroundColor = fadepink;
+          } else {
+            structure.dislikes = 0;
+            dislikeIcon.style.color = "lightgrey";
+            trash.style.color = "lightgrey";
+            container.style.border = `1px solid lightgrey`;
+            container.style.backgroundColor = "white";
+          }
+          dislikestxt.innerHTML = `${structure.dislikes}`;
+          likestxt.innerHTML = `${structure.likes}`;
+        };
+      };
+      carregaDadosJSONServer(loadChat)
+    }
+
+    function deleteClick(msgId) {
+      deleteChat(msgId, exibeMsg);
+    }
+
+    function init() {
+      var btnSend = document.querySelector('.btnChat');
+      if (btnSend) {
+        btnSend.addEventListener('click', function () {
+          console.log('Botão clicado');
+          var txtMsg = document.querySelector('.enterMsg').value;
+          var nomeMencionado = reconTermoMencionado(txtMsg);
+          console.log("nome do mencionado: ", nomeMencionado);
+          let mentionUserId = null;
+
+          if (txtMsg.trim() === "") {
+            alert("Não deixe a mensagem em branco.");
+            return;
+          }
+
+          if(nomeMencionado) {
+            const usuarioMencionado = getUserByName(usuarios, nomeMencionado);
+            console.log("usuário mencionado: ", usuarioMencionado);
+            if(usuarioMencionado) {
+              mentionUserId = usuarioMencionado.usuarioId;
+              console.log("id do mencionado: ", mentionUserId);
+            }
+          } else {
+            console.log("menção nula.");
+          }
+          
+          let novochat = {
+            id: mensagens.length + 1,
+            usuarioId: usuarios[1].usuarioId,
+            tituloMsg: "Lorem Ipsum",
+            conteudo: txtMsg,
+            likes: 0,
+            dislikes: 0,
+            usuarioMencionadoId: mentionUserId,
+            imgSrc: ""
+          };
+          
+          console.log(novochat.usuarioMencionadoId);
+          createChat(novochat, exibeMsg);
+          document.querySelector('.enterMsg').value = "";
+        });
+        
+      } else {
+        console.error('Botão de envio não encontrado');
+      }
+      exibeMsg();
+    }
+
+    function reconTermoMencionado(conteudo) {
+      const padrao = /@(\w+)/;
+      const match = conteudo.match(padrao);
+      if(match) {
+        return match[1];
+      }
+      return null;
+    }
+
+    function getUserByName(usuarios, nome) {
+      for(i = 0; i < usuarios.length; i++) {
+        if(usuarios[i].nome === nome) {
+          console.log(usuarios[i]);
+          return usuarios[i];
+        }
+      }
+      return null;
+    }
+  </script>
+</body>
+
+</html>

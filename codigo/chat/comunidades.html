@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Comunidades</title>
+  <link href="/styles/comchat.css" rel="stylesheet" type="text/css" />
+  <!--importação da fonte principal-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+  <!--início da seção header-->
+  <header>
+    <img src="imgs/logo.png" class="logo">
+    <h1>mãe coruja</h1>
+  </header>
+  <!--início da seção main-->
+  <main>
+    <h2>Comunidades</h2>
+    <section class="container">
+      <!--comunidades vão ser inseridas pelo javascript-->
+    </section>
+
+  </main>
+  <!--início da seção footer-->
+  <footer>
+    <ul class="footerIcons">
+      <li><a href=""><i class="fa-solid fa-people-roof"></i></a></li>
+      <li><a href=""><i class="fa-solid fa-calendar-days"></i></a></li>
+      <li><a href=""><i class="fa-solid fa-note-sticky"></i></a></li>
+      <li><a href=""><i class="fa-solid fa-earth-americas"></i></a></li>
+      <li><a href=""><i class="fa-solid fa-heart-circle-plus"></i></a></li>
+    </ul>
+  </footer>
+  <!--font awesome-->
+  <script src="https://kit.fontawesome.com/2a55b76bbc.js" crossorigin="anonymous"></script>
+  <!--script da API-->
+  <script src="scripts/app.js"></script>
+  <!--script da página-->
+  <script>
+    function loadDados() {
+      let display = document.querySelector('.container');
+      strTexto = '';
+
+      comunidades = objetos.comunidades;
+      for (let i = 0; i < comunidades.length; i++) {
+        let structure = comunidades[i];
+        strTexto +=
+          `<div class="commContainer">
+              <div class="commCapas" id="capa${structure.id}">
+    
+              </div>
+      
+              <div class="commInfo">
+                <div class="commText">
+                  <h4 class="commTitles">${structure.titulo}</h4>
+                  <p class="commSub">${structure.descricao}</p>
+                </div>
+                
+                <ul class="commOptions">
+                  <li>
+                    <a href="chat.html?id=${structure.id}" class="contComm">
+                      <div class="commEntrar btnsComIcons" style="background-color: var(--dark${structure.corApelido});">
+                        <div class="enter_icon">
+                          <i class="fa-solid fa-right-to-bracket"></i>
+                        </div>
+                        <p>Entrar na comunidade</p>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="commTags">
+                    <div class="tagComm btnsComIcons">
+                      <div class="info_icon">
+                        <i class="fa-solid fa-circle-info infoIcon"></i>
+                      </div>
+                      <p>Esta é uma comunidade padrão</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+          </div>`;
+      }
+      display.innerHTML = strTexto;
+    }
+
+    carregaDadosJSONServer(loadDados);
+  </script>
+</body>
+
+</html>

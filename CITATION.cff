@@ -3,22 +3,22 @@ cff-version: 1.0.1
 message: Please cite this software using these metadata.
 title: Projeto Mãe Coruja 
 authors:
-  - family-names: Luísa 
-    given-names: Oliveira Jardim 
-  - family-names: Gabriela 
-    given-names: Alvarenga Cardoso
-  - family-names: João Álvaro 
-    given-names: Rodrigs de Araújo
-  - family-names: Leonardo 
-    given-names: de Souza Galvão 
+  - family-names: Oliveira Jardim 
+    given-names: Luísa 
+  - family-names: Alvarenga Cardoso
+    given-names: Gabriela
+  - family-names: Rodrigues de Araújo
+    given-names: João Álvaro 
+  - family-names: de Souza Galvão 
+    given-names:  Leonardo
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: Rommel 
-    given-names: Vieira Carneiro 
+    family-names: Vieira Carneiro 
+    given-names: Rommel
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: Simone 
-    given-names: Alves Nogueira 
+    family-names: Alves Nogueira 
+    given-names: Simone
 keywords:
   - educação parenteal, organização, pais, mães, filhos, assistente virtual, ferramenta de organização.
 repository-code: 

@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Comunidades</title>
+  <link href="../../assets/css/comchat.css" rel="stylesheet" type="text/css" />
+  <!--importação da fonte principal-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+  <!--início da seção header-->
+  <header>
+    <img src="../../assets/images/logo.png" class="logo">
+    <h1>Mãe coruja</h1>
+  </header>
+  <!--início da seção main-->
+  <main class="chatMain">
+    <section class="legendas">
+      <div class="TituloPag">
+        <ul class="chatUl">
+          <li><i class="fa-solid fa-globe iconAldeia"></i></li>
+          <li>
+            <p class="subtitulo">Aldeia</p>
+          </li>
+        </ul>
+      </div>
+
+      <div class="subtituloPag">
+        <ul class="chatUl">
+          <li>Comunidade</li>
+          <li class="commName">
+            <p>Nome da Comunidade</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!--container do chat-->
+    <section class="chats">
+      <!--chat será inserido pelo javascript-->
+    </section>
+
+    <!--opções do chat-->
+    <section class="containerChatOptions">
+      <div class="chatOptions">
+        <ul class="chatUl">
+          <li><input type="text" placeholder="Envie uma mensagem" class="enterMsg" /></li>
+          <button class="btnChat"><i class="fa-solid fa-paper-plane iconChat"></i></button>
+        </ul>
+        <a href="comunidades.html">
+          <button class="btnVoltar">
+            Voltar
+          </button>
+        </a>
+      </div>
+    </section>
+  </main>
+  <!--mensagem da API-->
+  <div id="msg">
+
+  </div>
+
+  <!--início da seção footer-->
+  <footer>
+    <ul class="chatUl footerIcons">
+      <li><a href="../saude-filho/index.html"><i class="fa-solid fa-people-roof"></i></a></li>
+      <li><a href="../calendario/calendario.html"><i class="fa-solid fa-calendar-days"></i></a></li>
+      <li><a href="../geladeira(json server teste)/main.html"><i class="fa-solid fa-note-sticky"></i></a></li>
+      <li><a href="../chat/comunidades.html"><i class="fa-solid fa-earth-americas"></i></a></li>
+      <li><a href="../saude-filho/index.html"><i class="fa-solid fa-heart-circle-plus"></i></a></li>
+    </ul>
+  </footer>
+  <!--font awesome-->
+  <script src="https://kit.fontawesome.com/2a55b76bbc.js" crossorigin="anonymous"></script>
+  <!--script da API-->
+  <script src="../../assets/js/chat.js"></script>
+  <!--script do chat-->
+  <script>
+
+    //executa a função init somente quando todos os elementos do DOM forem carregados
+    document.addEventListener('DOMContentLoaded', function() {
+      init();
+    });
+
+    //gera um número aleatório entre 1 e 12 para retornar a url da imagem de identificador correspondente
+    function geraAvatar() {
+      const num = Math.floor(Math.random() * 12) + 1;
+      return `../../assets/images/avatars/owl_avatar${num}.png`;
+    }
+
+    /*função para exibir as mensagens no chat
+
+    possui a função loadChat para exibir mensagens no container e trabalhar as interações
+    e a função init para processar o envio da mensagem */
+    function exibeMsg() {
+      // atribui as cores personalizadas do CSS a variáveis de JS
+      var root = document.documentElement;
+      var lightred = getComputedStyle(root).getPropertyValue('--lightred').trim();
+      var fadered = getComputedStyle(root).getPropertyValue('--fadered').trim();
+      var darkpink = getComputedStyle(root).getPropertyValue('--darkpink').trim();
+      var fadepink = getComputedStyle(root).getPropertyValue('--fadepink').trim();
+      var cinza = getComputedStyle(root).getPropertyValue('--lightgrey').trim();
+
+      // função loadChat exibe mensagens no html e trabalha as interações do usuário com as mensagens como like e dislike
+      function loadChat() {
+        let tela = document.querySelector('body');
+        let comunidadeTitle = document.querySelector('.commName');
+        let display = document.querySelector('.chats');
+        let strMsg = '';
+
+        btnLike = document.querySelector('.btnLike');
+        let click = false;
+
+        // declara a variável para buscar elementos iguais à query string
+        let params = new URLSearchParams(location.search);
+        id = params.get('id');
+
+        comunidades = objetos.comunidades;
+        comunidade = comunidades.find(function (elem) {
+          return elem.id == id;
+        });
+
+        // usa a query string passada para personalizar a página para a comunidade selecionada anteriormente
+        if (comunidade) {
+          comunidadeTitle.innerHTML = `<p>${comunidade.titulo}</p>`;
+          comunidadeTitle.style.color = comunidade.cor;
+
+          mensagens = objetos.mensagens;
+          usuarios = objetos.usuarios;
+
+          // função para procurar usuários que possuem um determinado id
+          function findUserById(userId) {
+            for (let i = 0; i < usuarios.length; i++) {
+              if (usuarios[i].id === userId) {
+                return usuarios[i];
+              }
+            }
+            return null;
+          }
+
+          // loop de for percorre o array de mensagens e imprime todas no container do chat
+          for (let i = 0; i < mensagens.length; i++) {
+            let structure = mensagens[i];
+            var conteudo = structure.conteudo;
+
+            if(structure.usuarioMencionadoId) {
+              /* Condição para aplicar um estilo ao nome de usuário mencionado em uma mensagem
+
+              - Se o objeto de mensagens atual no for não tiver o id de usuário mencionado nulo, 
+              o usuário mencionado é o usuário correspondente a este id. 
+
+              - Se o usuário mencionado não for nulo, o nome mencionado é o nome do usuário mencionado depois de
+              um @. 
+
+              - No conteúdo da mensagem, o nome mencionado vai ser colocado dentro de um span com a classe que
+              aplica o estilo à menção.
+              */
+              let usuarioMencionado = findUserById(structure.usuarioMencionadoId);
+              console.log(usuarioMencionado);
+              if(usuarioMencionado) {
+                const nomeMencionado = `@${usuarioMencionado.nome}`;
+                console.log("Nome mencionado na mensagem: ", nomeMencionado);
+                conteudo = conteudo.replace(nomeMencionado, `<span class="mencao">${nomeMencionado}</span>`);
+              }
+            } 
+
+            // a variável que representa o texto do container do chat, ao ler um objeto ele o imprime nesse html
+            strMsg +=
+              `<div class="containerChat" data-msg-id="${structure.id}">
+                <div class="divFoto">
+                  <img src="${structure.imgSrc}" class="profilePic"/> 
+                </div>
+                <div class="divConteudo">
+                  <p class="userName">${usuarios[structure.usuarioId - 1].nome}</p>
+                  <p class="conteudoMsg">${conteudo} </p>
+                  <ul class="chatUl">
+                    <li class="reactLike">
+                      <button class="reactions btnLike" data-index=${i}>
+                        <i class="fa-solid fa-heart iconLike"></i>
+                      </button>
+                      <div><p class="numLike">${structure.likes}</p></div>
+                    </li>
+
+                    <li class="reactDislike">
+                      <button class="reactions btnDislike" data-index=${i}>
+                        <i class="fa-solid fa-heart-crack iconDislike"></i>
+                      </button>
+                      <div><p class="numDislike">${structure.dislikes}</p></div>
+                    </li>
+                  </ul>
+               </div>
+               <div class="divExcluir">
+                <div class="selectDel">
+                  <button class="btnDelete">
+                    <i class="iconDelete fa-solid fa-trash-can"></i>
+                  </button>
+                </div>
+               </div>
+              </div>
+              </div>`;
+          }
+          // verifica se há mensagens, se não ele exibe um texto dizendo que ainda não há mensagens
+          if(mensagens.length === 0) {
+            display.innerHTML = "<p class='subtitulo'>Ainda não há mensagens.</p>";
+          } else {
+            display.innerHTML = strMsg;
+          }
+
+          // põe um evento de click ao botão de like
+          let btnsLike = document.querySelectorAll('.btnLike');
+          btnsLike.forEach(btn => {
+            btn.addEventListener('click', function () {
+              let index = this.getAttribute('data-index');
+              darLike(index);
+            });
+          });
+
+          // põe um evento de click ao botão de dislike
+          let btnsDislike = document.querySelectorAll('.btnDislike');
+          btnsDislike.forEach(btn => {
+            btn.addEventListener('click', function () {
+              let index = this.getAttribute('data-index');
+              darDislike(index);
+            });
+          });
+
+          // põe um evento de click ao botão de deletar
+          let btnsDelete = document.querySelectorAll('.btnDelete');
+          btnsDelete.forEach(button => {
+            button.addEventListener('click', function() {
+              const msgId = this.closest('.containerChat').getAttribute('data-msg-id');
+              deleteClick(msgId);
+            });
+          });
+        } else {
+          tela.innerHTML = "<h3>404</h3><p>Comunidade não encontrada</p>"
+        }
+
+        var clickLike = [];
+        var clickDislike = [];
+
+        document.querySelectorAll('.iconLike').forEach(icon => icon.style.color = cinza);
+        document.querySelectorAll('.iconDislike').forEach(icon => icon.style.color = cinza);
+
+        // função que controla os likes disparada pelo click no botão de like, like e dislike se sobescrevem 
+        function darLike(index) {
+          let structure = objetos.mensagens[index];
+          let msgid = structure.id;
+
+          let btnLike = document.querySelectorAll('.btnLike')[index];
+          let likeIcon = document.querySelectorAll('.iconLike')[index];
+          let likestxt = document.querySelectorAll('.numLike')[index];
+
+          let btnDislike = document.querySelectorAll('.btnDislike')[index];
+          let dislikeIcon = document.querySelectorAll('.iconDislike')[index];
+          let dislikestxt = document.querySelectorAll('.numDislike')[index];
+
+          let trash = document.querySelectorAll('.iconDelete')[index];
+
+          let container = document.querySelectorAll('.containerChat')[index];
+
+          if(clickLike[index] === undefined) {
+            clickLike[index] = 0;
+          }
+          if(clickDislike[index] === undefined) {
+            clickDislike[index] = 0;
+          }
+
+          if (likeIcon.style.color == cinza) {
+            clickLike[index] = 1;
+            structure.likes++;
+            if(clickDislike[index] == 1) {
+              clickDislike[index] = 0;
+              structure.dislikes--;
+            }
+            likeIcon.style.color = lightred;
+            dislikeIcon.style.color = cinza;
+            trash.style.color = lightred;
+            container.style.border = `1px solid ${lightred}`;
+            container.style.backgroundColor = fadered;
+          } else {
+            clickLike[index] = 0;
+            structure.likes--;
+            likeIcon.style.color = cinza;
+            trash.style.color = cinza;
+            container.style.border = `1px solid ${cinza}`;
+            container.style.backgroundColor = "white";
+          }
+          likestxt.innerHTML = `${structure.likes}`;
+          dislikestxt.innerHTML = `${structure.dislikes}`;
+
+          // chama a função do chat.js para atualizar os likes e dislikes da mensagem
+          updateReactions(structure.id, structure.likes, structure.dislikes);
+        };
+
+        // função que controla os dislikes disparada pelo click no botão de dislike, like e dislike se sobescrevem 
+        function darDislike(index) {
+          let structure = objetos.mensagens[index];
+
+          let btnDislike = document.querySelectorAll('.btnDislike')[index];
+          let dislikeIcon = document.querySelectorAll('.iconDislike')[index];
+          let dislikestxt = document.querySelectorAll('.numDislike')[index];
+
+          let btnLike = document.querySelectorAll('.btnLike')[index];
+          let likeIcon = document.querySelectorAll('.iconLike')[index];
+          let likestxt = document.querySelectorAll('.numLike')[index];
+
+          let trash = document.querySelectorAll('.iconDelete')[index];
+
+          let container = document.querySelectorAll('.containerChat')[index];
+
+          if(clickLike[index] === undefined) {
+            clickLike[index] = 0;
+          }
+          if(clickDislike[index] === undefined) {
+            clickDislike[index] = 0;
+          }
+
+          if (dislikeIcon.style.color === cinza) {
+            clickDislike[index] = 1;
+            structure.dislikes++;
+            if(clickLike[index] == 1) {
+              clickLike[index] = 0;
+              structure.likes--;
+            }
+            dislikeIcon.style.color = darkpink;
+            likeIcon.style.color = cinza;
+            trash.style.color = darkpink;
+            container.style.border = `1px solid ${darkpink}`;
+            container.style.backgroundColor = fadepink;
+          } else {
+            clickDislike[index] = 0;
+            structure.dislikes--;
+            dislikeIcon.style.color = cinza;
+            trash.style.color = cinza;
+            container.style.border = `1px solid ${cinza}`;
+            container.style.backgroundColor = "white";
+          }
+          dislikestxt.innerHTML = `${structure.dislikes}`;
+          likestxt.innerHTML = `${structure.likes}`;
+
+          // chama a função do chat.js para atualizar os likes e dislikes da mensagem
+          updateReactions(structure.id, structure.likes, structure.dislikes);
+        };
+      };
+      carregaDadosJSONServer(loadChat)
+    }
+
+    // função para deletar a mensagem do json disparada pelo click do botão de deletar
+    function deleteClick(msgId) {
+      deleteChat(msgId, exibeMsg);
+    }
+
+    // função para controlar o envio de mensagens pelo usuário
+    function init() {
+      var btnSend = document.querySelector('.btnChat');
+      if (btnSend) {
+
+        // adiciona evento de click para o botão de enviar
+        btnSend.addEventListener('click', function () {
+          console.log('Botão clicado');
+          var txtMsg = document.querySelector('.enterMsg').value;
+          var nomeMencionado = reconTermoMencionado(txtMsg);
+          console.log("nome do mencionado: ", nomeMencionado);
+          let mentionUserId = null;
+
+          if (txtMsg.trim() === "") {
+            alert("Não deixe a mensagem em branco.");
+            return;
+          }
+
+          // se há um nome mencionado no texto da mensagem. o usuário mencionado é o usuário com o nome correspondente
+          if(nomeMencionado) {
+            const usuarioMencionado = getUserByName(usuarios, nomeMencionado);
+            console.log("usuário mencionado: ", usuarioMencionado);
+            if(usuarioMencionado) {
+              mentionUserId = usuarioMencionado.id;
+              console.log("id do mencionado: ", mentionUserId);
+            }
+          } else {
+            console.log("menção nula.");
+          }
+
+          // cria um novo objeto dentro de mensagens
+          let novochat = {
+            id: mensagens.length + 1,
+            usuarioId: usuarios[0].id, // não pode ser estático, conseguir algum jeito de fazer ele ser o usuário logado
+            tituloMsg: "Lorem Ipsum",
+            conteudo: txtMsg,
+            likes: 0,
+            dislikes: 0,
+            usuarioMencionadoId: mentionUserId,
+            imgSrc: `${geraAvatar()}`
+          };
+
+          console.log(novochat.usuarioMencionadoId);
+          createChat(novochat, exibeMsg);
+          document.querySelector('.enterMsg').value = "";
+        });
+
+      } else {
+        console.error('Botão de envio não encontrado');
+      }
+      exibeMsg();
+    }
+
+    // define o padrão para reconhecer os nomes mencionados dentro do conteúdo de uma mensagem
+    function reconTermoMencionado(conteudo) {
+      const padrao = /@(\w+)/;
+      const match = conteudo.match(padrao);
+      if(match) {
+        return match[1];
+      }
+      return null;
+    }
+
+    // função para obter o usuário com o nome correspondente
+    function getUserByName(usuarios, nome) {
+      for(i = 0; i < usuarios.length; i++) {
+        if(usuarios[i].nome === nome) {
+          console.log(usuarios[i]);
+          return usuarios[i];
+        }
+      }
+      return null;
+    }
+  </script>
+</body>
+
+</html>

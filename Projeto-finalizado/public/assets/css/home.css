@@ -1,0 +1,98 @@
+.btntext{
+  text-decoration: none;
+  color: #fff;
+}
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+header {
+  padding: 1.5em;
+  display: flex;
+  align-items: center;
+  gap: 2em;
+  background-image: linear-gradient(to bottom, #800080, #4b0082);
+  border-radius: 0px 0px 30px 30px;
+  margin-bottom: 2em;
+  color: white;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  height: 50px;
+  margin-left:50 px;
+}
+
+header h1 {
+  margin: 10;
+}
+
+
+
+.login-button {
+  background-color: #a468ee;
+  color: white;
+  border: none;
+  padding: 1em 2.5em;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  margin-left: 25px;
+}
+
+.login-button:hover {
+  background-color: #b762ca;
+}
+
+section {
+  padding: 2em;
+  margin: 2em 0;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+  margin: 2em auto;
+}
+
+section#bem-vindo {
+  background-color: #bda4c93c;
+  text-align: center;
+}
+
+h2 {
+  color: #b762ca;
+}
+
+footer {
+  background-color: #bda4c9;
+  color: white;
+  text-align: center;
+  padding: 1em;
+}
+
+footer p {
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .header-content {
+      flex-direction: column;
+  }
+  nav ul {
+      flex-direction: column;
+  }
+  nav ul li {
+      margin: 0.5em 0;
+  }
+}

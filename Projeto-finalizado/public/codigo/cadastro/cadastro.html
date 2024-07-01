@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro | Mãe Coruja</title>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../assets/css/cadastro.css">
+</head>
+
+<body>
+
+    <div class="container-fluid h-100 d-flex justify-content-center align-items-center">
+        <div class="col-md-4 col-10 d-flex flex-column justify-content-center align-items-center">
+            <div class="text-center mb-4">
+                <img src="../../assets/images/logo.png" alt="Mãe Coruja" class="logo">
+            </div>
+            <form class="w-100" id="registerForm">
+                <h2 class="mb-4">Cadastrar-se no Mãe Coruja</h2>
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="nome" placeholder="Nome do usuário" required>
+                </div>
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="login" placeholder="User" required>
+                </div>
+                <div class="mb-3">
+                    <input type="email" class="form-control" id="email" placeholder="Email" required>
+                </div>
+                <div class="mb-3">
+                    <input type="email" class="form-control" id="confirmar-email" placeholder="Confirmar email"
+                        required>
+                </div>
+                <div class="mb-3">
+                    <input type="password" class="form-control" id="senha" placeholder="Senha" required>
+                </div>
+                <div class="mb-3">
+                    <label for="papel" class="form-label">Meu papel na família:</label>
+                    <select class="form-select" id="papel" required>
+                        <option value="">Selecione...</option>
+                        <option value="Mãe">Mãe</option>
+                        <option value="Pai">Pai</option>
+                        <option value="Filho(a)">Filho(a)</option>
+                        <option value="Avô/Avó">Avô/Avó</option>
+                        <option value="Outro">Outro</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Cadastrar-se</button>
+            </form>
+            <div class="text-center mt-3">
+                <p>Já tem uma conta? <a href='../login/login.html'>Entrar</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Erro -->
+    <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="errorModalLabel">Erro</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body" id="errorModalBody">
+                    <!-- Conteúdo da mensagem de erro será inserido aqui dinamicamente -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="../../assets/js/cadastro.js"></script>
+</body>
+
+</html>

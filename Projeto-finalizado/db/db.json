@@ -1,0 +1,132 @@
+{
+  "days": [],
+  "recados": [],
+  "pediatra": [],
+  "consultas": [],
+  "vacinas": [],
+  "lembretes": [],
+  "usuarios": [
+    {
+      "nome": "leonardo",
+      "login": "leo",
+      "senha": "123",
+      "email": "desouzagalvaoleonardo@gmail.com",
+      "papel": "Pai",
+      "id": 1
+    },
+    {
+      "nome": "Rogerio",
+      "login": "Rogerio",
+      "senha": "123",
+      "email": "roger@gmail.com",
+      "papel": "Pai",
+      "id": 2
+    },
+    {
+      "nome": "leonardo",
+      "login": "leo",
+      "senha": "123",
+      "email": "desouzagalvaoleonardo@gmail.com",
+      "papel": "Pai",
+      "id": 3
+    },
+    {
+      "nome": "AAAA",
+      "login": "aaa",
+      "senha": "a",
+      "email": "Aa@gmail.com",
+      "papel": "Mãe",
+      "likes": [],
+      "dislikes": [],
+      "id": 4
+    }
+  ],
+  "comunidades": [
+    {
+      "id": 1,
+      "cor": "#D13A68",
+      "corApelido": "red",
+      "titulo": "Pais solteiros/de primeira viagem",
+      "descricao": "Bem-vindo ao espaço para pais solteiros ou de primeira viagem"
+    },
+    {
+      "id": 2,
+      "cor": "#06A878",
+      "corApelido": "green",
+      "titulo": "Mães solteiras",
+      "descricao": "Bem-vindo ao espaço para mães solteiras"
+    },
+    {
+      "id": 3,
+      "cor": "#C6773D",
+      "corApelido": "yellow",
+      "titulo": "Famílias adotivas",
+      "descricao": "Bem-vindo ao espaço para famílias adotivas"
+    },
+    {
+      "id": 4,
+      "cor": "#8D5D68",
+      "corApelido": "pink",
+      "titulo": "Avós e avôs",
+      "descricao": "Bem-vindo ao espaço para avós e avôs"
+    },
+    {
+      "id": 5,
+      "cor": "#4C7CF6",
+      "corApelido": "blue",
+      "titulo": "Pais divorciados",
+      "descricao": "Bem-vindo ao espaço para pais divorciados"
+    }
+  ],
+  "mensagens": [],
+  "avatars": [
+    {
+      "id": 1,
+      "url": "./public/assets/images/avatars/owl_avatar1.png"
+    },
+    {
+      "id": 2,
+      "url": "./public/assets/images/avatars/owl_avatar2.png"
+    },
+    {
+      "id": 3,
+      "url": "./public/assets/images/avatars/owl_avatar3.png"
+    },
+    {
+      "id": 4,
+      "url": "./public/assets/images/avatars/owl_avatar4.png"
+    },
+    {
+      "id": 5,
+      "url": "./public/assets/images/avatars/owl_avatar5.png"
+    },
+    {
+      "id": 6,
+      "url": "./public/assets/images/avatars/owl_avatar6.png"
+    },
+    {
+      "id": 7,
+      "url": "./public/assets/images/avatars/owl_avatar7.png"
+    },
+    {
+      "id": 8,
+      "url": "./public/assets/images/avatars/owl_avatar8.png"
+    },
+    {
+      "id": 9,
+      "url": "./public/assets/images/avatars/owl_avatar9.png"
+    },
+    {
+      "id": 10,
+      "url": "./public/assets/images/avatars/owl_avatar10.png"
+    },
+    {
+      "id": 11,
+      "url": "./public/assets/images/avatars/owl_avatar11.png"
+    },
+    {
+      "id": 12,
+      "url": "./public/assets/images/avatars/owl_avatar12.png"
+    }
+  ]
+}

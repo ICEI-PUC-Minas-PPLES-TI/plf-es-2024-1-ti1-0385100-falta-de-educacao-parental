@@ -1,0 +1,75 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'League Spartan', sans-serif;
+}
+
+body {
+    background-image: linear-gradient(to bottom, #800080, #4b0082);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    min-height: 100vh; /* Garante que o body ocupe toda a altura da viewport */
+}
+
+.container-fluid {
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh; /* Garante que o contêiner ocupe toda a altura da viewport */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    width: 100px;
+}
+
+form {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    color: #000;
+    max-width: 100%; /* Garante que o formulário ocupe a largura máxima do contêiner */
+}
+
+form h2 {
+    color: #7e57c2;
+}
+
+.btn-primary {
+    background-color: #7e57c2;
+    border: none;
+}
+
+a {
+    color: #7e57c2;
+}
+
+/* Modal de Erro */
+.modal-body {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+
+/* Estilo para caixa de erro menor */
+.error-box {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    padding: .5rem 1rem; /* Reduzindo o padding para uma caixa menor */
+    margin-bottom: .5rem; /* Reduzindo o espaço entre caixas de erro */
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    font-size: 0.875rem; /* Reduzindo o tamanho da fonte */
+}
